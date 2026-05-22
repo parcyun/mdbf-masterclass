@@ -23,6 +23,7 @@
     color: #fff;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow: hidden;
+    overflow-x: hidden;
     cursor: default;
   }
 
@@ -491,7 +492,7 @@
   function recomputeBase() {
     chips.forEach(c => {
       const prev = c.el.style.transform;
-      c.el.style.transform = 'translate3d(0,0,0)';
+      c.el.style.transform = 'translate(-50%, -50%) translate3d(0,0,0)';
       const r = c.el.getBoundingClientRect();
       c.baseX = r.left + r.width / 2;
       c.baseY = r.top + r.height / 2;
@@ -543,7 +544,7 @@
       c.ox += (c.tx - c.ox) * EASE;
       c.oy += (c.ty - c.oy) * EASE;
 
-      c.el.style.transform = `translate3d(${c.ox.toFixed(2)}px, ${c.oy.toFixed(2)}px, 0)`;
+      c.el.style.transform = `translate(-50%, -50%) translate3d(${c.ox.toFixed(2)}px, ${c.oy.toFixed(2)}px, 0)`;
     });
     requestAnimationFrame(animateChips);
   }

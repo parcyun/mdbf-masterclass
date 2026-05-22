@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>강좌 신청 — the Masterclass</title>
+<meta name="description" content="the Masterclass 클래스별 강좌 신청. AI/AX, 업무 자동화, 이미지/영상, 에듀테크, 수업 자료, 디자인/드로잉.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --brand: #3364D9;
+    --brand-light: #5B8CFF;
+    --brand-soft: rgba(51, 100, 217, 0.08);
+    --bg: rgba(250, 251, 255, 0.45);
+    --card-bg: #ffffff;
+    --card-bg-soon: rgba(248, 249, 252, 0.7);
+    --border: rgba(15, 23, 42, 0.06);
+    --border-soon: rgba(15, 23, 42, 0.1);
+    --text: #1a1f2e;
+    --text-mute: #5a6273;
+    --text-faint: #9ba3b4;
+    --text-soon: #b8becc;
+  }
+
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.01em;
+    line-height: 1.6;
+    padding: 72px 32px 80px;
+    min-height: 100vh;
+  }
+
+  .container { max-width: 1180px; margin: 0 auto; }
+
+  /* ===== Head ===== */
+  .head {
+    margin-bottom: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .section-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    color: var(--brand);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--brand);
+    opacity: 0.5;
+  }
+
+  h2 {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  .head-sub {
+    font-size: 15px;
+    color: var(--text-mute);
+    max-width: 380px;
+    line-height: 1.55;
+  }
+
+  /* ===== Grid ===== */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  /* ===== Card ===== */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 26px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    min-height: 230px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 100% 0%, var(--brand-soft) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 16px 40px rgba(51, 100, 217, 0.12),
+      0 4px 12px rgba(0, 0, 0, 0.04);
+    border-color: rgba(51, 100, 217, 0.2);
+  }
+  .card:hover::before { opacity: 1; }
+
+  .card-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-faint);
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-body { flex: 1; position: relative; z-index: 1; }
+
+  .card-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    line-height: 1.25;
+    color: var(--text);
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--text-mute);
+    line-height: 1.55;
+    margin-bottom: 22px;
+  }
+
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    background: var(--brand);
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 12px rgba(51, 100, 217, 0.25);
+  }
+
+  .card-cta:hover {
+    background: var(--brand-light);
+    box-shadow: 0 6px 18px rgba(51, 100, 217, 0.4);
+  }
+
+  .card-cta svg { transition: transform 0.25s ease; }
+  .card-cta:hover svg { transform: translateX(3px); }
+
+  /* ===== Coming Soon ===== */
+  .card.soon {
+    background: var(--card-bg-soon);
+    border: 1px dashed var(--border-soon);
+    cursor: default;
+  }
+  .card.soon::before { display: none; }
+  .card.soon:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--border-soon);
+  }
+  .card.soon .card-num,
+  .card.soon .card-title,
+  .card.soon .card-desc {
+    color: var(--text-soon);
+  }
+
+  .badge-soon {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    background: rgba(155, 163, 180, 0.15);
+    color: var(--text-faint);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    border-radius: 100px;
+    align-self: flex-start;
+    text-transform: uppercase;
+  }
+
+  /* ===== Footer signature ===== */
+  .signature {
+    margin-top: 56px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 0.08em;
+  }
+  .signature a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .signature a:hover { color: var(--text-mute); }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    body { padding: 56px 20px 64px; }
+    .head { margin-bottom: 32px; }
+    h2 { font-size: 28px; }
+    .head-sub { font-size: 14px; max-width: 100%; }
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .card {
+      padding: 22px 20px 20px;
+      border-radius: 16px;
+      min-height: 190px;
+    }
+    .card-num { margin-bottom: 14px; }
+    .card-title { font-size: 17px; }
+    .card-desc { font-size: 12px; margin-bottom: 16px; }
+    .card-cta { font-size: 12px; padding: 9px 14px; }
+    .badge-soon { font-size: 10px; padding: 7px 12px; }
+  }
+
+  @media (max-width: 480px) {
+    body { padding: 40px 16px 56px; }
+    h2 { font-size: 24px; }
+    .grid { grid-template-columns: 1fr; gap: 10px; }
+    .card { min-height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="head">
+    <div>
+      <div class="section-label">Classes</div>
+      <h2>강좌 신청</h2>
+    </div>
+    <p class="head-sub">현장에서 검증된 6개 트랙. 관심 있는 분야를 선택해 신청하세요.</p>
+  </header>
+
+  <div class="grid">
+
+    <article class="card">
+      <div class="card-num">01</div>
+      <div class="card-body">
+        <h3 class="card-title">AI / AX</h3>
+        <p class="card-desc">인공지능을 교실의 언어로 바꾸는 실전 워크숍.</p>
+      </div>
+      <a class="card-cta" href="#" data-href="#" data-class="ai-ax">
+        신청하기
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </article>
+
+    <article class="card">
+      <div class="card-num">02</div>
+      <div class="card-body">
+        <h3 class="card-title">업무 자동화</h3>
+        <p class="card-desc">반복 업무를 줄여 가르치는 시간을 늘리는 도구.</p>
+      </div>
+      <a class="card-cta" href="#" data-href="#" data-class="automation">
+        신청하기
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </article>
+
+    <article class="card">
+      <div class="card-num">03</div>
+      <div class="card-body">
+        <h3 class="card-title">이미지 / 영상</h3>
+        <p class="card-desc">시각 콘텐츠로 가르치는 시대의 핵심 역량.</p>
+      </div>
+      <a class="card-cta" href="#" data-href="#" data-class="image-video">
+        신청하기
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </article>
+
+    <article class="card">
+      <div class="card-num">04</div>
+      <div class="card-body">
+        <h3 class="card-title">에듀테크</h3>
+        <p class="card-desc">도구가 아닌, 교육 설계로서의 기술.</p>
+      </div>
+      <a class="card-cta" href="#" data-href="#" data-class="edutech">
+        신청하기
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </article>
+
+    <article class="card">
+      <div class="card-num">05</div>
+      <div class="card-body">
+        <h3 class="card-title">수업 자료</h3>
+        <p class="card-desc">현장 교사가 검증한, 즉시 쓰는 수업 자료.</p>
+      </div>
+      <a class="card-cta" href="#" data-href="#" data-class="materials">
+        신청하기
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </article>
+
+    <article class="card">
+      <div class="card-num">06</div>
+      <div class="card-body">
+        <h3 class="card-title">디자인 / 드로잉</h3>
+        <p class="card-desc">손과 화면이 함께 만드는 시각 언어.</p>
+      </div>
+      <a class="card-cta" href="#" data-href="#" data-class="design-drawing">
+        신청하기
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </article>
+
+    <article class="card soon">
+      <div class="card-num">07</div>
+      <div class="card-body">
+        <h3 class="card-title">오픈 예정</h3>
+        <p class="card-desc">새로운 트랙이 준비 중입니다.</p>
+      </div>
+      <span class="badge-soon">Coming Soon</span>
+    </article>
+
+    <article class="card soon">
+      <div class="card-num">08</div>
+      <div class="card-body">
+        <h3 class="card-title">오픈 예정</h3>
+        <p class="card-desc">새로운 트랙이 준비 중입니다.</p>
+      </div>
+      <span class="badge-soon">Coming Soon</span>
+    </article>
+
+  </div>
+
+  <div class="signature">
+    Designed by parcyun studio · <a href="https://www.instagram.com/parcyun" target="_blank" rel="noopener">@parcyun</a>
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.card-cta').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = btn.dataset.href;
+      const cls = btn.dataset.class;
+      if (href && href !== '#') {
+        window.location.href = href;
+      } else {
+        console.log('Application link not set yet for:', cls);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
