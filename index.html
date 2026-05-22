@@ -249,36 +249,6 @@
 
   .embed-code { color: var(--text); user-select: all; }
 
-  /* ===== Setup Block ===== */
-  .setup {
-    background: linear-gradient(135deg, rgba(91, 140, 255, 0.08) 0%, rgba(51, 100, 217, 0.04) 100%);
-    border: 1px solid rgba(91, 140, 255, 0.25);
-    border-radius: 16px;
-    padding: 24px 26px;
-    margin-bottom: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .setup-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .setup-title {
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: -0.015em;
-  }
-  .setup-desc {
-    font-size: 13px;
-    color: var(--text-mute);
-    line-height: 1.6;
-  }
-  .setup .embed-block { display: block; margin-top: 0; }
-  .setup-actions { display: flex; gap: 8px; }
-
   /* ===== Empty Slot (for future additions) ===== */
   .card.placeholder {
     border-style: dashed;
@@ -363,73 +333,10 @@
 <main>
   <div class="container">
 
-    <!-- ===== Setup Block (1회만) ===== -->
-    <div class="setup">
-      <div class="setup-head">
-        <span class="badge">Setup · 1회만</span>
-        <span class="setup-title">아임웹 footer에 listener 한 번 심기</span>
-      </div>
-      <p class="setup-desc">
-        iframe 높이를 콘텐츠에 맞춰 자동 조정하려면, 아래 스니펫을 아임웹 → 사이트 설정 → 맞춤 코드 → footer 영역에 <strong>한 번만</strong> 붙여넣으세요. 이후 어떤 mdbf 임베드를 어떤 페이지에 넣어도 자동 작동합니다.
-      </p>
-      <div class="embed-block show">
-        <div class="embed-label">아임웹 footer 스니펫</div>
-        <code class="embed-code">&lt;script&gt;
-(function() {
-  window.addEventListener('message', function(e) {
-    if (!e.data || e.data.type !== 'mdbf-embed-height') return;
-    var h = e.data.height;
-    if (!h || h &lt; 50) return;
-    var frames = document.querySelectorAll('iframe[src*="parcyun.github.io/mdbf-masterclass"]');
-    for (var i = 0; i &lt; frames.length; i++) {
-      if (frames[i].contentWindow === e.source) {
-        frames[i].style.height = h + 'px';
-        frames[i].setAttribute('scrolling', 'no');
-      }
-    }
-  });
-})();
-&lt;/script&gt;</code>
-      </div>
-      <div class="setup-actions">
-        <button class="btn primary" data-copy-setup>스니펫 복사</button>
-      </div>
-    </div>
-
     <div class="section-label">Hero / Landing</div>
     <h2 class="section-title">메인 히어로</h2>
 
     <div class="grid">
-
-      <!-- Home Card (통합 메인) -->
-      <article class="card">
-        <div class="card-preview">
-          <iframe src="./home/" loading="lazy" title="Home preview"></iframe>
-          <div class="overlay"></div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta">
-            <span class="badge">Home</span>
-            <span>/home/</span>
-          </div>
-          <div class="card-title">메인 통합 페이지</div>
-          <div class="card-desc">hero + 48px gap + classes + 48px gap + banner 캐러셀. 아임웹 메인에 한 번에 임베드.</div>
-          <div class="card-actions">
-            <a class="btn" href="./home/" target="_blank" rel="noopener">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-              열기
-            </a>
-            <button class="btn primary" data-embed="home">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-              임베드 코드
-            </button>
-          </div>
-          <div class="embed-block" id="embed-home">
-            <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/home/" style="width:100%; height:800px; border:0; display:block;" scrolling="no" loading="lazy" title="the Masterclass Home"&gt;&lt;/iframe&gt;</code>
-          </div>
-        </div>
-      </article>
 
       <!-- Hero Card -->
       <article class="card">
@@ -456,7 +363,7 @@
           </div>
           <div class="embed-block" id="embed-hero">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/hero/" style="width:100%; height:100vh; border:0; display:block;" scrolling="no" loading="lazy" title="the Masterclass Hero"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/hero/" style="width:100%; height:900px; border:0; display:block;" loading="lazy" title="the Masterclass Hero"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -486,7 +393,7 @@
           </div>
           <div class="embed-block" id="embed-intro">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/intro/" style="width:100%; height:1000px; border:0; display:block;" scrolling="no" loading="lazy" title="the Masterclass Intro"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/intro/" style="width:100%; height:3600px; border:0; display:block;" loading="lazy" title="the Masterclass Intro"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -516,7 +423,7 @@
           </div>
           <div class="embed-block" id="embed-classes">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/classes/" style="width:100%; height:720px; border:0; display:block;" scrolling="no" loading="lazy" title="the Masterclass Classes"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/classes/" style="width:100%; height:1300px; border:0; display:block;" loading="lazy" title="the Masterclass Classes"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -546,7 +453,7 @@
           </div>
           <div class="embed-block" id="embed-banner">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/banner/" style="width:100%; aspect-ratio:4/1; border:0; display:block;" scrolling="no" loading="lazy" title="the Masterclass Banner"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/banner/" style="width:100%; height:300px; border:0; display:block;" loading="lazy" title="the Masterclass Banner"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -571,20 +478,6 @@
 <div class="toast" id="toast">클립보드에 복사되었습니다</div>
 
 <script>
-  // Setup snippet copy
-  const setupBtn = document.querySelector('[data-copy-setup]');
-  if (setupBtn) {
-    setupBtn.addEventListener('click', async () => {
-      const code = document.querySelector('.setup .embed-code').textContent;
-      try {
-        await navigator.clipboard.writeText(code);
-        showToast('listener 스니펫이 복사되었습니다');
-      } catch (e) {
-        showToast('표시됨 — 수동으로 복사해 주세요');
-      }
-    });
-  }
-
   // Embed code toggle + copy
   document.querySelectorAll('[data-embed]').forEach(btn => {
     btn.addEventListener('click', async () => {
