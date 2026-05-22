@@ -68,20 +68,50 @@ mdbf-masterclass/
 
 ## 아임웹에 임베드하는 법
 
-인덱스 페이지 ( https://parcyun.github.io/mdbf-masterclass/ ) 에서 원하는 컴포넌트의 **임베드 코드** 버튼을 누르면 클립보드에 복사된다. 그대로 아임웹 HTML 블록에 붙여넣기.
+### 1단계 — 아임웹 사이트에 listener 스크립트 한 번만 심기
+
+각 iframe이 자기 콘텐츠 높이를 부모(아임웹)에게 `postMessage`로 알린다. 아임웹에서 그 메시지를 받아 iframe height를 자동 조정하려면, 아래 스니펫을 **아임웹 사이트의 맞춤 코드(footer) 영역에 한 번만** 심으면 된다. 이후 어떤 페이지에 어떤 mdbf 임베드를 넣어도 자동 작동.
+
+```html
+<script>
+(function() {
+  window.addEventListener('message', function(e) {
+    if (!e.data || e.data.type !== 'mdbf-embed-height') return;
+    var h = e.data.height;
+    if (!h || h < 50) return;
+    var frames = document.querySelectorAll('iframe[src*="parcyun.github.io/mdbf-masterclass"]');
+    for (var i = 0; i < frames.length; i++) {
+      if (frames[i].contentWindow === e.source) {
+        frames[i].style.height = h + 'px';
+        frames[i].setAttribute('scrolling', 'no');
+      }
+    }
+  });
+})();
+</script>
+```
+
+> 아임웹 → 사이트 관리 → 사이트 설정 → 맞춤 코드 → footer 영역에 붙여넣기. (페이지마다 매번 심을 필요 없음)
+
+### 2단계 — 원하는 페이지에 iframe 임베드
+
+인덱스 페이지 ( https://parcyun.github.io/mdbf-masterclass/ ) 의 **임베드 코드** 버튼을 누르면 클립보드에 복사된다. 그대로 아임웹 HTML 블록에 붙여넣기.
 
 기본 형태:
 
 ```html
-<iframe 
-  src="https://parcyun.github.io/mdbf-masterclass/hero/" 
-  style="width:100%; height:80vh; border:0; display:block;"
+<iframe
+  src="https://parcyun.github.io/mdbf-masterclass/hero/"
+  style="width:100%; height:600px; border:0; display:block;"
+  scrolling="no"
   loading="lazy"
   title="the Masterclass Hero">
 </iframe>
 ```
 
-`height` 는 컴포넌트 성격에 따라 조절 (히어로는 `80vh~100vh`, 카드 섹션은 고정 `600px` 등).
+- `height` 는 listener가 자동으로 정확한 값으로 바꿔주니, **초기 깜빡임 방지용 fallback**으로만 의미가 있다 (대략 600~800px 권장).
+- `scrolling="no"` 는 iframe 내부 스크롤바 방지.
+- listener 스크립트를 안 심었다면 height 가 고정값으로 남아 콘텐츠가 잘리거나 내부 스크롤이 생긴다.
 
 ---
 

@@ -354,6 +354,23 @@
   });
 
   start();
+
+  // ====== Standard postMessage height broadcaster (mdbf-embed) ======
+  (function() {
+    if (window.parent === window) return;
+    function postHeight() {
+      window.parent.postMessage({
+        type: 'mdbf-embed-height',
+        path: location.pathname,
+        height: document.documentElement.scrollHeight
+      }, '*');
+    }
+    window.addEventListener('load', postHeight);
+    window.addEventListener('resize', () => requestAnimationFrame(postHeight));
+    if (window.ResizeObserver) {
+      new ResizeObserver(() => requestAnimationFrame(postHeight)).observe(document.body);
+    }
+  })();
 })();
 </script>
 
