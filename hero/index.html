@@ -31,6 +31,7 @@
     position: relative;
     width: 100vw;
     height: 100vh;
+    height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -347,6 +348,56 @@
   }
   .footer a { color: inherit; text-decoration: none; transition: color 0.2s; }
   .footer a:hover { color: rgba(255,255,255,0.6); }
+
+  /* ===== Mobile (tablet & phone) ===== */
+  @media (max-width: 768px) {
+    .sphere-stage { width: 380px; height: 380px; }
+
+    .eyebrow { font-size: 18px; }
+    h1       { font-size: 32px; margin-bottom: 16px; line-height: 1.2; }
+    .subtitle { font-size: 13px; margin-bottom: 22px; padding: 0 20px; }
+    .cta     { padding: 12px 24px; font-size: 14px; }
+
+    .chip { padding: 7px 14px; font-size: 11px; }
+    .chip .cursor-icon { width: 16px; height: 16px; right: -10px; bottom: -10px; }
+
+    /* Stats → 2×2 grid on mobile */
+    .stats {
+      bottom: 28px;
+      padding: 14px 8px;
+      border-radius: 24px;
+      width: calc(100% - 32px);
+      max-width: 360px;
+      flex-wrap: wrap;
+    }
+    .stat {
+      flex: 0 0 50%;
+      padding: 8px 10px;
+      border-right: none;
+    }
+    .stat:nth-child(odd)  { border-right: 1px solid rgba(255, 255, 255, 0.06); }
+    .stat:nth-child(-n+2) { border-bottom: 1px solid rgba(255, 255, 255, 0.06); padding-bottom: 12px; }
+    .stat:nth-child(n+3)  { padding-top: 12px; }
+    .stat-value { font-size: 16px; }
+    .stat-label { font-size: 10px; }
+
+    /* hover lift on stats container is awkward on touch */
+    .stats:hover { transform: translateX(-50%) translateY(0); }
+  }
+
+  /* ===== Small phone ===== */
+  @media (max-width: 480px) {
+    .sphere-stage { width: 300px; height: 300px; }
+    .eyebrow { font-size: 16px; }
+    h1       { font-size: 26px; }
+    .subtitle { font-size: 12px; padding: 0 24px; }
+
+    /* Hide 2 chips to avoid overflow on very small screens */
+    .chip-wrap:nth-child(4),  /* Design   */
+    .chip-wrap:nth-child(7) { /* Production */
+      display: none;
+    }
+  }
 </style>
 </head>
 <body>

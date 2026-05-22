@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>the Masterclass — 교사의 첫 걸음</title>
+<meta name="description" content="MDBF the Masterclass — 현장에서 검증된 교사 연수 플랫폼. AI, Edu-tech, Design, Drawing, Contents, Production, Image/Video.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Pretendard:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --brand: #3364D9;
+    --brand-light: #5B8CFF;
+    --brand-deep: #1B3A99;
+    --bg: #000;
+    --bg-2: #050814;
+    --surface: rgba(255, 255, 255, 0.03);
+    --surface-2: rgba(255, 255, 255, 0.06);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(91, 140, 255, 0.25);
+    --text: #fff;
+    --text-mute: rgba(255, 255, 255, 0.6);
+    --text-faint: rgba(255, 255, 255, 0.35);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+    overflow-x: hidden;
+  }
+
+  /* ===== Hero Embed ===== */
+  .hero-embed {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    background: #000;
+  }
+  .hero-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  /* ===== Section base ===== */
+  .section {
+    padding: 140px 40px;
+    position: relative;
+  }
+  .container { max-width: 1180px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    color: var(--brand-light);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--brand-light);
+    opacity: 0.6;
+  }
+
+  h2 {
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  .lead {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--text-mute);
+    margin-bottom: 36px;
+    line-height: 1.5;
+    max-width: 720px;
+  }
+
+  .prose {
+    font-size: 16px;
+    color: var(--text-mute);
+    line-height: 1.85;
+    max-width: 680px;
+  }
+
+  /* ===== WHY (Asymmetric grid) ===== */
+  .section-why {
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(51, 100, 217, 0.12) 0%, transparent 50%),
+      var(--bg);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .why-grid .left h2 {
+    font-size: 64px;
+  }
+  .why-grid .right {
+    padding-top: 16px;
+  }
+
+  /* ===== WHAT (Keyword grid) ===== */
+  .section-what {
+    background: var(--bg);
+    padding-top: 100px;
+  }
+
+  .what-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 56px;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .keyword-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .keyword-card {
+    aspect-ratio: 1;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .keyword-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 100%, rgba(51, 100, 217, 0.15) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .keyword-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-4px);
+    background: var(--surface-2);
+  }
+  .keyword-card:hover::before { opacity: 1; }
+  .keyword-card:hover .keyword-num { color: var(--brand-light); }
+
+  .keyword-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    transition: color 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .keyword-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .keyword-card p {
+    font-size: 13px;
+    color: var(--text-mute);
+    line-height: 1.55;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== WHO ===== */
+  .section-who {
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(51, 100, 217, 0.08) 0%, transparent 60%),
+      var(--bg);
+  }
+
+  .who-content {
+    max-width: 900px;
+  }
+
+  .who-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 64px;
+    padding-top: 56px;
+    border-top: 1px solid var(--border);
+  }
+
+  .who-stat .stat-num {
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1;
+  }
+
+  .who-stat .stat-label {
+    font-size: 13px;
+    color: var(--text-faint);
+    letter-spacing: -0.01em;
+  }
+
+  /* ===== JOIN ===== */
+  .section-join {
+    background:
+      radial-gradient(ellipse at center, rgba(51, 100, 217, 0.18) 0%, transparent 55%),
+      var(--bg);
+    text-align: center;
+    padding: 160px 40px 180px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-join::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(91, 140, 255, 0.15) 0%, transparent 60%);
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 0;
+  }
+
+  .section-join .container { position: relative; z-index: 1; }
+
+  .section-join .section-label::before,
+  .section-join .section-label::after {
+    background: var(--brand-light);
+  }
+  .section-join .section-label {
+    justify-content: center;
+  }
+  .section-join .section-label::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--brand-light);
+    opacity: 0.6;
+  }
+
+  .section-join h2 {
+    font-size: 64px;
+    margin-bottom: 20px;
+  }
+  .section-join .lead {
+    margin: 0 auto 48px;
+    text-align: center;
+    font-size: 22px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .cta-large {
+    background: var(--brand);
+    color: #fff;
+    border: none;
+    padding: 20px 44px;
+    border-radius: 100px;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    letter-spacing: -0.01em;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow:
+      0 12px 40px rgba(51, 100, 217, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cta-large::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.7s;
+  }
+
+  .cta-large:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 16px 56px rgba(51, 100, 217, 0.75),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: var(--brand-light);
+  }
+  .cta-large:hover::before { left: 100%; }
+  .cta-large:active { transform: translateY(-1px); }
+
+  .cta-large .arrow {
+    transition: transform 0.3s ease;
+  }
+  .cta-large:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    padding: 40px 40px 60px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  footer .signature {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.08em;
+  }
+
+  footer a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  footer a:hover { color: var(--text-mute); }
+
+  /* ===== Mobile (≤ 768px) ===== */
+  @media (max-width: 768px) {
+    .section { padding: 80px 24px; }
+
+    h2 { font-size: 32px; }
+    .why-grid .left h2 { font-size: 36px; }
+
+    .lead { font-size: 16px; margin-bottom: 24px; }
+    .prose { font-size: 14px; }
+
+    .section-label {
+      font-size: 11px;
+      margin-bottom: 18px;
+    }
+
+    /* WHY → single column */
+    .why-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .why-grid .right { padding-top: 0; }
+
+    /* WHAT → 2 columns */
+    .keyword-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .keyword-card { padding: 18px; border-radius: 16px; }
+    .keyword-card h3 { font-size: 18px; }
+    .keyword-card p { font-size: 12px; }
+
+    .what-head { margin-bottom: 32px; }
+
+    /* WHO → 2×2 stats */
+    .who-stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+      padding-top: 32px;
+    }
+    .who-stat .stat-num { font-size: 30px; }
+    .who-stat .stat-label { font-size: 11px; }
+
+    /* JOIN */
+    .section-join { padding: 100px 24px 120px; }
+    .section-join h2 { font-size: 36px; }
+    .section-join .lead { font-size: 16px; margin-bottom: 32px; }
+    .cta-large { padding: 16px 32px; font-size: 15px; }
+  }
+
+  /* ===== Small phone (≤ 480px) ===== */
+  @media (max-width: 480px) {
+    .section { padding: 60px 20px; }
+    h2 { font-size: 26px; }
+    .why-grid .left h2 { font-size: 30px; }
+    .section-join h2 { font-size: 28px; }
+
+    .keyword-grid { grid-template-columns: 1fr; }
+    .keyword-card { aspect-ratio: auto; min-height: 140px; }
+
+    .who-stats {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Hero (iframe embed of same-domain /hero/) ===== -->
+<section class="hero-embed">
+  <iframe src="../hero/" loading="eager" title="the Masterclass Hero"></iframe>
+</section>
+
+<!-- ===== WHY ===== -->
+<section class="section section-why">
+  <div class="container">
+    <div class="why-grid">
+      <div class="left">
+        <div class="section-label">Why</div>
+        <h2>왜 the Masterclass인가</h2>
+      </div>
+      <div class="right">
+        <p class="lead">현장에서 검증된 연수만이 교실을 바꿉니다.</p>
+        <p class="prose">
+          교사 연수의 대다수는 강의실에서 끝납니다. the Masterclass는 다릅니다.
+          (사)디지털미디어교육콘텐츠 교사연구협회 243명의 정회원 교사가 직접 만든,
+          현장으로 돌아갔을 때 바로 쓸 수 있는 연수만 큐레이션합니다.
+          <br><br>
+          '몽당분필' — 끝까지 쓰이는 도구처럼, 마지막 한 줄의 가르침까지 의미 있게.
+          이것이 the Masterclass가 만드는 연수의 기준입니다.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHAT ===== -->
+<section class="section section-what">
+  <div class="container">
+    <div class="what-head">
+      <div>
+        <div class="section-label">What</div>
+        <h2>8개의 영역,<br>살아있는 연수</h2>
+      </div>
+      <p class="lead" style="margin: 0; max-width: 420px;">
+        디지털 시대 교사에게 필요한 8개의 핵심 역량을, 깊이 있는 트랙으로 제공합니다.
+      </p>
+    </div>
+
+    <div class="keyword-grid">
+      <article class="keyword-card">
+        <div class="keyword-num">01</div>
+        <div>
+          <h3>AI / AX</h3>
+          <p>인공지능을 교실의 언어로 바꾸는 법.</p>
+        </div>
+      </article>
+      <article class="keyword-card">
+        <div class="keyword-num">02</div>
+        <div>
+          <h3>Edu-tech</h3>
+          <p>도구가 아닌, 교육 설계로서의 기술.</p>
+        </div>
+      </article>
+      <article class="keyword-card">
+        <div class="keyword-num">03</div>
+        <div>
+          <h3>MDBF</h3>
+          <p>몽당분필, 처음의 마음에서 시작합니다.</p>
+        </div>
+      </article>
+      <article class="keyword-card">
+        <div class="keyword-num">04</div>
+        <div>
+          <h3>Design</h3>
+          <p>보이는 것을 넘어 의미를 짓는 디자인.</p>
+        </div>
+      </article>
+      <article class="keyword-card">
+        <div class="keyword-num">05</div>
+        <div>
+          <h3>Drawing</h3>
+          <p>손으로 쌓는 사유와 표현의 기술.</p>
+        </div>
+      </article>
+      <article class="keyword-card">
+        <div class="keyword-num">06</div>
+        <div>
+          <h3>Contents</h3>
+          <p>콘텐츠로 가르치는 시대의 교사 역량.</p>
+        </div>
+      </article>
+      <article class="keyword-card">
+        <div class="keyword-num">07</div>
+        <div>
+          <h3>Production</h3>
+          <p>소비자가 아닌, 만드는 교사로.</p>
+        </div>
+      </article>
+      <article class="keyword-card">
+        <div class="keyword-num">08</div>
+        <div>
+          <h3>Image / Video</h3>
+          <p>영상과 이미지의 문해력을 교실로.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHO ===== -->
+<section class="section section-who">
+  <div class="container">
+    <div class="who-content">
+      <div class="section-label">Who</div>
+      <h2>교사가 가르치는,<br>교사 연수</h2>
+      <p class="lead">(사)디지털미디어교육콘텐츠 교사연구협회</p>
+      <p class="prose">
+        2016년 작은 교사 모임으로 시작했습니다. 10년이 지난 지금,
+        243명의 정회원 교사가 함께 연구하고, 20,000+ 개의 교육 콘텐츠를 무상 배포했으며,
+        100,000+ 명의 교사들과 연결되어 있습니다.
+        <br><br>
+        강사가 따로 있지 않습니다. 가르치는 교사가 곧 배우는 교사이고, 배우는 교사가 곧 만드는 교사입니다.
+        이것이 the Masterclass의 출발선이며, 우리가 신뢰하는 단 하나의 방식입니다.
+      </p>
+
+      <div class="who-stats">
+        <div class="who-stat">
+          <div class="stat-num">243명</div>
+          <div class="stat-label">정회원 교사</div>
+        </div>
+        <div class="who-stat">
+          <div class="stat-num">20,000+</div>
+          <div class="stat-label">무상 배포 콘텐츠</div>
+        </div>
+        <div class="who-stat">
+          <div class="stat-num">100,000+</div>
+          <div class="stat-label">연결된 교사</div>
+        </div>
+        <div class="who-stat">
+          <div class="stat-num">SINCE 2016</div>
+          <div class="stat-label">디미교연</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== JOIN ===== -->
+<section class="section section-join">
+  <div class="container">
+    <div class="section-label">Join</div>
+    <h2>지금, 시작하세요</h2>
+    <p class="lead">한 학기, 당신의 교실이 달라집니다.</p>
+    <button class="cta-large" type="button" data-href="#" id="joinBtn">
+      연수 신청하러 가기
+      <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<footer>
+  <div class="signature">
+    Designed by parcyun studio · <a href="https://www.instagram.com/parcyun" target="_blank" rel="noopener">@parcyun</a>
+  </div>
+</footer>
+
+<script>
+  const joinBtn = document.getElementById('joinBtn');
+  joinBtn.addEventListener('click', () => {
+    const href = joinBtn.dataset.href;
+    if (href && href !== '#') {
+      window.location.href = href;
+    } else {
+      console.log('Application link not set yet');
+    }
+  });
+</script>
+
+</body>
+</html>
