@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>the Masterclass — Embed Library</title>
+<meta name="description" content="MDBF the Masterclass HTML 임베드 컴포넌트 라이브러리">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Pretendard:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --brand: #3364D9;
+    --brand-light: #5B8CFF;
+    --bg: #0A0D14;
+    --surface: #131722;
+    --border: rgba(255, 255, 255, 0.08);
+    --text: #E8EAF0;
+    --text-mute: rgba(232, 234, 240, 0.55);
+    --text-faint: rgba(232, 234, 240, 0.35);
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+
+  /* ===== Header ===== */
+  .header {
+    padding: 48px 40px 32px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(51, 100, 217, 0.06) 0%, transparent 100%);
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--text-faint);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .brand .accent { color: var(--brand-light); font-weight: 500; }
+
+  h1 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 8px;
+  }
+
+  .sub {
+    font-size: 15px;
+    color: var(--text-mute);
+    max-width: 640px;
+  }
+
+  /* ===== Section ===== */
+  main {
+    padding: 56px 40px 80px;
+  }
+
+  .section-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--brand-light);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 32px;
+    letter-spacing: -0.02em;
+  }
+
+  /* ===== Card Grid ===== */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    border-color: rgba(91, 140, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .card-preview {
+    aspect-ratio: 16 / 9;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card-preview iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    pointer-events: none;
+  }
+
+  .card-preview .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.4) 100%);
+    pointer-events: none;
+  }
+
+  .card-body {
+    padding: 20px 22px 22px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(91, 140, 255, 0.12);
+    color: var(--brand-light);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--text-mute);
+    flex: 1;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    transition: all 0.2s ease;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .btn:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .btn.primary {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: white;
+  }
+
+  .btn.primary:hover {
+    background: var(--brand-light);
+    border-color: var(--brand-light);
+  }
+
+  .btn-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* ===== Embed Modal-ish ===== */
+  .embed-block {
+    margin-top: 4px;
+    padding: 12px 14px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-mute);
+    word-break: break-all;
+    line-height: 1.5;
+    display: none;
+  }
+
+  .embed-block.show { display: block; }
+
+  .embed-label {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 10px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .embed-code { color: var(--text); user-select: all; }
+
+  /* ===== Empty Slot (for future additions) ===== */
+  .card.placeholder {
+    border-style: dashed;
+    border-color: rgba(255, 255, 255, 0.1);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 360px;
+    color: var(--text-faint);
+    font-size: 13px;
+    text-align: center;
+    padding: 24px;
+  }
+
+  .card.placeholder:hover {
+    transform: none;
+    border-color: rgba(91, 140, 255, 0.2);
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    padding: 32px 40px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.05em;
+  }
+
+  footer a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  footer a:hover { color: var(--text-mute); }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--brand);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(51, 100, 217, 0.4);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .header { padding: 32px 20px 24px; }
+    main { padding: 40px 20px 60px; }
+    .grid { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="brand">MDBF · <span class="accent">the Masterclass</span></div>
+    <h1>Embed Library</h1>
+    <p class="sub">아임웹 본문에 임베드할 HTML 컴포넌트 모음. 각 컴포넌트는 독립된 페이지로 호스팅되며, iframe으로 삽입합니다.</p>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <div class="section-label">Hero / Landing</div>
+    <h2 class="section-title">메인 히어로</h2>
+
+    <div class="grid">
+
+      <!-- Hero Card -->
+      <article class="card">
+        <div class="card-preview">
+          <iframe src="./hero/" loading="lazy" title="Hero preview"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="badge">Hero</span>
+            <span>/hero/</span>
+          </div>
+          <div class="card-title">교사의 첫 걸음 · the Masterclass</div>
+          <div class="card-desc">커서 리펄션 인터랙션 + 글래스모피즘 stats 호버. 브랜드 키워드 칩 8종, 살아 움직이는 광원의 구체.</div>
+          <div class="card-actions">
+            <a class="btn" href="./hero/" target="_blank" rel="noopener">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              열기
+            </a>
+            <button class="btn primary" data-embed="hero">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              임베드 코드
+            </button>
+          </div>
+          <div class="embed-block" id="embed-hero">
+            <div class="embed-label">아임웹 임베드 코드</div>
+            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/hero/" style="width:100%; height:80vh; border:0; display:block;" loading="lazy" title="the Masterclass Hero"&gt;&lt;/iframe&gt;</code>
+          </div>
+        </div>
+      </article>
+
+      <!-- Placeholder for next components -->
+      <article class="card placeholder">
+        다음 컴포넌트가 이 자리에 추가됩니다.<br>
+        <span style="opacity:0.6; font-size:11px; margin-top:8px; display:inline-block;">
+          새 폴더를 만들어 index.html을 넣고,<br>이 페이지에 카드 하나만 추가하면 됩니다.
+        </span>
+      </article>
+
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  Designed by parcyun studio · <a href="https://www.instagram.com/parcyun" target="_blank" rel="noopener">@parcyun</a>
+</footer>
+
+<div class="toast" id="toast">클립보드에 복사되었습니다</div>
+
+<script>
+  // Embed code toggle + copy
+  document.querySelectorAll('[data-embed]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const key = btn.dataset.embed;
+      const block = document.getElementById('embed-' + key);
+      const code = block.querySelector('.embed-code').textContent;
+
+      // Toggle visibility
+      block.classList.toggle('show');
+
+      // Copy to clipboard
+      try {
+        await navigator.clipboard.writeText(code);
+        showToast('클립보드에 복사되었습니다');
+      } catch (e) {
+        showToast('표시됨 — 수동으로 복사해 주세요');
+      }
+    });
+  });
+
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+</script>
+
+</body>
+</html>

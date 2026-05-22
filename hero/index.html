@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>the Masterclass — 교사의 첫 걸음</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --brand: #3364D9;
+    --brand-light: #5B8CFF;
+    --brand-glow: rgba(51, 100, 217, 0.5);
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    background: #000;
+    color: #fff;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  /* ===== Full viewport container ===== */
+  .hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, #050814 0%, #000 70%);
+  }
+
+  /* ===== Background Sphere ===== */
+  .sphere-stage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 620px;
+    height: 620px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .sphere {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+      radial-gradient(
+        circle at var(--lx, 32%) var(--ly, 30%),
+        rgba(180, 220, 255, 0.95) 0%,
+        rgba(90, 150, 255, 0.85) 8%,
+        var(--brand) 22%,
+        #1a3a8a 45%,
+        #0a1840 65%,
+        #02061a 85%,
+        transparent 100%
+      );
+    box-shadow:
+      inset -30px -30px 100px rgba(0, 0, 20, 0.7),
+      inset 20px 20px 80px rgba(120, 180, 255, 0.15),
+      0 0 100px var(--brand-glow),
+      0 0 180px rgba(51, 100, 217, 0.25);
+    transition: background 0.08s linear;
+  }
+
+  .sphere-spec {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(
+      ellipse 35% 18% at var(--lx, 32%) var(--ly, 30%),
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0.15) 30%,
+      transparent 60%
+    );
+    mix-blend-mode: screen;
+    transition: background 0.08s linear;
+  }
+
+  .flare {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    left: var(--fx, 30%);
+    top: var(--fy, 25%);
+    transform: translate(-50%, -50%);
+    box-shadow:
+      0 0 20px 8px rgba(255, 255, 255, 0.9),
+      0 0 50px 20px rgba(150, 200, 255, 0.6),
+      0 0 100px 40px rgba(51, 100, 217, 0.4);
+    transition: left 0.08s linear, top 0.08s linear;
+  }
+
+  .flare::before, .flare::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.6), transparent);
+    transform: translate(-50%, -50%);
+  }
+  .flare::before { width: 120px; height: 1px; }
+  .flare::after  { width: 1px; height: 120px; }
+
+  .atmosphere {
+    position: absolute;
+    inset: -40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, transparent 47%, rgba(91, 140, 255, 0.08) 50%, transparent 56%);
+    animation: breathe 6s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50%      { opacity: 1;   transform: scale(1.03); }
+  }
+
+  /* ===== Chip Wrapper (JS transform only) ===== */
+  .chip-wrap {
+    position: absolute;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    pointer-events: none;
+  }
+
+  /* ===== Floating Chip (CSS float only) ===== */
+  .chip {
+    position: relative;
+    padding: 9px 20px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    animation: float 6s ease-in-out infinite;
+    transform: translateY(0);
+  }
+
+  .chip.filled {
+    background: var(--brand);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(51, 100, 217, 0.4);
+  }
+
+  .chip.outlined {
+    color: #fff;
+    border: 1.5px solid var(--brand);
+    background: rgba(51, 100, 217, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .chip .cursor-icon {
+    position: absolute;
+    right: -14px;
+    bottom: -14px;
+    width: 20px;
+    height: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
+
+  /* ===== Content ===== */
+  .content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .eyebrow {
+    font-size: 26px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+  }
+
+  h1 {
+    font-size: 54px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin-bottom: 22px;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.7);
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+
+  .cta {
+    background: var(--brand);
+    color: #fff;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    letter-spacing: -0.01em;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow:
+      0 8px 24px rgba(51, 100, 217, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s;
+  }
+
+  .cta:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 12px 32px rgba(51, 100, 217, 0.65),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: var(--brand-light);
+  }
+
+  .cta:hover::before { left: 100%; }
+  .cta:active { transform: translateY(0); }
+
+  /* ===== Stats with Glassmorphism Hover ===== */
+  .stats {
+    position: absolute;
+    bottom: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    padding: 22px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.025);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 5;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  /* Spotlight that follows cursor inside stats */
+  .stats::before {
+    content: '';
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(91, 140, 255, 0.35) 0%, rgba(51, 100, 217, 0.1) 40%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    left: var(--mx, -200px);
+    top: var(--my, -200px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+    filter: blur(20px);
+  }
+
+  .stats:hover {
+    border-color: rgba(91, 140, 255, 0.45);
+    background: rgba(91, 140, 255, 0.06);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    box-shadow:
+      0 16px 56px rgba(51, 100, 217, 0.4),
+      0 4px 16px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transform: translateX(-50%) translateY(-3px);
+  }
+
+  .stats:hover::before { opacity: 1; }
+
+  .stat {
+    padding: 0 36px;
+    text-align: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: default;
+  }
+  .stat:last-child { border-right: none; }
+
+  .stat:hover .stat-value {
+    color: var(--brand-light);
+    text-shadow: 0 0 24px rgba(91, 140, 255, 0.7);
+    transform: translateY(-1px);
+  }
+
+  .stat:hover .stat-label {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .stat-value {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+    transition: all 0.3s ease;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.3s ease;
+  }
+
+  /* ===== Footer ===== */
+  .footer {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    z-index: 10;
+    letter-spacing: 0.05em;
+  }
+  .footer a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  .footer a:hover { color: rgba(255,255,255,0.6); }
+</style>
+</head>
+<body>
+
+<div class="hero" id="hero">
+
+  <div class="sphere-stage">
+    <div class="atmosphere"></div>
+    <div class="sphere" id="sphere"></div>
+    <div class="sphere-spec" id="sphereSpec"></div>
+    <div class="flare" id="flare"></div>
+  </div>
+
+  <div class="content">
+    <p class="eyebrow">교사의 첫 걸음</p>
+    <h1>지금, the Masterclass에서</h1>
+    <p class="subtitle">현장에서 검증된 연수를, 모든 교사에게.</p>
+    <button class="cta" type="button" data-href="#" id="ctaBtn">멤버십 보러가기</button>
+  </div>
+
+  <div class="stats" id="stats">
+    <div class="stat">
+      <div class="stat-value">243명</div>
+      <div class="stat-label">정회원 수</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">20,000+</div>
+      <div class="stat-label">무상 배포 교육콘텐츠</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">100,000+</div>
+      <div class="stat-label">총 팔로워 수</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">SINCE 2016</div>
+      <div class="stat-label">디미교연</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Designed by parcyun studio · <a href="https://www.instagram.com/parcyun" target="_blank" rel="noopener">@parcyun</a>
+  </div>
+
+</div>
+
+<script>
+(() => {
+  // ============ CHIP DATA ============
+  const chipsData = [
+    { text: 'AI / AX',       x: 22, y: 20, style: 'filled'   },
+    { text: 'Edu-tech',      x: 13, y: 33, style: 'outlined' },
+    { text: 'MDBF',          x: 9,  y: 48, style: 'filled'   },
+    { text: 'Design',        x: 19, y: 64, style: 'outlined' },
+    { text: 'Drawing',       x: 78, y: 20, style: 'outlined' },
+    { text: 'Contents',      x: 87, y: 33, style: 'filled'   },
+    { text: 'Production',    x: 88, y: 48, style: 'outlined' },
+    { text: 'Image / Video', x: 78, y: 64, style: 'outlined' },
+  ];
+
+  const cursorSVG = `
+    <svg class="cursor-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 3 L19 12 L12.5 13.5 L9 21 Z" stroke="black" stroke-width="1.2" stroke-linejoin="round"/>
+    </svg>`;
+
+  const hero = document.getElementById('hero');
+  const chips = [];
+
+  // Create chips with wrapper + inner structure
+  chipsData.forEach((data, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'chip-wrap';
+    wrap.style.left = data.x + '%';
+    wrap.style.top  = data.y + '%';
+
+    const chip = document.createElement('div');
+    chip.className = `chip ${data.style}`;
+    chip.innerHTML = data.text + cursorSVG;
+    chip.style.animationDelay = (i * 0.4) + 's';
+
+    wrap.appendChild(chip);
+    hero.appendChild(wrap);
+
+    chips.push({
+      el: wrap,
+      baseX: 0, baseY: 0,
+      ox: 0,    oy: 0,
+      tx: 0,    ty: 0
+    });
+  });
+
+  function recomputeBase() {
+    chips.forEach(c => {
+      const prev = c.el.style.transform;
+      c.el.style.transform = 'translate3d(0,0,0)';
+      const r = c.el.getBoundingClientRect();
+      c.baseX = r.left + r.width / 2;
+      c.baseY = r.top + r.height / 2;
+      c.el.style.transform = prev;
+    });
+  }
+
+  // Wait for fonts + render
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(recomputeBase);
+  }
+  window.addEventListener('load', recomputeBase);
+  window.addEventListener('resize', recomputeBase);
+  setTimeout(recomputeBase, 100);
+
+  // ============ CURSOR REPULSION ============
+  let mouseX = -9999, mouseY = -9999;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  document.addEventListener('mouseleave', () => {
+    mouseX = -9999; mouseY = -9999;
+  });
+
+  const REPULSE_RADIUS = 170;
+  const REPULSE_STRENGTH = 75;
+  const EASE = 0.15;
+
+  function animateChips() {
+    chips.forEach(c => {
+      const cx = c.baseX + c.ox;
+      const cy = c.baseY + c.oy;
+      const dx = cx - mouseX;
+      const dy = cy - mouseY;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist < REPULSE_RADIUS && dist > 0.1) {
+        const force = Math.pow(1 - dist / REPULSE_RADIUS, 2) * REPULSE_STRENGTH;
+        c.tx = (dx / dist) * force;
+        c.ty = (dy / dist) * force;
+      } else {
+        c.tx = 0;
+        c.ty = 0;
+      }
+
+      c.ox += (c.tx - c.ox) * EASE;
+      c.oy += (c.ty - c.oy) * EASE;
+
+      c.el.style.transform = `translate3d(${c.ox.toFixed(2)}px, ${c.oy.toFixed(2)}px, 0)`;
+    });
+    requestAnimationFrame(animateChips);
+  }
+  animateChips();
+
+  // ============ SPHERE LIGHT ANIMATION ============
+  const sphere     = document.getElementById('sphere');
+  const sphereSpec = document.getElementById('sphereSpec');
+  const flare      = document.getElementById('flare');
+
+  let t = Math.PI * 0.25;
+
+  function animateLight() {
+    t += 0.0035;
+
+    const lx = 35 + Math.sin(t) * 22 + Math.cos(t * 0.6) * 8;
+    const ly = 30 + Math.cos(t * 1.3) * 18 + Math.sin(t * 0.4) * 8;
+
+    sphere.style.setProperty('--lx', lx + '%');
+    sphere.style.setProperty('--ly', ly + '%');
+    sphereSpec.style.setProperty('--lx', lx + '%');
+    sphereSpec.style.setProperty('--ly', ly + '%');
+
+    flare.style.setProperty('--fx', (lx * 0.9 + 5) + '%');
+    flare.style.setProperty('--fy', (ly * 0.9 + 5) + '%');
+
+    requestAnimationFrame(animateLight);
+  }
+  animateLight();
+
+  // ============ STATS SPOTLIGHT ============
+  const stats = document.getElementById('stats');
+  stats.addEventListener('mousemove', (e) => {
+    const rect = stats.getBoundingClientRect();
+    stats.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+    stats.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+  });
+
+  // ============ CTA BUTTON ============
+  const cta = document.getElementById('ctaBtn');
+  cta.addEventListener('click', () => {
+    const href = cta.dataset.href;
+    if (href && href !== '#') {
+      window.location.href = href;
+    } else {
+      console.log('Membership link not set yet');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
