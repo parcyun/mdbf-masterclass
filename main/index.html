@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>the Masterclass — MDBF</title>
+<meta name="description" content="현장에서 검증된 연수를, 모든 교사에게. MDBF the Masterclass.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ==============================
+   RESET & GLOBAL
+   ============================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --brand:      #3364D9;
+  --brand-light: #5B8CFF;
+  --brand-deep: #1B3A99;
+  --brand-glow: rgba(51, 100, 217, 0.5);
+  --brand-soft: rgba(51, 100, 217, 0.18);
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.01em;
+  line-height: 1.6;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+
+/* ==============================
+   HERO SECTION
+   ============================== */
+
+.sec-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #050814 0%, #000 70%);
+  color: #fff;
+  cursor: default;
+}
+
+/* Background Sphere */
+.sec-hero .sphere-stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 620px;
+  height: 620px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.sec-hero .sphere {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at var(--lx, 32%) var(--ly, 30%),
+      rgba(180, 220, 255, 0.95) 0%,
+      rgba(90, 150, 255, 0.85) 8%,
+      var(--brand) 22%,
+      #1a3a8a 45%,
+      #0a1840 65%,
+      #02061a 85%,
+      transparent 100%
+    );
+  box-shadow:
+    inset -30px -30px 100px rgba(0, 0, 20, 0.7),
+    inset 20px 20px 80px rgba(120, 180, 255, 0.15),
+    0 0 100px var(--brand-glow),
+    0 0 180px rgba(51, 100, 217, 0.25);
+  transition: background 0.08s linear;
+}
+
+.sec-hero .sphere-spec {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse 35% 18% at var(--lx, 32%) var(--ly, 30%),
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.15) 30%,
+    transparent 60%
+  );
+  mix-blend-mode: screen;
+  transition: background 0.08s linear;
+}
+
+.sec-hero .flare {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  left: var(--fx, 30%);
+  top: var(--fy, 25%);
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 20px 8px rgba(255, 255, 255, 0.9),
+    0 0 50px 20px rgba(150, 200, 255, 0.6),
+    0 0 100px 40px rgba(51, 100, 217, 0.4);
+  transition: left 0.08s linear, top 0.08s linear;
+}
+
+.sec-hero .flare::before,
+.sec-hero .flare::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.6), transparent);
+  transform: translate(-50%, -50%);
+}
+.sec-hero .flare::before { width: 120px; height: 1px; }
+.sec-hero .flare::after  { width: 1px; height: 120px; }
+
+.sec-hero .atmosphere {
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 47%, rgba(91, 140, 255, 0.08) 50%, transparent 56%);
+  animation: hero-breathe 6s ease-in-out infinite;
+}
+
+@keyframes hero-breathe {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.03); }
+}
+
+/* Chip Wrapper (JS transform) */
+.sec-hero .chip-wrap {
+  position: absolute;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+/* Floating Chip (CSS float) */
+.sec-hero .chip {
+  position: relative;
+  padding: 9px 20px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  animation: hero-float 6s ease-in-out infinite;
+  transform: translateY(0);
+}
+
+.sec-hero .chip.filled {
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(51, 100, 217, 0.4);
+}
+
+.sec-hero .chip.outlined {
+  color: #fff;
+  border: 1.5px solid var(--brand);
+  background: rgba(51, 100, 217, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.sec-hero .chip .cursor-icon {
+  position: absolute;
+  right: -14px;
+  bottom: -14px;
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* Content */
+.sec-hero .content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.sec-hero .eyebrow {
+  font-size: 26px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+}
+
+.sec-hero h1 {
+  font-size: 54px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 22px;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.7);
+}
+
+.sec-hero .subtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+
+.sec-hero .cta {
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  letter-spacing: -0.01em;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow:
+    0 8px 24px rgba(51, 100, 217, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.sec-hero .cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s;
+}
+
+.sec-hero .cta:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 32px rgba(51, 100, 217, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: var(--brand-light);
+}
+
+.sec-hero .cta:hover::before { left: 100%; }
+.sec-hero .cta:active { transform: translateY(0); }
+
+/* Stats */
+.sec-hero .stats {
+  position: absolute;
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  padding: 22px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 5;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.sec-hero .stats::before {
+  content: '';
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(91, 140, 255, 0.35) 0%, rgba(51, 100, 217, 0.1) 40%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  left: var(--mx, -200px);
+  top: var(--my, -200px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  filter: blur(20px);
+}
+
+.sec-hero .stats:hover {
+  border-color: rgba(91, 140, 255, 0.45);
+  background: rgba(91, 140, 255, 0.06);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow:
+    0 16px 56px rgba(51, 100, 217, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transform: translateX(-50%) translateY(-3px);
+}
+
+.sec-hero .stats:hover::before { opacity: 1; }
+
+.sec-hero .stat {
+  padding: 0 36px;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: default;
+}
+
+.sec-hero .stat:last-child { border-right: none; }
+
+.sec-hero .stat:hover .stat-value {
+  color: var(--brand-light);
+  text-shadow: 0 0 24px rgba(91, 140, 255, 0.7);
+  transform: translateY(-1px);
+}
+
+.sec-hero .stat:hover .stat-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.sec-hero .stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+  transition: all 0.3s ease;
+}
+
+.sec-hero .stat-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.3s ease;
+}
+
+/* Hero Responsive */
+@media (max-width: 768px) {
+  .sec-hero .sphere-stage { width: 380px; height: 380px; }
+  .sec-hero .eyebrow { font-size: 18px; }
+  .sec-hero h1       { font-size: 32px; margin-bottom: 16px; line-height: 1.2; }
+  .sec-hero .subtitle { font-size: 13px; margin-bottom: 22px; padding: 0 20px; }
+  .sec-hero .cta     { padding: 12px 24px; font-size: 14px; }
+  .sec-hero .chip    { padding: 7px 14px; font-size: 11px; }
+  .sec-hero .chip .cursor-icon { width: 16px; height: 16px; right: -10px; bottom: -10px; }
+  .sec-hero .stats {
+    bottom: 28px; padding: 14px 8px;
+    border-radius: 24px;
+    width: calc(100% - 32px); max-width: 360px;
+    flex-wrap: wrap;
+  }
+  .sec-hero .stat {
+    flex: 0 0 50%;
+    padding: 8px 10px;
+    border-right: none;
+  }
+  .sec-hero .stat:nth-child(odd)  { border-right: 1px solid rgba(255, 255, 255, 0.06); }
+  .sec-hero .stat:nth-child(-n+2) { border-bottom: 1px solid rgba(255, 255, 255, 0.06); padding-bottom: 12px; }
+  .sec-hero .stat:nth-child(n+3)  { padding-top: 12px; }
+  .sec-hero .stat-value { font-size: 16px; }
+  .sec-hero .stat-label { font-size: 10px; }
+  .sec-hero .stats:hover { transform: translateX(-50%) translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .sec-hero .sphere-stage { width: 300px; height: 300px; }
+  .sec-hero .eyebrow { font-size: 16px; }
+  .sec-hero h1       { font-size: 26px; }
+  .sec-hero .subtitle { font-size: 12px; padding: 0 24px; }
+  /* Hide 2 chips on very small screens */
+  .sec-hero .chip-wrap:nth-child(4),
+  .sec-hero .chip-wrap:nth-child(7) {
+    display: none;
+  }
+}
+
+
+/* ==============================
+   CLASSES SECTION
+   ============================== */
+
+.sec-classes {
+  --card-bg:          rgba(255, 255, 255, 0.7);
+  --card-bg-soon:     rgba(248, 249, 252, 0.5);
+  --card-border:      rgba(255, 255, 255, 0.85);
+  --card-border-soon: rgba(15, 23, 42, 0.08);
+  --shadow:           0 12px 36px rgba(20, 32, 80, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
+  --shadow-hover:     0 20px 56px rgba(51, 100, 217, 0.18), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --text:             #1a1f2e;
+  --text-mute:        #5a6273;
+  --text-faint:       #9ba3b4;
+  --text-soon:        #c0c5d2;
+
+  background: rgba(250, 251, 255, 0.45);
+  color: var(--text);
+  padding: 72px 32px 80px;
+}
+
+.sec-classes .container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* Head */
+.sec-classes .head {
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.sec-classes .section-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  color: var(--brand);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sec-classes .section-label::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--brand);
+  opacity: 0.5;
+}
+
+.sec-classes h2 {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.sec-classes .head-sub {
+  font-size: 15px;
+  color: var(--text-mute);
+  max-width: 380px;
+  line-height: 1.55;
+}
+
+/* Grid */
+.sec-classes .grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Card */
+.sec-classes .card {
+  background: var(--card-bg);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cursor-tracked Spotlight */
+.sec-classes .card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 260px at var(--mx, 50%) var(--my, 50%),
+    var(--brand-soft) 0%,
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: inherit;
+}
+
+.sec-classes .card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(91, 140, 255, 0.4);
+}
+.sec-classes .card:hover::before { opacity: 1; }
+
+/* Graphic 3:4 */
+.sec-classes .card-graphic {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(91, 140, 255, 0.08) 0%, rgba(51, 100, 217, 0.04) 100%);
+}
+
+.sec-classes .card-graphic svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Info */
+.sec-classes .card-info {
+  padding: 20px 22px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.sec-classes .card-num {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-faint);
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+
+.sec-classes .card-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+.sec-classes .card-desc {
+  font-size: 13px;
+  color: var(--text-mute);
+  line-height: 1.55;
+}
+
+/* Coming Soon */
+.sec-classes .card.soon {
+  background: var(--card-bg-soon);
+  border: 1px dashed var(--card-border-soon);
+}
+.sec-classes .card.soon::before { display: none; }
+.sec-classes .card.soon:hover {
+  transform: none;
+  box-shadow: var(--shadow);
+  border-color: var(--card-border-soon);
+}
+.sec-classes .card.soon .card-graphic {
+  background: linear-gradient(135deg, rgba(155, 163, 180, 0.06) 0%, rgba(155, 163, 180, 0.02) 100%);
+}
+.sec-classes .card.soon .card-num,
+.sec-classes .card.soon .card-title,
+.sec-classes .card.soon .card-desc {
+  color: var(--text-soon);
+}
+
+/* Classes Responsive */
+@media (max-width: 1024px) {
+  .sec-classes .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .sec-classes { padding: 56px 20px 64px; }
+  .sec-classes .head { margin-bottom: 32px; }
+  .sec-classes h2 { font-size: 28px; }
+  .sec-classes .head-sub { font-size: 14px; max-width: 100%; }
+  .sec-classes .grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .sec-classes .card { border-radius: 18px; }
+  .sec-classes .card-info { padding: 16px 16px 18px; }
+  .sec-classes .card-title { font-size: 15px; }
+  .sec-classes .card-desc { font-size: 12px; }
+}
+
+@media (max-width: 480px) {
+  .sec-classes { padding: 40px 16px 56px; }
+  .sec-classes h2 { font-size: 24px; }
+  .sec-classes .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .sec-classes .card-info { padding: 14px 14px 16px; }
+}
+
+
+/* ==============================
+   BANNER SECTION
+   ============================== */
+
+.sec-banner {
+  background: rgba(250, 251, 255, 0.45);
+  padding: 0 32px 56px;
+  color: #fff;
+}
+
+.sec-banner .banner-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.sec-banner .carousel {
+  width: 100%;
+  aspect-ratio: 4 / 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.sec-banner .track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.7, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.sec-banner .slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  padding: 48px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.sec-banner .slide.s1 { background: linear-gradient(120deg, #1B3A99 0%, #3364D9 100%); }
+.sec-banner .slide.s2 { background: linear-gradient(120deg, #2A4FBC 0%, #5B8CFF 100%); }
+.sec-banner .slide.s3 { background: linear-gradient(120deg, #0F1F4D 0%, #2952B8 100%); }
+
+.sec-banner .slide-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.sec-banner .slide-bg svg {
+  position: absolute;
+  right: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 180%;
+  width: auto;
+}
+
+.sec-banner .slide-content {
+  position: relative;
+  z-index: 1;
+  max-width: 60%;
+}
+
+.sec-banner .slide-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sec-banner .slide-label::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.sec-banner .slide-title {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.sec-banner .slide-sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+}
+
+/* Navigation */
+.sec-banner .nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  font-family: inherit;
+}
+
+.sec-banner .nav-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.sec-banner .nav-prev { left: 20px; }
+.sec-banner .nav-next { right: 20px; }
+
+/* Indicators */
+.sec-banner .indicators {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.sec-banner .dot {
+  width: 24px;
+  height: 4px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.sec-banner .dot.active {
+  background: rgba(255, 255, 255, 0.95);
+  width: 36px;
+}
+
+.sec-banner .dot:hover { background: rgba(255, 255, 255, 0.6); }
+
+/* Banner Responsive */
+@media (max-width: 768px) {
+  .sec-banner { padding: 0 20px 40px; }
+  .sec-banner .carousel { border-radius: 16px; }
+  .sec-banner .slide { padding: 28px 32px; }
+  .sec-banner .slide-content { max-width: 70%; }
+  .sec-banner .slide-label { font-size: 10px; margin-bottom: 8px; }
+  .sec-banner .slide-title { font-size: 22px; }
+  .sec-banner .slide-sub { font-size: 12px; }
+  .sec-banner .nav-btn { width: 36px; height: 36px; }
+  .sec-banner .nav-prev { left: 12px; }
+  .sec-banner .nav-next { right: 12px; }
+  .sec-banner .indicators { bottom: 14px; }
+  .sec-banner .dot { width: 18px; height: 3px; }
+  .sec-banner .dot.active { width: 28px; }
+}
+
+@media (max-width: 480px) {
+  .sec-banner { padding: 0 16px 32px; }
+  .sec-banner .slide { padding: 20px 22px; }
+  .sec-banner .slide-content { max-width: 75%; }
+  .sec-banner .slide-title { font-size: 16px; line-height: 1.25; }
+  .sec-banner .slide-sub { font-size: 11px; }
+  .sec-banner .slide-label { font-size: 9px; margin-bottom: 4px; }
+  .sec-banner .nav-btn { width: 30px; height: 30px; }
+  .sec-banner .nav-btn svg { width: 14px; height: 14px; }
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- ==============================
+     HERO SECTION
+     ============================== -->
+<section class="sec-hero" id="sec-hero">
+
+  <div class="sphere-stage">
+    <div class="atmosphere"></div>
+    <div class="sphere" id="sphere"></div>
+    <div class="sphere-spec" id="sphereSpec"></div>
+    <div class="flare" id="flare"></div>
+  </div>
+
+  <div class="content">
+    <p class="eyebrow">교사의 첫 걸음</p>
+    <h1>지금, the Masterclass에서</h1>
+    <p class="subtitle">현장에서 검증된 연수를, 모든 교사에게.</p>
+    <button class="cta" type="button" data-href="#" id="ctaBtn">멤버십 보러가기</button>
+  </div>
+
+  <div class="stats" id="stats">
+    <div class="stat">
+      <div class="stat-value">243명</div>
+      <div class="stat-label">정회원 수</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">20,000+</div>
+      <div class="stat-label">무상 배포 교육콘텐츠</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">100,000+</div>
+      <div class="stat-label">총 팔로워 수</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">SINCE 2016</div>
+      <div class="stat-label">디미교연</div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ==============================
+     CLASSES SECTION
+     ============================== -->
+<section class="sec-classes">
+<div class="container">
+
+  <header class="head">
+    <div>
+      <div class="section-label">Classes</div>
+      <h2>클래스별 강좌</h2>
+    </div>
+    <p class="head-sub">현장에서 검증된 6개 트랙. 관심 있는 분야를 살펴보세요.</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- 01 AI / AX -->
+    <article class="card">
+      <div class="card-graphic">
+        <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="cg1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#5B8CFF" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#3364D9" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="150" cy="200" r="120" fill="url(#cg1)"/>
+          <g stroke="#3364D9" stroke-width="1" fill="none" opacity="0.6">
+            <line x1="80" y1="120" x2="150" y2="200"/>
+            <line x1="220" y1="100" x2="150" y2="200"/>
+            <line x1="60" y1="240" x2="150" y2="200"/>
+            <line x1="230" y1="280" x2="150" y2="200"/>
+            <line x1="100" y1="320" x2="150" y2="200"/>
+            <line x1="200" y1="320" x2="150" y2="200"/>
+            <line x1="80" y1="120" x2="220" y2="100"/>
+            <line x1="60" y1="240" x2="100" y2="320"/>
+            <line x1="230" y1="280" x2="200" y2="320"/>
+          </g>
+          <g fill="#3364D9">
+            <circle cx="80" cy="120" r="5"/>
+            <circle cx="220" cy="100" r="6"/>
+            <circle cx="60" cy="240" r="4"/>
+            <circle cx="230" cy="280" r="5"/>
+            <circle cx="100" cy="320" r="4"/>
+            <circle cx="200" cy="320" r="5"/>
+          </g>
+          <circle cx="150" cy="200" r="14" fill="#fff" stroke="#3364D9" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-num">01</div>
+        <h3 class="card-title">AI / AX</h3>
+        <p class="card-desc">인공지능을 교실의 언어로 바꾸는 실전 트랙.</p>
+      </div>
+    </article>
+
+    <!-- 02 업무 자동화 -->
+    <article class="card">
+      <div class="card-graphic">
+        <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cg2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#5B8CFF" stop-opacity="0.22"/>
+              <stop offset="100%" stop-color="#3364D9" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <rect x="40" y="100" width="220" height="200" rx="100" fill="url(#cg2)"/>
+          <g fill="none" stroke="#3364D9" stroke-width="2" stroke-linecap="round">
+            <path d="M 90 200 A 60 60 0 1 1 210 200"/>
+            <path d="M 200 175 L 210 200 L 235 195" stroke-linejoin="round"/>
+            <path d="M 210 200 A 60 60 0 1 1 90 200" opacity="0.35"/>
+            <path d="M 100 225 L 90 200 L 65 205" stroke-linejoin="round" opacity="0.35"/>
+          </g>
+          <g fill="#3364D9" opacity="0.5">
+            <circle cx="150" cy="140" r="2.5"/>
+            <circle cx="150" cy="260" r="2.5"/>
+            <circle cx="90" cy="200" r="2.5"/>
+            <circle cx="210" cy="200" r="2.5"/>
+          </g>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-num">02</div>
+        <h3 class="card-title">업무 자동화</h3>
+        <p class="card-desc">반복 업무를 줄여 가르치는 시간을 늘리는 도구.</p>
+      </div>
+    </article>
+
+    <!-- 03 이미지 / 영상 -->
+    <article class="card">
+      <div class="card-graphic">
+        <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="cg3" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#5B8CFF" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#3364D9" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="150" cy="200" r="120" fill="url(#cg3)"/>
+          <rect x="70" y="130" width="160" height="140" rx="14" fill="none" stroke="#3364D9" stroke-width="1.5" opacity="0.45"/>
+          <rect x="85" y="115" width="160" height="140" rx="14" fill="rgba(255,255,255,0.55)" stroke="#3364D9" stroke-width="1.5"/>
+          <polygon points="140,160 140,210 185,185" fill="#3364D9"/>
+          <g stroke="#3364D9" stroke-width="1" opacity="0.3">
+            <line x1="100" y1="285" x2="220" y2="285"/>
+            <line x1="100" y1="295" x2="180" y2="295"/>
+          </g>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-num">03</div>
+        <h3 class="card-title">이미지 / 영상</h3>
+        <p class="card-desc">시각 콘텐츠로 가르치는 시대의 핵심 역량.</p>
+      </div>
+    </article>
+
+    <!-- 04 에듀테크 -->
+    <article class="card">
+      <div class="card-graphic">
+        <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cg4" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#5B8CFF" stop-opacity="0.22"/>
+              <stop offset="100%" stop-color="#3364D9" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <rect x="60" y="120" width="180" height="180" rx="20" fill="url(#cg4)"/>
+          <g stroke="#3364D9" stroke-width="0.8" opacity="0.4">
+            <line x1="90" y1="150" x2="210" y2="150"/>
+            <line x1="90" y1="180" x2="210" y2="180"/>
+            <line x1="90" y1="210" x2="210" y2="210"/>
+            <line x1="90" y1="240" x2="210" y2="240"/>
+            <line x1="90" y1="270" x2="210" y2="270"/>
+            <line x1="120" y1="135" x2="120" y2="285"/>
+            <line x1="150" y1="135" x2="150" y2="285"/>
+            <line x1="180" y1="135" x2="180" y2="285"/>
+          </g>
+          <rect x="105" y="180" width="90" height="60" rx="6" fill="rgba(255,255,255,0.85)" stroke="#3364D9" stroke-width="1.5"/>
+          <line x1="120" y1="200" x2="180" y2="200" stroke="#3364D9" stroke-width="1.5"/>
+          <line x1="120" y1="215" x2="170" y2="215" stroke="#3364D9" stroke-width="1.5" opacity="0.6"/>
+          <line x1="120" y1="225" x2="160" y2="225" stroke="#3364D9" stroke-width="1.5" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-num">04</div>
+        <h3 class="card-title">에듀테크</h3>
+        <p class="card-desc">도구가 아닌, 교육 설계로서의 기술.</p>
+      </div>
+    </article>
+
+    <!-- 05 수업 자료 -->
+    <article class="card">
+      <div class="card-graphic">
+        <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cg5" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#5B8CFF" stop-opacity="0.2"/>
+              <stop offset="100%" stop-color="#3364D9" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="150" cy="240" rx="120" ry="80" fill="url(#cg5)"/>
+          <rect x="80" y="170" width="130" height="170" rx="10" fill="rgba(255,255,255,0.5)" stroke="#3364D9" stroke-width="1.2" opacity="0.5" transform="rotate(-8 145 255)"/>
+          <rect x="85" y="160" width="130" height="170" rx="10" fill="rgba(255,255,255,0.7)" stroke="#3364D9" stroke-width="1.2" opacity="0.75" transform="rotate(-3 150 245)"/>
+          <rect x="90" y="150" width="130" height="170" rx="10" fill="rgba(255,255,255,0.95)" stroke="#3364D9" stroke-width="1.5"/>
+          <line x1="110" y1="180" x2="200" y2="180" stroke="#3364D9" stroke-width="1.5"/>
+          <line x1="110" y1="200" x2="180" y2="200" stroke="#3364D9" stroke-width="1" opacity="0.6"/>
+          <line x1="110" y1="215" x2="190" y2="215" stroke="#3364D9" stroke-width="1" opacity="0.4"/>
+          <line x1="110" y1="230" x2="170" y2="230" stroke="#3364D9" stroke-width="1" opacity="0.4"/>
+          <line x1="110" y1="260" x2="195" y2="260" stroke="#3364D9" stroke-width="1" opacity="0.3"/>
+          <line x1="110" y1="275" x2="180" y2="275" stroke="#3364D9" stroke-width="1" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-num">05</div>
+        <h3 class="card-title">수업 자료</h3>
+        <p class="card-desc">현장 교사가 검증한, 즉시 쓰는 수업 자료.</p>
+      </div>
+    </article>
+
+    <!-- 06 디자인 / 드로잉 -->
+    <article class="card">
+      <div class="card-graphic">
+        <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="cg6" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#5B8CFF" stop-opacity="0.22"/>
+              <stop offset="100%" stop-color="#3364D9" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="150" cy="200" r="120" fill="url(#cg6)"/>
+          <path d="M 70 290 Q 130 130 230 110" fill="none" stroke="#3364D9" stroke-width="2" stroke-linecap="round"/>
+          <path d="M 70 290 Q 130 130 230 110" fill="none" stroke="#3364D9" stroke-width="6" stroke-linecap="round" opacity="0.15"/>
+          <g transform="translate(225 105) rotate(20)">
+            <rect x="-6" y="-30" width="12" height="40" rx="3" fill="rgba(255,255,255,0.95)" stroke="#3364D9" stroke-width="1.5"/>
+            <polygon points="-6,10 0,22 6,10" fill="#3364D9"/>
+            <line x1="0" y1="-25" x2="0" y2="0" stroke="#3364D9" stroke-width="1" opacity="0.5"/>
+          </g>
+          <circle cx="70" cy="290" r="5" fill="#3364D9"/>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-num">06</div>
+        <h3 class="card-title">디자인 / 드로잉</h3>
+        <p class="card-desc">손과 화면이 함께 만드는 시각 언어.</p>
+      </div>
+    </article>
+
+    <!-- 07 Coming Soon -->
+    <article class="card soon">
+      <div class="card-graphic">
+        <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="150" cy="200" r="80" fill="none" stroke="#c0c5d2" stroke-width="1.5" stroke-dasharray="4 6"/>
+          <circle cx="150" cy="200" r="4" fill="#c0c5d2"/>
+          <g fill="#c0c5d2" opacity="0.6">
+            <circle cx="150" cy="120" r="2"/>
+            <circle cx="230" cy="200" r="2"/>
+            <circle cx="150" cy="280" r="2"/>
+            <circle cx="70" cy="200" r="2"/>
+          </g>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-num">07</div>
+        <h3 class="card-title">오픈 예정</h3>
+        <p class="card-desc">새로운 트랙이 준비 중입니다.</p>
+      </div>
+    </article>
+
+    <!-- 08 Coming Soon -->
+    <article class="card soon">
+      <div class="card-graphic">
+        <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="150" cy="200" r="80" fill="none" stroke="#c0c5d2" stroke-width="1.5" stroke-dasharray="4 6"/>
+          <circle cx="150" cy="200" r="4" fill="#c0c5d2"/>
+          <g fill="#c0c5d2" opacity="0.6">
+            <circle cx="150" cy="120" r="2"/>
+            <circle cx="230" cy="200" r="2"/>
+            <circle cx="150" cy="280" r="2"/>
+            <circle cx="70" cy="200" r="2"/>
+          </g>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-num">08</div>
+        <h3 class="card-title">오픈 예정</h3>
+        <p class="card-desc">새로운 트랙이 준비 중입니다.</p>
+      </div>
+    </article>
+
+  </div>
+
+</div>
+</section>
+
+
+<!-- ==============================
+     BANNER SECTION
+     ============================== -->
+<section class="sec-banner">
+<div class="banner-wrap">
+
+  <div class="carousel" id="carousel">
+
+    <div class="track" id="track">
+
+      <div class="slide s1" data-href="#">
+        <div class="slide-bg">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="160" cy="100" r="70" fill="none" stroke="#fff" stroke-width="0.6" opacity="0.5"/>
+            <circle cx="160" cy="100" r="50" fill="none" stroke="#fff" stroke-width="0.6" opacity="0.4"/>
+            <circle cx="160" cy="100" r="30" fill="none" stroke="#fff" stroke-width="0.6" opacity="0.3"/>
+            <circle cx="160" cy="100" r="6" fill="#fff" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="slide-content">
+          <div class="slide-label">New · 신규 개강</div>
+          <h2 class="slide-title">AI / AX 클래스 신규 개강</h2>
+          <p class="slide-sub">교실의 다음 한 학기를 바꿀, 검증된 실전 트랙.</p>
+        </div>
+      </div>
+
+      <div class="slide s2" data-href="#">
+        <div class="slide-bg">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#fff" stroke-width="0.6" opacity="0.4" fill="none">
+              <path d="M 60 40 L 180 40 L 180 160 L 60 160 Z"/>
+              <path d="M 80 60 L 200 60 L 200 180 L 80 180 Z" opacity="0.7"/>
+              <path d="M 100 80 L 220 80 L 220 200 L 100 200 Z" opacity="0.4"/>
+            </g>
+            <circle cx="140" cy="100" r="4" fill="#fff" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="slide-content">
+          <div class="slide-label">Since 2016 · 10주년</div>
+          <h2 class="slide-title">디미교연 10주년</h2>
+          <p class="slide-sub">10년의 시간이 만든, 교사 연수의 새로운 표준.</p>
+        </div>
+      </div>
+
+      <div class="slide s3" data-href="#">
+        <div class="slide-bg">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#fff" opacity="0.5">
+              <circle cx="120" cy="60" r="2"/><circle cx="150" cy="80" r="2"/><circle cx="180" cy="60" r="2"/>
+              <circle cx="120" cy="100" r="2"/><circle cx="150" cy="120" r="2"/><circle cx="180" cy="100" r="2"/>
+              <circle cx="120" cy="140" r="2"/><circle cx="150" cy="160" r="2"/><circle cx="180" cy="140" r="2"/>
+            </g>
+            <circle cx="150" cy="100" r="80" fill="none" stroke="#fff" stroke-width="0.5" opacity="0.25"/>
+          </svg>
+        </div>
+        <div class="slide-content">
+          <div class="slide-label">Free · 무상 자료</div>
+          <h2 class="slide-title">교사 콘텐츠 20,000+</h2>
+          <p class="slide-sub">전국 교사가 함께 만든 자료, 누구나 자유롭게.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="nav-btn nav-prev" id="bnr-prev" aria-label="이전 슬라이드">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+    <button class="nav-btn nav-next" id="bnr-next" aria-label="다음 슬라이드">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+
+    <div class="indicators" id="bnr-indicators">
+      <button class="dot active" data-i="0" aria-label="슬라이드 1"></button>
+      <button class="dot" data-i="1" aria-label="슬라이드 2"></button>
+      <button class="dot" data-i="2" aria-label="슬라이드 3"></button>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
+
+<script>
+// ==============================
+// HERO JS
+// ==============================
+(() => {
+  const chipsData = [
+    { text: 'AI / AX',       x: 22, y: 20, style: 'filled'   },
+    { text: 'Edu-tech',      x: 13, y: 33, style: 'outlined' },
+    { text: 'MDBF',          x: 9,  y: 48, style: 'filled'   },
+    { text: 'Design',        x: 19, y: 64, style: 'outlined' },
+    { text: 'Drawing',       x: 78, y: 20, style: 'outlined' },
+    { text: 'Contents',      x: 87, y: 33, style: 'filled'   },
+    { text: 'Production',    x: 88, y: 48, style: 'outlined' },
+    { text: 'Image / Video', x: 78, y: 64, style: 'outlined' },
+  ];
+
+  const cursorSVG = `
+    <svg class="cursor-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 3 L19 12 L12.5 13.5 L9 21 Z" stroke="black" stroke-width="1.2" stroke-linejoin="round"/>
+    </svg>`;
+
+  // ← 핵심 변경: getElementById('hero') → getElementById('sec-hero')
+  const heroEl = document.getElementById('sec-hero');
+  const chips = [];
+
+  chipsData.forEach((data, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'chip-wrap';
+    wrap.style.left = data.x + '%';
+    wrap.style.top  = data.y + '%';
+
+    const chip = document.createElement('div');
+    chip.className = `chip ${data.style}`;
+    chip.innerHTML = data.text + cursorSVG;
+    chip.style.animationDelay = (i * 0.4) + 's';
+
+    wrap.appendChild(chip);
+    heroEl.appendChild(wrap);
+
+    chips.push({ el: wrap, baseX: 0, baseY: 0, ox: 0, oy: 0, tx: 0, ty: 0 });
+  });
+
+  function recomputeBase() {
+    chips.forEach(c => {
+      const prev = c.el.style.transform;
+      c.el.style.transform = 'translate(-50%, -50%) translate3d(0,0,0)';
+      const r = c.el.getBoundingClientRect();
+      c.baseX = r.left + r.width / 2;
+      c.baseY = r.top  + r.height / 2;
+      c.el.style.transform = prev;
+    });
+  }
+
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(recomputeBase);
+  window.addEventListener('load', recomputeBase);
+  window.addEventListener('resize', recomputeBase);
+  setTimeout(recomputeBase, 100);
+
+  let mouseX = -9999, mouseY = -9999;
+  window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+  document.addEventListener('mouseleave', () => { mouseX = -9999; mouseY = -9999; });
+
+  const REPULSE_RADIUS = 170, REPULSE_STRENGTH = 75, EASE = 0.15;
+
+  function animateChips() {
+    chips.forEach(c => {
+      const cx = c.baseX + c.ox, cy = c.baseY + c.oy;
+      const dx = cx - mouseX, dy = cy - mouseY;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist < REPULSE_RADIUS && dist > 0.1) {
+        const force = Math.pow(1 - dist / REPULSE_RADIUS, 2) * REPULSE_STRENGTH;
+        c.tx = (dx / dist) * force;
+        c.ty = (dy / dist) * force;
+      } else {
+        c.tx = 0; c.ty = 0;
+      }
+
+      c.ox += (c.tx - c.ox) * EASE;
+      c.oy += (c.ty - c.oy) * EASE;
+      c.el.style.transform = `translate(-50%, -50%) translate3d(${c.ox.toFixed(2)}px, ${c.oy.toFixed(2)}px, 0)`;
+    });
+    requestAnimationFrame(animateChips);
+  }
+  animateChips();
+
+  // Sphere light animation
+  const sphere     = document.getElementById('sphere');
+  const sphereSpec = document.getElementById('sphereSpec');
+  const flare      = document.getElementById('flare');
+  let t = Math.PI * 0.25;
+
+  function animateLight() {
+    t += 0.0035;
+    const lx = 35 + Math.sin(t) * 22 + Math.cos(t * 0.6) * 8;
+    const ly = 30 + Math.cos(t * 1.3) * 18 + Math.sin(t * 0.4) * 8;
+    sphere.style.setProperty('--lx', lx + '%');
+    sphere.style.setProperty('--ly', ly + '%');
+    sphereSpec.style.setProperty('--lx', lx + '%');
+    sphereSpec.style.setProperty('--ly', ly + '%');
+    flare.style.setProperty('--fx', (lx * 0.9 + 5) + '%');
+    flare.style.setProperty('--fy', (ly * 0.9 + 5) + '%');
+    requestAnimationFrame(animateLight);
+  }
+  animateLight();
+
+  // Stats spotlight
+  const stats = document.getElementById('stats');
+  stats.addEventListener('mousemove', e => {
+    const rect = stats.getBoundingClientRect();
+    stats.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+    stats.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+  });
+
+  // CTA button
+  const cta = document.getElementById('ctaBtn');
+  cta.addEventListener('click', () => {
+    const href = cta.dataset.href;
+    if (href && href !== '#') window.location.href = href;
+  });
+})();
+
+
+// ==============================
+// CLASSES JS
+// ==============================
+(() => {
+  document.querySelectorAll('.sec-classes .card:not(.soon)').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - rect.top)  / rect.height * 100) + '%');
+    });
+  });
+})();
+
+
+// ==============================
+// BANNER JS
+// ==============================
+(() => {
+  const track    = document.getElementById('track');
+  const carousel = document.getElementById('carousel');
+  const slides   = track.children;
+  const total    = slides.length;
+  const dots     = document.querySelectorAll('#bnr-indicators .dot');
+
+  let idx = 0;
+  const AUTO_MS = 5000;
+  let timer;
+
+  function goTo(i) {
+    idx = (i + total) % total;
+    track.style.transform = `translateX(-${idx * 100}%)`;
+    dots.forEach((d, di) => d.classList.toggle('active', di === idx));
+  }
+
+  function next() { goTo(idx + 1); }
+  function prev() { goTo(idx - 1); }
+  function start() { stop(); timer = setInterval(next, AUTO_MS); }
+  function stop()  { if (timer) clearInterval(timer); }
+
+  document.getElementById('bnr-next').addEventListener('click', () => { next(); start(); });
+  document.getElementById('bnr-prev').addEventListener('click', () => { prev(); start(); });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => { goTo(parseInt(dot.dataset.i, 10)); start(); });
+  });
+
+  Array.from(slides).forEach(s => {
+    s.addEventListener('click', () => {
+      const href = s.dataset.href;
+      if (href && href !== '#') window.location.href = href;
+    });
+  });
+
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stop(); else start();
+  });
+
+  start();
+})();
+</script>
+
+</body>
+</html>
