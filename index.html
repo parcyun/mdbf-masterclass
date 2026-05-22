@@ -326,15 +326,52 @@
   <div class="container">
     <div class="brand">MDBF · <span class="accent">the Masterclass</span></div>
     <h1>Embed Library</h1>
-    <p class="sub">아임웹 본문에 임베드할 HTML 컴포넌트 모음. 각 컴포넌트는 독립된 페이지로 호스팅되며, iframe으로 삽입합니다.</p>
+    <p class="sub">아임웹 임베드용 HTML 컴포넌트 라이브러리. Vercel 호스팅 · GitHub 자동 배포. <strong style="color:var(--brand-light)">Main</strong> 페이지 하나만 임베드하면 전체가 보입니다.</p>
   </div>
 </header>
 
 <main>
   <div class="container">
 
-    <div class="section-label">Hero / Landing</div>
-    <h2 class="section-title">메인 히어로</h2>
+    <div class="section-label">아임웹 임베딩 · Primary</div>
+    <h2 class="section-title">Main 페이지 — 아임웹에 이것만 임베드하세요</h2>
+
+    <div class="grid" style="margin-bottom: 56px;">
+
+      <!-- Main Card -->
+      <article class="card" style="border-color: rgba(91,140,255,0.35); background: rgba(51,100,217,0.05);">
+        <div class="card-preview">
+          <iframe src="./main/" loading="lazy" title="Main preview"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="badge" style="background:rgba(51,100,217,0.3); color:#fff;">Primary</span>
+            <span>/main/</span>
+          </div>
+          <div class="card-title">the Masterclass — Main</div>
+          <div class="card-desc">Hero + Classes + Banner 3섹션 통합. Vercel 배포. 아임웹에서 이 URL 하나만 임베드하면 됩니다.</div>
+          <div class="card-actions">
+            <a class="btn" href="https://mdbf-masterclass.vercel.app/main" target="_blank" rel="noopener">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              열기
+            </a>
+            <button class="btn primary" data-embed="main">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              임베드 코드
+            </button>
+          </div>
+          <div class="embed-block" id="embed-main">
+            <div class="embed-label">아임웹 임베드 코드</div>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/main" style="width:100%; height:2600px; border:0; display:block;" loading="lazy" title="the Masterclass"&gt;&lt;/iframe&gt;</code>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="section-label">개별 컴포넌트</div>
+    <h2 class="section-title">섹션별 독립 페이지</h2>
 
     <div class="grid">
 
@@ -352,7 +389,7 @@
           <div class="card-title">교사의 첫 걸음 · the Masterclass</div>
           <div class="card-desc">커서 리펄션 인터랙션 + 글래스모피즘 stats 호버. 브랜드 키워드 칩 8종, 살아 움직이는 광원의 구체.</div>
           <div class="card-actions">
-            <a class="btn" href="./hero/" target="_blank" rel="noopener">
+            <a class="btn" href="https://mdbf-masterclass.vercel.app/hero" target="_blank" rel="noopener">
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
               열기
             </a>
@@ -363,7 +400,7 @@
           </div>
           <div class="embed-block" id="embed-hero">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/hero/" style="width:100%; height:900px; border:0; display:block;" loading="lazy" title="the Masterclass Hero"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/hero" style="width:100%; height:900px; border:0; display:block;" loading="lazy" title="the Masterclass Hero"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -382,7 +419,7 @@
           <div class="card-title">연수 플랫폼 소개 페이지</div>
           <div class="card-desc">상단 hero 임베드 + WHY / WHAT / WHO / JOIN 4섹션 + 신청 CTA. 풀 길이 랜딩, 모바일 대응.</div>
           <div class="card-actions">
-            <a class="btn" href="./intro/" target="_blank" rel="noopener">
+            <a class="btn" href="https://mdbf-masterclass.vercel.app/intro" target="_blank" rel="noopener">
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
               열기
             </a>
@@ -393,7 +430,7 @@
           </div>
           <div class="embed-block" id="embed-intro">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/intro/" style="width:100%; height:3600px; border:0; display:block;" loading="lazy" title="the Masterclass Intro"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/intro" style="width:100%; height:3600px; border:0; display:block;" loading="lazy" title="the Masterclass Intro"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -412,7 +449,7 @@
           <div class="card-title">강좌 신청 (8개 트랙)</div>
           <div class="card-desc">메인 hero 하단 임베드용. 라이트 톤 배경. 6개 활성 트랙 + 2개 Coming Soon, 각 카드에 신청 CTA.</div>
           <div class="card-actions">
-            <a class="btn" href="./classes/" target="_blank" rel="noopener">
+            <a class="btn" href="https://mdbf-masterclass.vercel.app/classes" target="_blank" rel="noopener">
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
               열기
             </a>
@@ -423,7 +460,7 @@
           </div>
           <div class="embed-block" id="embed-classes">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/classes/" style="width:100%; height:1300px; border:0; display:block;" loading="lazy" title="the Masterclass Classes"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/classes" style="width:100%; height:1300px; border:0; display:block;" loading="lazy" title="the Masterclass Classes"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -442,7 +479,7 @@
           <div class="card-title">배너 캐러셀 (4:1)</div>
           <div class="card-desc">자동 슬라이드 캐러셀. 좌우 nav + dot 인디케이터, 호버 시 일시정지. 4:1 비율 고정.</div>
           <div class="card-actions">
-            <a class="btn" href="./banner/" target="_blank" rel="noopener">
+            <a class="btn" href="https://mdbf-masterclass.vercel.app/banner" target="_blank" rel="noopener">
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
               열기
             </a>
@@ -453,7 +490,7 @@
           </div>
           <div class="embed-block" id="embed-banner">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/banner/" style="width:100%; height:300px; border:0; display:block;" loading="lazy" title="the Masterclass Banner"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/banner" style="width:100%; height:300px; border:0; display:block;" loading="lazy" title="the Masterclass Banner"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
