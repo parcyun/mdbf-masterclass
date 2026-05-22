@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>배너 — the Masterclass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --brand: #3364D9;
+    --brand-light: #5B8CFF;
+    --brand-deep: #1B3A99;
+    --bg: rgba(250, 251, 255, 0.45);
+    --text-faint: rgba(255, 255, 255, 0.75);
+  }
+
+  html, body { overflow-x: hidden; max-width: 100vw; }
+
+  body {
+    background: var(--bg);
+    color: #fff;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  /* ===== Carousel ===== */
+  .carousel {
+    width: 100%;
+    aspect-ratio: 4 / 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+  }
+
+  .track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.7, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  .slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    padding: 48px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  /* Slide variants */
+  .slide.s1 {
+    background: linear-gradient(120deg, #1B3A99 0%, #3364D9 100%);
+  }
+  .slide.s2 {
+    background: linear-gradient(120deg, #2A4FBC 0%, #5B8CFF 100%);
+  }
+  .slide.s3 {
+    background: linear-gradient(120deg, #0F1F4D 0%, #2952B8 100%);
+  }
+
+  /* Decorative SVG shapes */
+  .slide-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .slide-bg svg {
+    position: absolute;
+    right: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 180%;
+    width: auto;
+  }
+
+  .slide-content {
+    position: relative;
+    z-index: 1;
+    max-width: 60%;
+  }
+
+  .slide-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .slide-label::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--text-faint);
+  }
+
+  .slide-title {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .slide-sub {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.5;
+  }
+
+  /* ===== Navigation ===== */
+  .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    font-family: inherit;
+  }
+  .nav-btn:hover {
+    background: rgba(255, 255, 255, 0.28);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  .nav-prev { left: 20px; }
+  .nav-next { right: 20px; }
+
+  /* ===== Indicators ===== */
+  .indicators {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+  .dot {
+    width: 24px;
+    height: 4px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+  }
+  .dot.active {
+    background: rgba(255, 255, 255, 0.95);
+    width: 36px;
+  }
+  .dot:hover { background: rgba(255, 255, 255, 0.6); }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    .carousel { border-radius: 16px; }
+    .slide { padding: 28px 32px; }
+    .slide-content { max-width: 70%; }
+    .slide-label { font-size: 10px; margin-bottom: 8px; }
+    .slide-title { font-size: 22px; }
+    .slide-sub { font-size: 12px; }
+    .nav-btn { width: 36px; height: 36px; }
+    .nav-prev { left: 12px; }
+    .nav-next { right: 12px; }
+    .indicators { bottom: 14px; }
+    .dot { width: 18px; height: 3px; }
+    .dot.active { width: 28px; }
+  }
+
+  @media (max-width: 480px) {
+    .slide { padding: 20px 22px; }
+    .slide-content { max-width: 75%; }
+    .slide-title { font-size: 16px; line-height: 1.25; }
+    .slide-sub { font-size: 11px; }
+    .slide-label { font-size: 9px; margin-bottom: 4px; }
+    .nav-btn { width: 30px; height: 30px; }
+    .nav-btn svg { width: 14px; height: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="carousel" id="carousel">
+
+  <div class="track" id="track">
+
+    <div class="slide s1" data-href="#">
+      <div class="slide-bg">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="160" cy="100" r="70" fill="none" stroke="#fff" stroke-width="0.6" opacity="0.5"/>
+          <circle cx="160" cy="100" r="50" fill="none" stroke="#fff" stroke-width="0.6" opacity="0.4"/>
+          <circle cx="160" cy="100" r="30" fill="none" stroke="#fff" stroke-width="0.6" opacity="0.3"/>
+          <circle cx="160" cy="100" r="6" fill="#fff" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="slide-content">
+        <div class="slide-label">New · 신규 개강</div>
+        <h2 class="slide-title">AI / AX 클래스 신규 개강</h2>
+        <p class="slide-sub">교실의 다음 한 학기를 바꿀, 검증된 실전 트랙.</p>
+      </div>
+    </div>
+
+    <div class="slide s2" data-href="#">
+      <div class="slide-bg">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#fff" stroke-width="0.6" opacity="0.4" fill="none">
+            <path d="M 60 40 L 180 40 L 180 160 L 60 160 Z"/>
+            <path d="M 80 60 L 200 60 L 200 180 L 80 180 Z" opacity="0.7"/>
+            <path d="M 100 80 L 220 80 L 220 200 L 100 200 Z" opacity="0.4"/>
+          </g>
+          <circle cx="140" cy="100" r="4" fill="#fff" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="slide-content">
+        <div class="slide-label">Since 2016 · 10주년</div>
+        <h2 class="slide-title">디미교연 10주년</h2>
+        <p class="slide-sub">10년의 시간이 만든, 교사 연수의 새로운 표준.</p>
+      </div>
+    </div>
+
+    <div class="slide s3" data-href="#">
+      <div class="slide-bg">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#fff" opacity="0.5">
+            <circle cx="120" cy="60" r="2"/>
+            <circle cx="150" cy="80" r="2"/>
+            <circle cx="180" cy="60" r="2"/>
+            <circle cx="120" cy="100" r="2"/>
+            <circle cx="150" cy="120" r="2"/>
+            <circle cx="180" cy="100" r="2"/>
+            <circle cx="120" cy="140" r="2"/>
+            <circle cx="150" cy="160" r="2"/>
+            <circle cx="180" cy="140" r="2"/>
+          </g>
+          <circle cx="150" cy="100" r="80" fill="none" stroke="#fff" stroke-width="0.5" opacity="0.25"/>
+        </svg>
+      </div>
+      <div class="slide-content">
+        <div class="slide-label">Free · 무상 자료</div>
+        <h2 class="slide-title">교사 콘텐츠 20,000+</h2>
+        <p class="slide-sub">전국 교사가 함께 만든 자료, 누구나 자유롭게.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="nav-btn nav-prev" id="prev" aria-label="이전 슬라이드">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
+  <button class="nav-btn nav-next" id="next" aria-label="다음 슬라이드">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"/>
+    </svg>
+  </button>
+
+  <div class="indicators" id="indicators">
+    <button class="dot active" data-i="0" aria-label="슬라이드 1"></button>
+    <button class="dot" data-i="1" aria-label="슬라이드 2"></button>
+    <button class="dot" data-i="2" aria-label="슬라이드 3"></button>
+  </div>
+
+</div>
+
+<script>
+(() => {
+  const track = document.getElementById('track');
+  const slides = track.children;
+  const total = slides.length;
+  const dots = document.querySelectorAll('.dot');
+  const carousel = document.getElementById('carousel');
+
+  let idx = 0;
+  const AUTO_MS = 5000;
+  let timer;
+
+  function goTo(i) {
+    idx = (i + total) % total;
+    track.style.transform = `translateX(-${idx * 100}%)`;
+    dots.forEach((d, di) => d.classList.toggle('active', di === idx));
+  }
+
+  function next() { goTo(idx + 1); }
+  function prev() { goTo(idx - 1); }
+
+  function start() {
+    stop();
+    timer = setInterval(next, AUTO_MS);
+  }
+  function stop() {
+    if (timer) clearInterval(timer);
+  }
+
+  document.getElementById('next').addEventListener('click', () => { next(); start(); });
+  document.getElementById('prev').addEventListener('click', () => { prev(); start(); });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      goTo(parseInt(dot.dataset.i, 10));
+      start();
+    });
+  });
+
+  // Slide click → href
+  Array.from(slides).forEach(s => {
+    s.addEventListener('click', (e) => {
+      // Ignore if clicking nav/dots which are above slides
+      const href = s.dataset.href;
+      if (href && href !== '#') window.location.href = href;
+    });
+  });
+
+  // Pause on hover
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+
+  // Pause when tab hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stop(); else start();
+  });
+
+  start();
+})();
+</script>
+
+</body>
+</html>

@@ -201,19 +201,6 @@
     color: var(--text-soon);
   }
 
-  /* ===== Signature ===== */
-  .signature {
-    margin-top: 56px;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    font-size: 10px;
-    color: var(--text-faint);
-    letter-spacing: 0.08em;
-  }
-  .signature a { color: inherit; text-decoration: none; transition: color 0.2s; }
-  .signature a:hover { color: var(--text-mute); }
-
   /* ===== Responsive ===== */
   @media (max-width: 1024px) {
     .grid { grid-template-columns: repeat(3, 1fr); }
@@ -492,10 +479,6 @@
 
   </div>
 
-  <div class="signature">
-    Designed by parcyun studio · <a href="https://www.instagram.com/parcyun" target="_blank" rel="noopener">@parcyun</a>
-  </div>
-
 </div>
 
 <script>
@@ -509,6 +492,21 @@
       card.style.setProperty('--my', y + '%');
     });
   });
+
+  // Post content height to parent (when embedded as iframe)
+  function postHeight() {
+    if (window.parent !== window) {
+      window.parent.postMessage({
+        type: 'mdbf-classes-height',
+        height: document.documentElement.scrollHeight
+      }, '*');
+    }
+  }
+  window.addEventListener('load', postHeight);
+  window.addEventListener('resize', () => requestAnimationFrame(postHeight));
+  if (window.ResizeObserver) {
+    new ResizeObserver(() => requestAnimationFrame(postHeight)).observe(document.body);
+  }
 </script>
 
 </body>

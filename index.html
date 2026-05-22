@@ -338,6 +338,36 @@
 
     <div class="grid">
 
+      <!-- Home Card (통합 메인) -->
+      <article class="card">
+        <div class="card-preview">
+          <iframe src="./home/" loading="lazy" title="Home preview"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="badge">Home</span>
+            <span>/home/</span>
+          </div>
+          <div class="card-title">메인 통합 페이지</div>
+          <div class="card-desc">hero + 48px gap + classes + 48px gap + banner 캐러셀. 아임웹 메인에 한 번에 임베드.</div>
+          <div class="card-actions">
+            <a class="btn" href="./home/" target="_blank" rel="noopener">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              열기
+            </a>
+            <button class="btn primary" data-embed="home">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              임베드 코드
+            </button>
+          </div>
+          <div class="embed-block" id="embed-home">
+            <div class="embed-label">아임웹 임베드 코드</div>
+            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/home/" style="width:100%; height:2400px; border:0; display:block;" loading="lazy" title="the Masterclass Home"&gt;&lt;/iframe&gt;</code>
+          </div>
+        </div>
+      </article>
+
       <!-- Hero Card -->
       <article class="card">
         <div class="card-preview">
@@ -424,6 +454,36 @@
           <div class="embed-block" id="embed-classes">
             <div class="embed-label">아임웹 임베드 코드</div>
             <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/classes/" style="width:100%; height:720px; border:0; display:block;" loading="lazy" title="the Masterclass Classes"&gt;&lt;/iframe&gt;</code>
+          </div>
+        </div>
+      </article>
+
+      <!-- Banner Card -->
+      <article class="card">
+        <div class="card-preview">
+          <iframe src="./banner/" loading="lazy" title="Banner preview"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="badge">Banner</span>
+            <span>/banner/</span>
+          </div>
+          <div class="card-title">배너 캐러셀 (4:1)</div>
+          <div class="card-desc">자동 슬라이드 캐러셀. 좌우 nav + dot 인디케이터, 호버 시 일시정지. 4:1 비율 고정.</div>
+          <div class="card-actions">
+            <a class="btn" href="./banner/" target="_blank" rel="noopener">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              열기
+            </a>
+            <button class="btn primary" data-embed="banner">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              임베드 코드
+            </button>
+          </div>
+          <div class="embed-block" id="embed-banner">
+            <div class="embed-label">아임웹 임베드 코드</div>
+            <code class="embed-code">&lt;iframe src="https://parcyun.github.io/mdbf-masterclass/banner/" style="width:100%; aspect-ratio:4/1; border:0; display:block;" loading="lazy" title="the Masterclass Banner"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
