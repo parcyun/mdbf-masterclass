@@ -41,8 +41,7 @@
   .hero-embed {
     position: relative;
     width: 100%;
-    height: 100vh;
-    height: 100svh;
+    height: 720px;
     overflow: hidden;
     background: #000;
   }
@@ -52,6 +51,8 @@
     border: 0;
     display: block;
   }
+  @media (max-width: 768px) { .hero-embed { height: 580px; } }
+  @media (max-width: 480px) { .hero-embed { height: 480px; } }
 
   /* ===== Section base ===== */
   .section {
@@ -177,6 +178,23 @@
   }
   .keyword-card:hover::before { opacity: 1; }
   .keyword-card:hover .keyword-num { color: var(--brand-light); }
+
+  /* 추가 예정 카드 */
+  .keyword-card.more {
+    border-style: dashed;
+    border-color: rgba(255, 255, 255, 0.06);
+    background: transparent;
+    cursor: default;
+  }
+  .keyword-card.more::before { display: none; }
+  .keyword-card.more:hover {
+    transform: none;
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .keyword-card.more .keyword-num { color: rgba(255,255,255,0.15); }
+  .keyword-card.more h3 { color: rgba(255,255,255,0.2); font-size: 18px; }
+  .keyword-card.more p  { color: rgba(255,255,255,0.15); }
 
   .keyword-num {
     font-family: 'Montserrat', sans-serif;
@@ -494,43 +512,43 @@
       <article class="keyword-card">
         <div class="keyword-num">03</div>
         <div>
-          <h3>MDBF</h3>
-          <p>몽당분필, 처음의 마음에서 시작합니다.</p>
-        </div>
-      </article>
-      <article class="keyword-card">
-        <div class="keyword-num">04</div>
-        <div>
           <h3>Design</h3>
           <p>보이는 것을 넘어 의미를 짓는 디자인.</p>
         </div>
       </article>
       <article class="keyword-card">
-        <div class="keyword-num">05</div>
+        <div class="keyword-num">04</div>
         <div>
           <h3>Drawing</h3>
           <p>손으로 쌓는 사유와 표현의 기술.</p>
         </div>
       </article>
       <article class="keyword-card">
-        <div class="keyword-num">06</div>
+        <div class="keyword-num">05</div>
         <div>
           <h3>Contents</h3>
           <p>콘텐츠로 가르치는 시대의 교사 역량.</p>
         </div>
       </article>
       <article class="keyword-card">
-        <div class="keyword-num">07</div>
-        <div>
-          <h3>Production</h3>
-          <p>소비자가 아닌, 만드는 교사로.</p>
-        </div>
-      </article>
-      <article class="keyword-card">
-        <div class="keyword-num">08</div>
+        <div class="keyword-num">06</div>
         <div>
           <h3>Image / Video</h3>
           <p>영상과 이미지의 문해력을 교실로.</p>
+        </div>
+      </article>
+      <article class="keyword-card more">
+        <div class="keyword-num">+</div>
+        <div>
+          <h3>계속 추가 중</h3>
+          <p>새로운 트랙이 준비되고 있습니다.</p>
+        </div>
+      </article>
+      <article class="keyword-card more">
+        <div class="keyword-num">+</div>
+        <div>
+          <h3>계속 추가 중</h3>
+          <p>새로운 트랙이 준비되고 있습니다.</p>
         </div>
       </article>
     </div>
