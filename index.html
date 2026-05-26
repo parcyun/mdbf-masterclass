@@ -333,6 +333,41 @@
 <main>
   <div class="container">
 
+    <!-- ===== Universal Resize Listener ===== -->
+    <div class="section-label">전역 설정 · Setup</div>
+    <h2 class="section-title">아임웹 페이지에 한 번만 — iframe 자동 리사이즈</h2>
+    <article class="card" style="border-color: rgba(91,140,255,0.4); background: rgba(51,100,217,0.06); margin-bottom: 56px;">
+      <div class="card-body" style="padding: 22px 24px 24px;">
+        <div class="card-meta">
+          <span class="badge" style="background:rgba(91,140,255,0.3); color:#fff;">Listener</span>
+          <span>1회 설치</span>
+        </div>
+        <div class="card-title">전역 리스너 (아임웹 페이지 헤더에 한 번만)</div>
+        <div class="card-desc">이 스크립트를 아임웹 페이지 어딘가에 <strong>한 번만</strong> 붙여넣으면, 모든 임베드 iframe의 height가 자동 조정됩니다. 페이지마다 height를 지정할 필요 없음.</div>
+        <div class="card-actions">
+          <button class="btn primary" data-embed="listener" style="flex: 0 1 200px;">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            리스너 코드 복사
+          </button>
+        </div>
+        <div class="embed-block" id="embed-listener">
+          <div class="embed-label">전역 리스너 — 아임웹 페이지에 한 번만 추가</div>
+          <code class="embed-code">&lt;script&gt;
+addEventListener('message', function(e){
+  if (!e.data || e.data.type !== 'mcResize') return;
+  var fs = document.getElementsByTagName('iframe');
+  for (var i = 0; i &lt; fs.length; i++) {
+    if (fs[i].contentWindow === e.source) {
+      fs[i].style.height = e.data.height + 'px';
+      break;
+    }
+  }
+});
+&lt;/script&gt;</code>
+        </div>
+      </div>
+    </article>
+
     <div class="section-label">아임웹 임베딩 · Primary</div>
     <h2 class="section-title">메인 페이지 — 아임웹에 임베드할 페이지들</h2>
 
@@ -363,7 +398,7 @@
           </div>
           <div class="embed-block" id="embed-main">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/main" style="width:100%; height:2600px; border:0; display:block;" loading="lazy" title="the Masterclass"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/main" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -393,7 +428,7 @@
           </div>
           <div class="embed-block" id="embed-intro">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/intro" style="width:100%; height:3600px; border:0; display:block;" loading="lazy" title="the Masterclass Intro"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/intro" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass Intro"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -430,7 +465,7 @@
           </div>
           <div class="embed-block" id="embed-navbar">
             <div class="embed-label">아임웹 임베드 코드 — 상단 섹션에 배치 후 sticky 설정</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/navbar" style="width:100%; height:108px; border:0; display:block; position:sticky; top:0; z-index:100;" title="the Masterclass Navbar"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/navbar" style="width:100%; border:0; display:block; position:sticky; top:0; z-index:100;" scrolling="no" title="the Masterclass Navbar"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -460,7 +495,7 @@
           </div>
           <div class="embed-block" id="embed-hero">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/hero" style="width:100%; height:900px; border:0; display:block;" loading="lazy" title="the Masterclass Hero"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/hero" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass Hero"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -490,7 +525,7 @@
           </div>
           <div class="embed-block" id="embed-classes">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/classes" style="width:100%; height:1300px; border:0; display:block;" loading="lazy" title="the Masterclass Classes"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/classes" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass Classes"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -520,7 +555,7 @@
           </div>
           <div class="embed-block" id="embed-banner">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/banner" style="width:100%; height:300px; border:0; display:block;" loading="lazy" title="the Masterclass Banner"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/banner" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass Banner"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -550,7 +585,7 @@
           </div>
           <div class="embed-block" id="embed-footer">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe id="mc-footer" src="https://mdbf-masterclass.vercel.app/footer" style="width:100%; height:440px; border:0; display:block;" loading="lazy" title="the Masterclass Footer"&gt;&lt;/iframe&gt;&lt;script&gt;window.addEventListener('message',function(e){if(e.data&amp;&amp;e.data.type==='mcResize'&amp;&amp;e.data.id==='footer'){document.getElementById('mc-footer').style.height=e.data.height+'px';}});&lt;/script&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/footer" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass Footer"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -587,7 +622,7 @@
           </div>
           <div class="embed-block" id="embed-category">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/category" style="width:100%; height:900px; border:0; display:block;" loading="lazy" title="the Masterclass 카테고리"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/category" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass 카테고리"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -617,7 +652,7 @@
           </div>
           <div class="embed-block" id="embed-about">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/about" style="width:100%; height:1200px; border:0; display:block;" loading="lazy" title="the Masterclass 소개"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/about" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass 소개"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -647,7 +682,7 @@
           </div>
           <div class="embed-block" id="embed-membership">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/membership" style="width:100%; height:1400px; border:0; display:block;" loading="lazy" title="the Masterclass 멤버십"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/membership" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass 멤버십"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -677,7 +712,7 @@
           </div>
           <div class="embed-block" id="embed-resources">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/resources" style="width:100%; height:1000px; border:0; display:block;" loading="lazy" title="the Masterclass 자료실"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/resources" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass 자료실"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -707,7 +742,7 @@
           </div>
           <div class="embed-block" id="embed-notice">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/notice" style="width:100%; height:900px; border:0; display:block;" loading="lazy" title="the Masterclass 공지사항"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/notice" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass 공지사항"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -737,7 +772,7 @@
           </div>
           <div class="embed-block" id="embed-community">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/community" style="width:100%; height:1000px; border:0; display:block;" loading="lazy" title="the Masterclass 커뮤니티"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/community" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass 커뮤니티"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -767,7 +802,7 @@
           </div>
           <div class="embed-block" id="embed-news">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/news" style="width:100%; height:900px; border:0; display:block;" loading="lazy" title="the Masterclass 소식"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/news" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass 소식"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
