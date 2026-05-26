@@ -535,10 +535,10 @@ addEventListener('message', function(e){
         </div>
       </article>
 
-      <!-- Resources Card -->
+      <!-- Community Card (resources URL) -->
       <article class="card" style="border-color: rgba(91,140,255,0.25); background: rgba(51,100,217,0.03);">
         <div class="card-preview">
-          <iframe src="./resources/" loading="lazy" title="Resources preview"></iframe>
+          <iframe src="./resources/" loading="lazy" title="Community preview"></iframe>
           <div class="overlay"></div>
         </div>
         <div class="card-body">
@@ -546,8 +546,8 @@ addEventListener('message', function(e){
             <span class="badge" style="background:rgba(91,140,255,0.2); color:#fff;">Sub</span>
             <span>/resources/</span>
           </div>
-          <div class="card-title">자료실</div>
-          <div class="card-desc">수업 자료, 강의 자료, 참고 링크 모음. 회원 등급별 접근 제어.</div>
+          <div class="card-title">커뮤니티</div>
+          <div class="card-desc">교사 커뮤니티 게시판. 연수 후기, 수업 아이디어, 자유 게시판 탭. 글쓰기 버튼 포함.</div>
           <div class="card-actions">
             <a class="btn" href="https://mdbf-masterclass.vercel.app/resources" target="_blank" rel="noopener">
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
@@ -561,7 +561,38 @@ addEventListener('message', function(e){
           <div class="embed-block" id="embed-sub-resources">
             <div class="embed-label">아임웹 임베드 코드 (리스너 + iframe)</div>
             <code class="embed-code">&lt;script&gt;addEventListener('message',function(e){if(!e.data||e.data.type!=='mcResize')return;var fs=document.getElementsByTagName('iframe');for(var i=0;i&lt;fs.length;i++)if(fs[i].contentWindow===e.source){fs[i].style.height=e.data.height+'px';break;}});&lt;/script&gt;
-&lt;iframe src="https://mdbf-masterclass.vercel.app/resources" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="자료실"&gt;&lt;/iframe&gt;</code>
+&lt;iframe src="https://mdbf-masterclass.vercel.app/resources" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="커뮤니티"&gt;&lt;/iframe&gt;</code>
+          </div>
+        </div>
+      </article>
+
+      <!-- QnA Card -->
+      <article class="card" style="border-color: rgba(91,140,255,0.25); background: rgba(51,100,217,0.03);">
+        <div class="card-preview">
+          <iframe src="./qna/" loading="lazy" title="QnA preview"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="badge" style="background:rgba(91,140,255,0.2); color:#fff;">Sub</span>
+            <span>/qna/</span>
+          </div>
+          <div class="card-title">QnA</div>
+          <div class="card-desc">강좌·도구·수업 적용 관련 Q&amp;A 게시판. 미답변/답변완료 탭, 검색, 질문하기 버튼 포함.</div>
+          <div class="card-actions">
+            <a class="btn" href="https://mdbf-masterclass.vercel.app/qna" target="_blank" rel="noopener">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              열기
+            </a>
+            <button class="btn primary" data-embed="sub-qna">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              임베드 코드
+            </button>
+          </div>
+          <div class="embed-block" id="embed-sub-qna">
+            <div class="embed-label">아임웹 임베드 코드 (리스너 + iframe)</div>
+            <code class="embed-code">&lt;script&gt;addEventListener('message',function(e){if(!e.data||e.data.type!=='mcResize')return;var fs=document.getElementsByTagName('iframe');for(var i=0;i&lt;fs.length;i++)if(fs[i].contentWindow===e.source){fs[i].style.height=e.data.height+'px';break;}});&lt;/script&gt;
+&lt;iframe src="https://mdbf-masterclass.vercel.app/qna" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="QnA"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -862,8 +893,8 @@ addEventListener('message', function(e){
             <span class="badge">Page</span>
             <span>/resources/</span>
           </div>
-          <div class="card-title">자료실</div>
-          <div class="card-desc">교사 대상 무료 자료실. 카테고리 필터 + 8종 자료 카드 (PDF, XLSX, ZIP, 노션 링크).</div>
+          <div class="card-title">커뮤니티</div>
+          <div class="card-desc">교사 커뮤니티 게시판. 연수 후기, 수업 아이디어, 자유 게시판 탭. 글쓰기 버튼 포함.</div>
           <div class="card-actions">
             <a class="btn" href="https://mdbf-masterclass.vercel.app/resources" target="_blank" rel="noopener">
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
@@ -876,7 +907,7 @@ addEventListener('message', function(e){
           </div>
           <div class="embed-block" id="embed-resources">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/resources" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass 자료실"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/resources" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="커뮤니티"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -937,6 +968,36 @@ addEventListener('message', function(e){
           <div class="embed-block" id="embed-community">
             <div class="embed-label">아임웹 임베드 코드</div>
             <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/community" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass 커뮤니티"&gt;&lt;/iframe&gt;</code>
+          </div>
+        </div>
+      </article>
+
+      <!-- QnA Card -->
+      <article class="card">
+        <div class="card-preview">
+          <iframe src="./qna/" loading="lazy" title="QnA preview"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="badge">Page</span>
+            <span>/qna/</span>
+          </div>
+          <div class="card-title">QnA</div>
+          <div class="card-desc">강좌·도구·수업 적용 관련 Q&amp;A. 미답변/답변완료 탭, 검색, 운영진 답변 표시 포함.</div>
+          <div class="card-actions">
+            <a class="btn" href="https://mdbf-masterclass.vercel.app/qna" target="_blank" rel="noopener">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              열기
+            </a>
+            <button class="btn primary" data-embed="qna">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              임베드 코드
+            </button>
+          </div>
+          <div class="embed-block" id="embed-qna">
+            <div class="embed-label">아임웹 임베드 코드</div>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/qna" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="QnA"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>

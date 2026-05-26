@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>커뮤니티 — the Masterclass</title>
+<title>QnA — the Masterclass</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Montserrat:wght@300;400;500;600;700&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -47,36 +47,61 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
 .page-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--brand-light); margin-bottom: 14px; }
 .page-hero h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 8px; }
 .page-hero .lead { font-size: 15px; color: rgba(255,255,255,0.5); }
-.write-btn { flex-shrink: 0; padding: 12px 22px; background: var(--brand); border: none; border-radius: 10px; font-size: 14px; font-weight: 600; font-family: inherit; color: #fff; cursor: pointer; letter-spacing: -0.01em; transition: all 0.2s ease; }
-.write-btn:hover { background: var(--brand-light); }
+.ask-btn { flex-shrink: 0; padding: 12px 22px; background: var(--brand); border: none; border-radius: 10px; font-size: 14px; font-weight: 600; font-family: inherit; color: #fff; cursor: pointer; letter-spacing: -0.01em; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; }
+.ask-btn:hover { background: var(--brand-light); }
 
-.tab-row { display: flex; gap: 4px; padding: 0 32px; max-width: 1180px; margin: 0 auto 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+/* SEARCH */
+.qna-search-wrap { max-width: 880px; margin: 0 auto; padding: 0 32px 28px; }
+.qna-search { position: relative; }
+.qna-search input { width: 100%; height: 44px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0 18px 0 44px; font-size: 14px; color: rgba(255,255,255,0.85); font-family: 'Pretendard', sans-serif; outline: none; transition: all 0.2s ease; }
+.qna-search input:focus { border-color: rgba(51,100,217,0.45); background: rgba(51,100,217,0.05); }
+.qna-search input::placeholder { color: rgba(255,255,255,0.25); }
+.qna-search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.3); pointer-events: none; }
+
+/* TAB */
+.tab-row { display: flex; gap: 4px; padding: 0 32px; max-width: 880px; margin: 0 auto 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .tab-btn { padding: 8px 18px; font-size: 13.5px; font-weight: 500; font-family: inherit; cursor: pointer; border: none; background: transparent; color: rgba(255,255,255,0.45); letter-spacing: -0.01em; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.18s ease; }
 .tab-btn.active { color: #5B8CFF; border-bottom-color: #5B8CFF; }
 .tab-btn:hover:not(.active) { color: rgba(255,255,255,0.75); }
 
-.post-list { max-width: 880px; margin: 0 auto; padding: 0 32px 80px; }
-.post-category { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; padding-top: 32px; }
-.post-item { display: flex; align-items: center; gap: 16px; padding: 18px 20px; border-radius: 12px; margin-bottom: 8px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); transition: all 0.15s ease; cursor: pointer; }
-.post-item:hover { background: rgba(51,100,217,0.06); border-color: rgba(51,100,217,0.2); }
-.post-avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(51,100,217,0.25); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
-.post-content { flex: 1; min-width: 0; }
-.post-title { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
-.post-meta { font-size: 12px; color: rgba(255,255,255,0.35); }
-.post-stats { display: flex; gap: 12px; font-size: 12px; color: rgba(255,255,255,0.3); flex-shrink: 0; }
-.post-hot { display: inline-block; background: rgba(255,100,80,0.15); color: rgba(255,120,100,0.9); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 100px; margin-left: 6px; vertical-align: middle; }
+/* QnA LIST */
+.qna-list { max-width: 880px; margin: 0 auto; padding: 16px 32px 80px; display: flex; flex-direction: column; gap: 10px; }
+
+.qna-item { border-radius: 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); transition: all 0.18s ease; cursor: pointer; overflow: hidden; }
+.qna-item:hover { background: rgba(51,100,217,0.05); border-color: rgba(51,100,217,0.2); }
+.qna-item.answered { border-left: 3px solid rgba(51,100,217,0.5); }
+
+.qna-q { display: flex; align-items: flex-start; gap: 14px; padding: 18px 20px; }
+.qna-badge { flex-shrink: 0; width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; font-family: 'Montserrat', sans-serif; margin-top: 1px; }
+.qna-badge.q { background: rgba(51,100,217,0.2); color: #5B8CFF; }
+.qna-badge.solved { background: rgba(40,200,120,0.15); color: rgba(40,200,120,0.9); }
+
+.qna-body { flex: 1; min-width: 0; }
+.qna-title { font-size: 14px; font-weight: 600; line-height: 1.45; margin-bottom: 5px; }
+.qna-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.qna-category { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--brand-light); opacity: 0.8; }
+.qna-author { font-size: 12px; color: rgba(255,255,255,0.35); }
+.qna-time { font-size: 12px; color: rgba(255,255,255,0.25); }
+.qna-dot { color: rgba(255,255,255,0.15); font-size: 10px; }
+
+.qna-stats { display: flex; align-items: center; gap: 12px; flex-shrink: 0; font-size: 12px; color: rgba(255,255,255,0.3); }
+.qna-answer-count { display: flex; align-items: center; gap: 4px; }
+.qna-answer-count.has-answer { color: rgba(40,200,120,0.8); }
+
+.qna-answer { padding: 14px 20px 18px; border-top: 1px solid rgba(255,255,255,0.05); background: rgba(51,100,217,0.03); display: flex; gap: 14px; }
+.qna-answer .qna-badge { background: rgba(40,200,120,0.12); color: rgba(40,200,120,0.85); }
+.qna-answer-text { font-size: 13.5px; color: rgba(255,255,255,0.65); line-height: 1.6; flex: 1; }
+.qna-answer-text strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+/* EMPTY */
+.qna-empty { text-align: center; padding: 72px 32px; color: rgba(255,255,255,0.3); }
+.qna-empty-icon { font-size: 40px; margin-bottom: 16px; }
+.qna-empty p { font-size: 15px; }
 
 /* ==============================
    SITE FOOTER
    ============================== */
-.site-footer {
-  background: #0B0D16;
-  border-top: 1px solid rgba(51, 100, 217, 0.15);
-  padding: 80px 0 60px;
-  color: rgba(255,255,255,0.55);
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-  letter-spacing: -0.01em;
-}
+.site-footer { background: #0B0D16; border-top: 1px solid rgba(51, 100, 217, 0.15); padding: 80px 0 60px; color: rgba(255,255,255,0.55); font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: -0.01em; }
 .footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
 .footer-top { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 32px; }
 .footer-brand { display: flex; align-items: center; gap: 16px; }
@@ -155,8 +180,8 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
       </li>
       <li><a href="https://mdbf-masterclass.vercel.app/about" target="_top">소개</a></li>
       <li><a href="https://mdbf-masterclass.vercel.app/membership" target="_top">멤버십</a></li>
-      <li><a href="https://mdbf-masterclass.vercel.app/resources" target="_top" class="mc-active">커뮤니티</a></li>
-      <li><a href="https://mdbf-masterclass.vercel.app/qna" target="_top">QnA</a></li>
+      <li><a href="https://mdbf-masterclass.vercel.app/resources" target="_top">커뮤니티</a></li>
+      <li><a href="https://mdbf-masterclass.vercel.app/qna" target="_top" class="mc-active">QnA</a></li>
       <li><a href="https://mdbf-masterclass.vercel.app/notice" target="_top">공지사항</a></li>
     </ul>
   </div>
@@ -164,72 +189,188 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
 
 <div class="page-hero">
   <div>
-    <p class="page-eyebrow">커뮤니티</p>
-    <h1>교사들의 이야기</h1>
-    <p class="lead">연수 후기, 수업 아이디어, 경험을 함께 나눠요.</p>
+    <p class="page-eyebrow">QnA</p>
+    <h1>질문하고 함께 성장해요</h1>
+    <p class="lead">강좌, 도구 사용법, 수업 적용 방법 — 궁금한 건 뭐든 물어보세요.</p>
   </div>
-  <button class="write-btn">글쓰기</button>
+  <button class="ask-btn">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    질문하기
+  </button>
+</div>
+
+<div class="qna-search-wrap">
+  <div class="qna-search">
+    <svg class="qna-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="search" placeholder="질문 검색..." aria-label="QnA 검색">
+  </div>
 </div>
 
 <div class="tab-row">
   <button class="tab-btn active">전체</button>
-  <button class="tab-btn">연수 후기</button>
-  <button class="tab-btn">수업 아이디어</button>
-  <button class="tab-btn">자유 게시판</button>
+  <button class="tab-btn">미답변</button>
+  <button class="tab-btn">답변완료</button>
+  <button class="tab-btn">내 질문</button>
 </div>
 
-<div class="post-list">
-  <div class="post-category">인기 게시글</div>
-  <div class="post-item">
-    <div class="post-avatar">👩‍🏫</div>
-    <div class="post-content">
-      <div class="post-title">AI 연수 듣고 나서 실제로 바뀐 것들 <span class="post-hot">🔥 HOT</span></div>
-      <div class="post-meta">김○○ 선생님 · AI/AX · 3시간 전</div>
+<div class="qna-list">
+
+  <!-- 답변완료 질문 -->
+  <div class="qna-item answered">
+    <div class="qna-q">
+      <div class="qna-badge solved">A</div>
+      <div class="qna-body">
+        <div class="qna-title">ChatGPT로 수업 지도안 작성할 때 어떤 프롬프트를 쓰면 좋을까요?</div>
+        <div class="qna-meta">
+          <span class="qna-category">AI / AX</span>
+          <span class="qna-dot">·</span>
+          <span class="qna-author">김○○ 선생님</span>
+          <span class="qna-dot">·</span>
+          <span class="qna-time">2일 전</span>
+        </div>
+      </div>
+      <div class="qna-stats">
+        <div class="qna-answer-count has-answer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          3
+        </div>
+        <span>👍 18</span>
+      </div>
     </div>
-    <div class="post-stats"><span>👍 47</span><span>💬 23</span></div>
-  </div>
-  <div class="post-item">
-    <div class="post-avatar">🧑‍🏫</div>
-    <div class="post-content">
-      <div class="post-title">구글 시트로 학급 업무 자동화 후기 — 주당 3시간 절감</div>
-      <div class="post-meta">박○○ 선생님 · 업무자동화 · 1일 전</div>
+    <div class="qna-answer">
+      <div class="qna-badge" style="background:rgba(40,200,120,0.12); color:rgba(40,200,120,0.9); font-size:11px;">운영</div>
+      <div class="qna-answer-text"><strong>역할 부여 + 대상 학년 + 교과 + 성취기준</strong>을 명시하면 훨씬 정교한 결과가 나옵니다. 예: "당신은 중학교 2학년 국어 교사입니다. 2022 개정 교육과정 성취기준 [국어 9-01-01]에 맞는 1차시 지도안을 작성해주세요." 강좌 AI/AX 1강에서 구체적인 예시 프롬프트 50개를 제공합니다.</div>
     </div>
-    <div class="post-stats"><span>👍 38</span><span>💬 15</span></div>
-  </div>
-  <div class="post-item">
-    <div class="post-avatar">👩‍💻</div>
-    <div class="post-content">
-      <div class="post-title">에듀테크 초보 교사가 한 학기 써본 솔직 후기</div>
-      <div class="post-meta">이○○ 선생님 · 에듀테크 · 2일 전</div>
-    </div>
-    <div class="post-stats"><span>👍 29</span><span>💬 11</span></div>
   </div>
 
-  <div class="post-category">최신 게시글</div>
-  <div class="post-item">
-    <div class="post-avatar">🙋</div>
-    <div class="post-content">
-      <div class="post-title">캔바 연수 수강 후 카드뉴스 처음 만들어봤어요</div>
-      <div class="post-meta">최○○ 선생님 · 이미지/영상 · 5시간 전</div>
+  <!-- 답변완료 질문 -->
+  <div class="qna-item answered">
+    <div class="qna-q">
+      <div class="qna-badge solved">A</div>
+      <div class="qna-body">
+        <div class="qna-title">구글 시트 자동화를 전혀 모르는 초보인데 어떤 강좌부터 시작하면 좋을까요?</div>
+        <div class="qna-meta">
+          <span class="qna-category">업무 자동화</span>
+          <span class="qna-dot">·</span>
+          <span class="qna-author">박○○ 선생님</span>
+          <span class="qna-dot">·</span>
+          <span class="qna-time">4일 전</span>
+        </div>
+      </div>
+      <div class="qna-stats">
+        <div class="qna-answer-count has-answer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          2
+        </div>
+        <span>👍 31</span>
+      </div>
     </div>
-    <div class="post-stats"><span>👍 12</span><span>💬 4</span></div>
-  </div>
-  <div class="post-item">
-    <div class="post-avatar">📚</div>
-    <div class="post-content">
-      <div class="post-title">중학교 국어 수업에 NotebookLM 써본 경험 공유</div>
-      <div class="post-meta">한○○ 선생님 · 에듀테크 · 어제</div>
+    <div class="qna-answer">
+      <div class="qna-badge" style="background:rgba(40,200,120,0.12); color:rgba(40,200,120,0.9); font-size:11px;">운영</div>
+      <div class="qna-answer-text"><strong>업무 자동화 입문</strong> 강좌를 추천합니다. 수식 한 줄도 모르는 분을 기준으로 설계되어 있어요. 구글 시트 기초 → VLOOKUP · IMPORTRANGE → Apps Script 순서로 단계별로 진행됩니다. 수강 전에 구글 계정만 준비하시면 됩니다.</div>
     </div>
-    <div class="post-stats"><span>👍 19</span><span>💬 6</span></div>
   </div>
-  <div class="post-item">
-    <div class="post-avatar">🎨</div>
-    <div class="post-content">
-      <div class="post-title">Canva AI로 수업 자료 만드는 꿀팁 공유합니다</div>
-      <div class="post-meta">송○○ 선생님 · 이미지/영상 · 어제</div>
+
+  <!-- 미답변 질문 -->
+  <div class="qna-item">
+    <div class="qna-q">
+      <div class="qna-badge q">Q</div>
+      <div class="qna-body">
+        <div class="qna-title">Canva 교육 계정으로 학생들에게 템플릿을 공유하는 방법이 궁금합니다</div>
+        <div class="qna-meta">
+          <span class="qna-category">이미지 / 영상</span>
+          <span class="qna-dot">·</span>
+          <span class="qna-author">이○○ 선생님</span>
+          <span class="qna-dot">·</span>
+          <span class="qna-time">6시간 전</span>
+        </div>
+      </div>
+      <div class="qna-stats">
+        <div class="qna-answer-count">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          0
+        </div>
+        <span>👍 5</span>
+      </div>
     </div>
-    <div class="post-stats"><span>👍 22</span><span>💬 9</span></div>
   </div>
+
+  <!-- 미답변 질문 -->
+  <div class="qna-item">
+    <div class="qna-q">
+      <div class="qna-badge q">Q</div>
+      <div class="qna-body">
+        <div class="qna-title">NotebookLM을 수업에 활용할 때 저작권 문제가 생기지 않나요?</div>
+        <div class="qna-meta">
+          <span class="qna-category">에듀테크</span>
+          <span class="qna-dot">·</span>
+          <span class="qna-author">최○○ 선생님</span>
+          <span class="qna-dot">·</span>
+          <span class="qna-time">1일 전</span>
+        </div>
+      </div>
+      <div class="qna-stats">
+        <div class="qna-answer-count">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          1
+        </div>
+        <span>👍 9</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 답변완료 질문 -->
+  <div class="qna-item answered">
+    <div class="qna-q">
+      <div class="qna-badge solved">A</div>
+      <div class="qna-body">
+        <div class="qna-title">강좌 수료 후 이수증은 어떻게 발급받나요?</div>
+        <div class="qna-meta">
+          <span class="qna-category">운영 안내</span>
+          <span class="qna-dot">·</span>
+          <span class="qna-author">정○○ 선생님</span>
+          <span class="qna-dot">·</span>
+          <span class="qna-time">3일 전</span>
+        </div>
+      </div>
+      <div class="qna-stats">
+        <div class="qna-answer-count has-answer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          1
+        </div>
+        <span>👍 14</span>
+      </div>
+    </div>
+    <div class="qna-answer">
+      <div class="qna-badge" style="background:rgba(40,200,120,0.12); color:rgba(40,200,120,0.9); font-size:11px;">운영</div>
+      <div class="qna-answer-text">강좌별 이수 기준(영상 시청률 80% 이상 + 과제 제출)을 충족하시면 마이페이지 → 수료증에서 PDF로 자동 발급됩니다. 직인이 필요한 경우 <strong>mdbftv@naver.com</strong>으로 문의해 주세요.</div>
+    </div>
+  </div>
+
+  <!-- 미답변 질문 -->
+  <div class="qna-item">
+    <div class="qna-q">
+      <div class="qna-badge q">Q</div>
+      <div class="qna-body">
+        <div class="qna-title">AI 이미지 생성 도구를 초등 수업에서 활용해 보신 분 계신가요?</div>
+        <div class="qna-meta">
+          <span class="qna-category">AI / AX</span>
+          <span class="qna-dot">·</span>
+          <span class="qna-author">한○○ 선생님</span>
+          <span class="qna-dot">·</span>
+          <span class="qna-time">어제</span>
+        </div>
+      </div>
+      <div class="qna-stats">
+        <div class="qna-answer-count">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          2
+        </div>
+        <span>👍 7</span>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- ===== SITE FOOTER ===== -->
