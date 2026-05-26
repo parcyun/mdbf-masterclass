@@ -43,7 +43,7 @@ body {
 .sec-hero {
   position: relative;
   width: 100%;
-  height: 720px;
+  height: 860px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -351,7 +351,7 @@ body {
 
 /* Hero Responsive */
 @media (max-width: 768px) {
-  .sec-hero { height: 580px; }
+  .sec-hero { height: 680px; }
   .sec-hero .sphere-stage { width: 380px; height: 380px; }
   .sec-hero .eyebrow { font-size: 18px; }
   .sec-hero h1       { font-size: 32px; margin-bottom: 16px; line-height: 1.2; }
@@ -379,7 +379,7 @@ body {
 }
 
 @media (max-width: 480px) {
-  .sec-hero { height: 480px; }
+  .sec-hero { height: 580px; }
   .sec-hero .sphere-stage { width: 300px; height: 300px; }
   .sec-hero .eyebrow { font-size: 16px; }
   .sec-hero h1       { font-size: 26px; }
@@ -1098,6 +1098,13 @@ body {
   transition: all 0.2s ease;
   flex-shrink: 0;
   letter-spacing: -0.01em;
+  margin-left: auto;
+}
+
+.mc-cat-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .mc-nav-mdbf img {
@@ -1183,8 +1190,18 @@ body {
   </div>
   <div class="mc-nav-row2">
     <ul class="mc-nav-menu">
+      <li>
+        <a href="https://mdbf.co.kr" target="_top" class="mc-cat-link">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <rect x="0" y="0" width="6.5" height="6.5" rx="1.5"/>
+            <rect x="9.5" y="0" width="6.5" height="6.5" rx="1.5"/>
+            <rect x="0" y="9.5" width="6.5" height="6.5" rx="1.5"/>
+            <rect x="9.5" y="9.5" width="6.5" height="6.5" rx="1.5"/>
+          </svg>
+          카테고리
+        </a>
+      </li>
       <li><a href="https://mdbf.co.kr" target="_top">소개</a></li>
-      <li><a href="https://mdbf.co.kr" target="_top" class="mc-active">강좌 신청</a></li>
       <li><a href="https://mdbf.co.kr" target="_top">멤버십</a></li>
       <li><a href="https://mdbf.co.kr" target="_top">자료실</a></li>
       <li><a href="https://mdbf.co.kr" target="_top">공지사항</a></li>
