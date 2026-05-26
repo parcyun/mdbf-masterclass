@@ -20,11 +20,12 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
 .mc-logo-the { font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.38); margin-right: 4px; }
 .mc-logo-M { color: #3364D9; }
 .mc-nav-search { flex: 1; max-width: 420px; position: relative; }
-.mc-nav-search input { width: 100%; height: 38px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; padding: 0 16px 0 38px; font-size: 13px; color: rgba(255,255,255,0.8); font-family: 'Pretendard', sans-serif; outline: none; }
+.mc-nav-search input { width: 100%; height: 38px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; padding: 0 16px 0 38px; font-size: 13px; color: rgba(255,255,255,0.8); font-family: 'Pretendard', sans-serif; outline: none; transition: all 0.2s ease; }
 .mc-nav-search input::placeholder { color: rgba(255,255,255,0.28); }
 .mc-search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); pointer-events: none; color: rgba(255,255,255,0.3); }
-.mc-nav-mdbf { display: flex; align-items: center; gap: 8px; text-decoration: none; color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 500; padding: 7px 13px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; margin-left: auto; }
+.mc-nav-mdbf { display: flex; align-items: center; gap: 8px; text-decoration: none; color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 500; padding: 7px 13px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.2s ease; flex-shrink: 0; margin-left: auto; }
 .mc-nav-mdbf img { width: 24px; height: 24px; border-radius: 6px; }
+.mc-nav-mdbf:hover { color: rgba(255,255,255,0.9); border-color: rgba(51,100,217,0.4); background: rgba(51,100,217,0.08); }
 .mc-nav-row2 { border-top: 1px solid rgba(255,255,255,0.05); }
 .mc-nav-menu { max-width: 1180px; margin: 0 auto; padding: 0 32px; height: 44px; display: flex; align-items: center; gap: 2px; list-style: none; justify-content: center; }
 .mc-nav-menu a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 13.5px; font-weight: 500; padding: 6px 16px; border-radius: 8px; transition: color 0.18s ease, background 0.18s ease; letter-spacing: -0.01em; white-space: nowrap; }
@@ -32,7 +33,7 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
 .mc-nav-menu a.mc-active { color: #5B8CFF; background: rgba(51,100,217,0.1); }
 .mc-cat-link { display: flex; align-items: center; gap: 6px; }
 .mc-nav-dropdown-wrap { position: relative; }
-.mc-nav-dropdown { position: absolute; top: calc(100% + 6px); left: 50%; width: 256px; background: rgba(10,13,28,0.99); border: 1px solid rgba(51,100,217,0.22); border-radius: 14px; padding: 8px; opacity: 0; visibility: hidden; transform: translateX(-50%) translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s 0.18s; z-index: 300; box-shadow: 0 20px 60px rgba(0,0,20,0.85); }
+.mc-nav-dropdown { position: absolute; top: calc(100% + 6px); left: 50%; width: 256px; background: rgba(10,13,28,0.99); border: 1px solid rgba(51,100,217,0.22); border-radius: 14px; padding: 8px; opacity: 0; visibility: hidden; transform: translateX(-50%) translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s 0.18s; z-index: 300; box-shadow: 0 20px 60px rgba(0,0,20,0.85), 0 4px 16px rgba(51,100,217,0.18); }
 .mc-nav-dropdown-wrap:hover .mc-nav-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); transition: opacity 0.18s ease, transform 0.18s ease; }
 .mc-dd-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 9px; color: rgba(255,255,255,0.72); text-decoration: none; font-size: 13px; font-weight: 500; transition: all 0.15s ease; }
 .mc-dd-item:hover { color: #fff; background: rgba(51,100,217,0.13); }
@@ -49,6 +50,13 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
 .write-btn { flex-shrink: 0; padding: 12px 22px; background: var(--brand); border: none; border-radius: 10px; font-size: 14px; font-weight: 600; font-family: inherit; color: #fff; cursor: pointer; letter-spacing: -0.01em; transition: all 0.2s ease; }
 .write-btn:hover { background: var(--brand-light); }
 
+/* TABS */
+.tab-row { display: flex; gap: 4px; padding: 0 32px; max-width: 1180px; margin: 0 auto 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.tab-btn { padding: 8px 18px; font-size: 13.5px; font-weight: 500; font-family: inherit; cursor: pointer; border: none; background: transparent; color: rgba(255,255,255,0.45); letter-spacing: -0.01em; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.18s ease; }
+.tab-btn.active { color: #5B8CFF; border-bottom-color: #5B8CFF; }
+.tab-btn:hover:not(.active) { color: rgba(255,255,255,0.75); }
+
+/* POSTS */
 .post-list { max-width: 880px; margin: 0 auto; padding: 0 32px 80px; }
 .post-category { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; padding-top: 32px; }
 .post-item { display: flex; align-items: center; gap: 16px; padding: 18px 20px; border-radius: 12px; margin-bottom: 8px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); transition: all 0.15s ease; cursor: pointer; }
@@ -59,212 +67,39 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
 .post-meta { font-size: 12px; color: rgba(255,255,255,0.35); }
 .post-stats { display: flex; gap: 12px; font-size: 12px; color: rgba(255,255,255,0.3); flex-shrink: 0; }
 .post-hot { display: inline-block; background: rgba(255,100,80,0.15); color: rgba(255,120,100,0.9); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 100px; margin-left: 6px; vertical-align: middle; }
+.post-tag-qa { display: inline-block; background: rgba(51,100,217,0.15); color: rgba(100,160,255,0.9); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 100px; margin-left: 6px; vertical-align: middle; }
 
-/* ==============================
-   SITE FOOTER
-   ============================== */
-.site-footer {
-  background: #0B0D16;
-  border-top: 1px solid rgba(51, 100, 217, 0.15);
-  padding: 80px 0 60px;
-  color: rgba(255,255,255,0.55);
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-  letter-spacing: -0.01em;
-}
-
-.footer-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 48px;
-}
-
-.footer-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 32px;
-}
-
-.footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.footer-logo-mark {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-}
-
-.footer-logo-text {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.footer-logo-text .logo-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.85);
-  line-height: 1.3;
-}
-
-.footer-logo-text .logo-sub {
-  font-size: 11px;
-  color: rgba(255,255,255,0.35);
-  letter-spacing: 0.03em;
-}
-
-.footer-studio {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 5px;
-}
-
-.footer-studio .studio-label {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  color: rgba(255,255,255,0.4);
-  letter-spacing: 0.06em;
-}
-
-.footer-studio .studio-link {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  color: #5B8CFF;
-  text-decoration: none;
-  letter-spacing: 0.04em;
-  transition: color 0.2s ease;
-}
-.footer-studio .studio-link:hover { color: #fff; }
-
-.studio-credit {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-  font-size: 11px;
-  color: rgba(255,255,255,0.28);
-  letter-spacing: 0.04em;
-}
-
-.ps-signature {
-  font-family: 'Covered By Your Grace', cursive;
-  font-size: 16px;
-  color: inherit;
-  line-height: 1;
-  vertical-align: middle;
-}
-
-.footer-divider {
-  height: 1px;
-  background: rgba(255,255,255,0.06);
-  margin-bottom: 28px;
-}
-
-.footer-mid {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 32px;
-  margin-bottom: 28px;
-}
-
-.footer-nav-block,
-.footer-sns-block {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
+/* FOOTER */
+.site-footer { background: #0B0D16; border-top: 1px solid rgba(51, 100, 217, 0.15); padding: 80px 0 60px; color: rgba(255,255,255,0.55); font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: -0.01em; }
+.footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.footer-top { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 32px; }
+.footer-brand { display: flex; align-items: center; gap: 16px; }
+.footer-logo-mark { flex-shrink: 0; width: 44px; height: 44px; }
+.footer-logo-text { display: flex; flex-direction: column; gap: 3px; }
+.footer-logo-text .logo-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.3; }
+.footer-logo-text .logo-sub { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.03em; }
+.footer-studio { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+.studio-credit { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 11px; color: rgba(255,255,255,0.28); letter-spacing: 0.04em; }
+.ps-signature { font-family: 'Covered By Your Grace', cursive; font-size: 16px; color: inherit; line-height: 1; vertical-align: middle; }
+.footer-divider { height: 1px; background: rgba(255,255,255,0.06); margin-bottom: 28px; }
+.footer-mid { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 28px; }
+.footer-nav-block, .footer-sns-block { display: flex; flex-direction: column; gap: 10px; }
 .footer-sns-block { align-items: flex-end; }
-
-.footer-nav-label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.25);
-}
-
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 20px;
-}
-
-.footer-links a {
-  color: rgba(255,255,255,0.5);
-  text-decoration: none;
-  font-size: 13px;
-  transition: color 0.2s ease;
-}
+.footer-nav-label { font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+.footer-links { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.2s ease; }
 .footer-links a:hover { color: rgba(255,255,255,0.9); }
-
-.footer-sns-links {
-  display: flex;
-  gap: 10px;
-}
-
-.sns-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255,255,255,0.5);
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-.sns-btn:hover {
-  background: rgba(51,100,217,0.25);
-  border-color: rgba(51,100,217,0.5);
-  color: #fff;
-}
-
-.footer-bottom {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-info {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 0;
-}
-
-.footer-info-item {
-  color: rgba(255,255,255,0.3);
-  font-size: 12px;
-}
-.footer-info-item::after {
-  content: '·';
-  margin: 0 10px;
-  color: rgba(255,255,255,0.12);
-}
+.footer-sns-links { display: flex; gap: 10px; }
+.sns-btn { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); text-decoration: none; transition: all 0.2s ease; }
+.sns-btn:hover { background: rgba(51,100,217,0.25); border-color: rgba(51,100,217,0.5); color: #fff; }
+.footer-bottom { display: flex; flex-direction: column; gap: 10px; }
+.footer-info { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0; }
+.footer-info-item { color: rgba(255,255,255,0.3); font-size: 12px; }
+.footer-info-item::after { content: '·'; margin: 0 10px; color: rgba(255,255,255,0.12); }
 .footer-info-item:last-child::after { display: none; }
-
-.footer-info-item a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s;
-}
+.footer-info-item a { color: inherit; text-decoration: none; transition: color 0.2s; }
 .footer-info-item a:hover { color: rgba(255,255,255,0.65); }
-
-.footer-copy {
-  font-size: 11px;
-  color: rgba(255,255,255,0.18);
-  letter-spacing: 0.01em;
-}
-
+.footer-copy { font-size: 11px; color: rgba(255,255,255,0.18); letter-spacing: 0.01em; }
 @media (max-width: 768px) {
   .footer-inner { padding: 0 28px; }
   .footer-top { flex-direction: column; align-items: flex-start; gap: 20px; }
@@ -272,7 +107,6 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
   .footer-mid { flex-direction: column; gap: 20px; }
   .footer-sns-block { align-items: flex-start; }
 }
-
 @media (max-width: 480px) {
   .site-footer { padding: 56px 0 44px; }
   .footer-inner { padding: 0 20px; }
@@ -299,7 +133,7 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
   <div class="mc-nav-row2">
     <ul class="mc-nav-menu">
       <li class="mc-nav-dropdown-wrap">
-        <a href="https://mdbf-masterclass.vercel.app/category" target="_top" class="mc-cat-link">
+        <a href="https://mdbf.co.kr/49" target="_top" class="mc-cat-link">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="6.5" height="6.5" rx="1.5"/><rect x="9.5" y="0" width="6.5" height="6.5" rx="1.5"/><rect x="0" y="9.5" width="6.5" height="6.5" rx="1.5"/><rect x="9.5" y="9.5" width="6.5" height="6.5" rx="1.5"/></svg>
           카테고리
         </a>
@@ -313,11 +147,11 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
           <a class="mc-dd-item soon" href="#"><span class="mc-dd-icon">🎨</span> 디자인 / 드로잉 <span class="mc-dd-badge">Soon</span></a>
         </div>
       </li>
-      <li><a href="https://mdbf-masterclass.vercel.app/about" target="_top">소개</a></li>
-      <li><a href="https://mdbf-masterclass.vercel.app/membership" target="_top">멤버십</a></li>
-      <li><a href="https://mdbf-masterclass.vercel.app/resources" target="_top">커뮤니티</a></li>
-      <li><a href="https://mdbf-masterclass.vercel.app/qna" target="_top">QnA</a></li>
-      <li><a href="https://mdbf-masterclass.vercel.app/notice" target="_top">공지사항</a></li>
+      <li><a href="https://mdbf.co.kr/53" target="_top">소개</a></li>
+      <li><a href="https://mdbf.co.kr/54" target="_top">멤버십</a></li>
+      <li><a href="https://mdbf.co.kr/51" target="_top" class="mc-active">커뮤니티</a></li>
+      <li><a href="https://mdbf.co.kr/50" target="_top">QnA</a></li>
+      <li><a href="https://mdbf.co.kr/55" target="_top">공지사항</a></li>
     </ul>
   </div>
 </header>
@@ -326,9 +160,17 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
   <div>
     <p class="page-eyebrow">커뮤니티</p>
     <h1>교사들의 이야기</h1>
-    <p class="lead">연수 후기, 수업 아이디어, 궁금한 점을 함께 나눠요.</p>
+    <p class="lead">연수 후기, 수업 아이디어, 함께 성장하는 질문과 답변을 나눠요.</p>
   </div>
   <button class="write-btn">글쓰기</button>
+</div>
+
+<div class="tab-row">
+  <button class="tab-btn active">전체</button>
+  <button class="tab-btn">연수 후기</button>
+  <button class="tab-btn">수업 아이디어</button>
+  <button class="tab-btn">함께 성장</button>
+  <button class="tab-btn">자유 게시판</button>
 </div>
 
 <div class="post-list">
@@ -337,7 +179,7 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
     <div class="post-avatar">👩‍🏫</div>
     <div class="post-content">
       <div class="post-title">AI 연수 듣고 나서 실제로 바뀐 것들 <span class="post-hot">🔥 HOT</span></div>
-      <div class="post-meta">김○○ 선생님 · AI/AX · 3시간 전</div>
+      <div class="post-meta">김○○ 선생님 · 연수 후기 · 3시간 전</div>
     </div>
     <div class="post-stats"><span>👍 47</span><span>💬 23</span></div>
   </div>
@@ -345,15 +187,23 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
     <div class="post-avatar">🧑‍🏫</div>
     <div class="post-content">
       <div class="post-title">구글 시트로 학급 업무 자동화 후기 — 주당 3시간 절감</div>
-      <div class="post-meta">박○○ 선생님 · 업무자동화 · 1일 전</div>
+      <div class="post-meta">박○○ 선생님 · 연수 후기 · 1일 전</div>
     </div>
     <div class="post-stats"><span>👍 38</span><span>💬 15</span></div>
+  </div>
+  <div class="post-item">
+    <div class="post-avatar">🤔</div>
+    <div class="post-content">
+      <div class="post-title">ChatGPT로 수업 지도안 작성할 때 어떤 프롬프트가 효과적인가요? <span class="post-tag-qa">함께 성장</span></div>
+      <div class="post-meta">정○○ 선생님 · 함께 성장 · 2일 전</div>
+    </div>
+    <div class="post-stats"><span>👍 31</span><span>💬 12</span></div>
   </div>
   <div class="post-item">
     <div class="post-avatar">👩‍💻</div>
     <div class="post-content">
       <div class="post-title">에듀테크 초보 교사가 한 학기 써본 솔직 후기</div>
-      <div class="post-meta">이○○ 선생님 · 에듀테크 · 2일 전</div>
+      <div class="post-meta">이○○ 선생님 · 연수 후기 · 2일 전</div>
     </div>
     <div class="post-stats"><span>👍 29</span><span>💬 11</span></div>
   </div>
@@ -363,35 +213,50 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
     <div class="post-avatar">🙋</div>
     <div class="post-content">
       <div class="post-title">캔바 연수 수강 후 카드뉴스 처음 만들어봤어요</div>
-      <div class="post-meta">최○○ 선생님 · 이미지/영상 · 5시간 전</div>
+      <div class="post-meta">최○○ 선생님 · 연수 후기 · 5시간 전</div>
     </div>
     <div class="post-stats"><span>👍 12</span><span>💬 4</span></div>
   </div>
   <div class="post-item">
     <div class="post-avatar">🤔</div>
     <div class="post-content">
-      <div class="post-title">AI 수업 설계할 때 저작권은 어떻게 처리하나요?</div>
-      <div class="post-meta">정○○ 선생님 · AI/AX · 8시간 전</div>
+      <div class="post-title">구글 시트 자동화 입문으로 어떤 강좌부터 시작하면 좋을까요? <span class="post-tag-qa">함께 성장</span></div>
+      <div class="post-meta">박○○ 선생님 · 함께 성장 · 8시간 전</div>
     </div>
-    <div class="post-stats"><span>👍 8</span><span>💬 7</span></div>
+    <div class="post-stats"><span>👍 22</span><span>💬 9</span></div>
   </div>
   <div class="post-item">
     <div class="post-avatar">📚</div>
     <div class="post-content">
       <div class="post-title">중학교 국어 수업에 NotebookLM 써본 경험 공유</div>
-      <div class="post-meta">한○○ 선생님 · 에듀테크 · 어제</div>
+      <div class="post-meta">한○○ 선생님 · 수업 아이디어 · 어제</div>
     </div>
     <div class="post-stats"><span>👍 19</span><span>💬 6</span></div>
+  </div>
+  <div class="post-item">
+    <div class="post-avatar">🎨</div>
+    <div class="post-content">
+      <div class="post-title">AI 이미지 생성 도구를 초등 수업에 활용해 보신 분 계신가요? <span class="post-tag-qa">함께 성장</span></div>
+      <div class="post-meta">한○○ 선생님 · 함께 성장 · 어제</div>
+    </div>
+    <div class="post-stats"><span>👍 7</span><span>💬 5</span></div>
+  </div>
+  <div class="post-item">
+    <div class="post-avatar">🎬</div>
+    <div class="post-content">
+      <div class="post-title">Canva AI로 수업 자료 만드는 꿀팁 공유합니다</div>
+      <div class="post-meta">송○○ 선생님 · 수업 아이디어 · 어제</div>
+    </div>
+    <div class="post-stats"><span>👍 22</span><span>💬 9</span></div>
   </div>
 </div>
 
 <!-- ===== SITE FOOTER ===== -->
 <footer class="site-footer">
   <div class="footer-inner">
-
     <div class="footer-top">
       <div class="footer-brand">
-                <img class="footer-logo-mark" src="../assets/mdbf-logo.png" alt="MDBF 디미교연 로고" style="border-radius:11px;">
+        <img class="footer-logo-mark" src="../assets/mdbf-logo.png" alt="MDBF 디미교연 로고" style="border-radius:11px;">
         <div class="footer-logo-text">
           <span class="logo-name">디지털미디어교육콘텐츠 교사연구협회</span>
           <span class="logo-sub">몽당분필 · MDBF</span>
@@ -401,9 +266,7 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
         <a href="https://www.instagram.com/parcyun" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;"><span class="studio-credit">Designed by <span class="ps-signature">parcyun studio</span></span></a>
       </div>
     </div>
-
     <div class="footer-divider"></div>
-
     <div class="footer-mid">
       <div class="footer-nav-block">
         <span class="footer-nav-label">바로가기</span>
@@ -416,29 +279,18 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
         <span class="footer-nav-label">소셜미디어</span>
         <div class="footer-sns-links">
           <a class="sns-btn" href="https://www.instagram.com/mdbf__/" target="_blank" rel="noopener" aria-label="Instagram @mdbf__">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
           </a>
           <a class="sns-btn" href="https://www.youtube.com/@mdbftv" target="_blank" rel="noopener" aria-label="YouTube @mdbftv">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19.59 6.69a4.83 4.83 0 0 0-3.4-3.4C14.7 3 12 3 12 3s-2.7 0-4.19.29a4.83 4.83 0 0 0-3.4 3.4C4 8.18 4 12 4 12s0 3.82.41 5.31a4.83 4.83 0 0 0 3.4 3.4C9.3 21 12 21 12 21s2.7 0 4.19-.29a4.83 4.83 0 0 0 3.4-3.4C20 15.82 20 12 20 12s0-3.82-.41-5.31ZM9.75 15.02V8.98L15.5 12l-5.75 3.02Z"/>
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 0-3.4-3.4C14.7 3 12 3 12 3s-2.7 0-4.19.29a4.83 4.83 0 0 0-3.4 3.4C4 8.18 4 12 4 12s0 3.82.41 5.31a4.83 4.83 0 0 0 3.4 3.4C9.3 21 12 21 12 21s2.7 0 4.19-.29a4.83 4.83 0 0 0 3.4-3.4C20 15.82 20 12 20 12s0-3.82-.41-5.31ZM9.75 15.02V8.98L15.5 12l-5.75 3.02Z"/></svg>
           </a>
           <a class="sns-btn" href="mailto:mdbftv@naver.com" aria-label="이메일 문의">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="3"/>
-              <polyline points="2,4 12,13 22,4"/>
-            </svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><polyline points="2,4 12,13 22,4"/></svg>
           </a>
         </div>
       </div>
     </div>
-
     <div class="footer-divider"></div>
-
     <div class="footer-bottom">
       <div class="footer-info">
         <span class="footer-info-item">@mdbf</span>
@@ -450,7 +302,6 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
       </div>
       <div class="footer-copy">© 2025 디지털미디어교육콘텐츠 교사연구협회. All rights reserved.</div>
     </div>
-
   </div>
 </footer>
 
