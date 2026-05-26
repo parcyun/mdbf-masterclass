@@ -1149,6 +1149,67 @@ body {
 .mc-nav-menu a:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
 .mc-nav-menu a.mc-active { color: #5B8CFF; background: rgba(51, 100, 217, 0.1); }
 
+/* ===== Dropdown ===== */
+.mc-nav-dropdown-wrap { position: relative; }
+
+.mc-nav-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  width: 256px;
+  background: rgba(10, 13, 28, 0.99);
+  border: 1px solid rgba(51, 100, 217, 0.22);
+  border-radius: 14px;
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s 0.18s;
+  z-index: 300;
+  box-shadow: 0 20px 60px rgba(0,0,20,0.85), 0 4px 16px rgba(51,100,217,0.18);
+}
+
+.mc-nav-dropdown-wrap:hover .mc-nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.mc-dd-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 9px;
+  color: rgba(255,255,255,0.72);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 0.15s ease;
+}
+.mc-dd-item:hover { color: #fff; background: rgba(51,100,217,0.13); }
+.mc-dd-item.soon { color: rgba(255,255,255,0.22); cursor: default; pointer-events: none; }
+
+.mc-dd-icon {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  background: rgba(51,100,217,0.11);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+
+.mc-dd-badge {
+  font-size: 10px; font-weight: 600;
+  padding: 2px 7px; border-radius: 100px;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.28);
+  margin-left: auto;
+}
+
+.mc-dd-divider { height: 1px; background: rgba(255,255,255,0.05); margin: 4px 8px; }
+
 @media (max-width: 900px) {
   .mc-nav-row1 { padding: 0 20px; gap: 14px; }
   .mc-nav-menu  { padding: 0 20px; }
@@ -1190,8 +1251,8 @@ body {
   </div>
   <div class="mc-nav-row2">
     <ul class="mc-nav-menu">
-      <li>
-        <a href="https://mdbf.co.kr" target="_top" class="mc-cat-link">
+      <li class="mc-nav-dropdown-wrap">
+        <a href="https://mdbf-masterclass.vercel.app/category" target="_top" class="mc-cat-link">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
             <rect x="0" y="0" width="6.5" height="6.5" rx="1.5"/>
             <rect x="9.5" y="0" width="6.5" height="6.5" rx="1.5"/>
@@ -1200,11 +1261,32 @@ body {
           </svg>
           카테고리
         </a>
+        <div class="mc-nav-dropdown">
+          <a class="mc-dd-item" href="https://mdbf-masterclass.vercel.app/category/ai" target="_top">
+            <span class="mc-dd-icon">🤖</span> AI / AX
+          </a>
+          <a class="mc-dd-item" href="https://mdbf-masterclass.vercel.app/category/automation" target="_top">
+            <span class="mc-dd-icon">⚙️</span> 업무 자동화
+          </a>
+          <a class="mc-dd-item" href="https://mdbf-masterclass.vercel.app/category/media" target="_top">
+            <span class="mc-dd-icon">🎬</span> 이미지 / 영상
+          </a>
+          <a class="mc-dd-item" href="https://mdbf-masterclass.vercel.app/category/edutech" target="_top">
+            <span class="mc-dd-icon">📱</span> 에듀테크
+          </a>
+          <div class="mc-dd-divider"></div>
+          <a class="mc-dd-item soon" href="#">
+            <span class="mc-dd-icon">📚</span> 수업 자료 <span class="mc-dd-badge">Soon</span>
+          </a>
+          <a class="mc-dd-item soon" href="#">
+            <span class="mc-dd-icon">🎨</span> 디자인 / 드로잉 <span class="mc-dd-badge">Soon</span>
+          </a>
+        </div>
       </li>
-      <li><a href="https://mdbf.co.kr" target="_top">소개</a></li>
-      <li><a href="https://mdbf.co.kr" target="_top">멤버십</a></li>
-      <li><a href="https://mdbf.co.kr" target="_top">자료실</a></li>
-      <li><a href="https://mdbf.co.kr" target="_top">공지사항</a></li>
+      <li><a href="https://mdbf-masterclass.vercel.app/about" target="_top">소개</a></li>
+      <li><a href="https://mdbf-masterclass.vercel.app/membership" target="_top">멤버십</a></li>
+      <li><a href="https://mdbf-masterclass.vercel.app/resources" target="_top">자료실</a></li>
+      <li><a href="https://mdbf-masterclass.vercel.app/notice" target="_top">공지사항</a></li>
     </ul>
   </div>
 </header>
@@ -1226,7 +1308,7 @@ body {
     <p class="eyebrow">교사의 첫 걸음</p>
     <h1>지금, the Masterclass에서</h1>
     <p class="subtitle">현장에서 검증된 연수를, 모든 교사에게.</p>
-    <button class="cta" type="button" data-href="#" id="ctaBtn">멤버십 보러가기</button>
+    <button class="cta" type="button" data-href="https://mdbf-masterclass.vercel.app/membership" id="ctaBtn">Masterclass 참여하기</button>
   </div>
 
   <div class="stats" id="stats">

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>멤버십 — the Masterclass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --brand: #3364D9; --brand-light: #5B8CFF; }
+html { overflow-x: hidden; }
+body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; background: #07090F; color: #E8EAF0; letter-spacing: -0.01em; line-height: 1.6; }
+
+/* NAVBAR */
+.mc-nav { position: sticky; top: 0; z-index: 200; background: rgba(7,9,20,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(51,100,217,0.15); }
+.mc-nav-row1 { max-width: 1180px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; gap: 20px; }
+.mc-nav-logo { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; color: #fff; text-decoration: none; letter-spacing: -0.03em; flex-shrink: 0; display: flex; align-items: baseline; }
+.mc-logo-the { font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.38); margin-right: 4px; }
+.mc-logo-M { color: #3364D9; }
+.mc-nav-search { flex: 1; max-width: 420px; position: relative; }
+.mc-nav-search input { width: 100%; height: 38px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; padding: 0 16px 0 38px; font-size: 13px; color: rgba(255,255,255,0.8); font-family: 'Pretendard', sans-serif; outline: none; transition: all 0.2s ease; }
+.mc-nav-search input::placeholder { color: rgba(255,255,255,0.28); }
+.mc-nav-search input:focus { border-color: rgba(51,100,217,0.5); box-shadow: 0 0 0 3px rgba(51,100,217,0.12); }
+.mc-search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); pointer-events: none; color: rgba(255,255,255,0.3); }
+.mc-nav-mdbf { display: flex; align-items: center; gap: 8px; text-decoration: none; color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 500; padding: 7px 13px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.2s ease; flex-shrink: 0; margin-left: auto; }
+.mc-nav-mdbf img { width: 24px; height: 24px; border-radius: 6px; }
+.mc-nav-mdbf:hover { color: rgba(255,255,255,0.9); border-color: rgba(51,100,217,0.4); background: rgba(51,100,217,0.08); }
+.mc-nav-row2 { border-top: 1px solid rgba(255,255,255,0.05); }
+.mc-nav-menu { max-width: 1180px; margin: 0 auto; padding: 0 32px; height: 44px; display: flex; align-items: center; gap: 2px; list-style: none; justify-content: center; }
+.mc-nav-menu a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 13.5px; font-weight: 500; padding: 6px 16px; border-radius: 8px; transition: color 0.18s ease, background 0.18s ease; letter-spacing: -0.01em; white-space: nowrap; }
+.mc-nav-menu a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.mc-nav-menu a.mc-active { color: #5B8CFF; background: rgba(51,100,217,0.1); }
+.mc-cat-link { display: flex; align-items: center; gap: 6px; }
+.mc-nav-dropdown-wrap { position: relative; }
+.mc-nav-dropdown { position: absolute; top: calc(100% + 6px); left: 50%; width: 256px; background: rgba(10,13,28,0.99); border: 1px solid rgba(51,100,217,0.22); border-radius: 14px; padding: 8px; opacity: 0; visibility: hidden; transform: translateX(-50%) translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s 0.18s; z-index: 300; box-shadow: 0 20px 60px rgba(0,0,20,0.85), 0 4px 16px rgba(51,100,217,0.18); }
+.mc-nav-dropdown-wrap:hover .mc-nav-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); transition: opacity 0.18s ease, transform 0.18s ease; }
+.mc-dd-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 9px; color: rgba(255,255,255,0.72); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: -0.01em; transition: all 0.15s ease; }
+.mc-dd-item:hover { color: #fff; background: rgba(51,100,217,0.13); }
+.mc-dd-item.soon { color: rgba(255,255,255,0.22); cursor: default; pointer-events: none; }
+.mc-dd-icon { width: 28px; height: 28px; border-radius: 7px; background: rgba(51,100,217,0.11); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.mc-dd-badge { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 100px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.28); margin-left: auto; }
+.mc-dd-divider { height: 1px; background: rgba(255,255,255,0.05); margin: 4px 8px; }
+
+/* PAGE */
+.page-hero { padding: 80px 32px 60px; max-width: 1180px; margin: 0 auto; text-align: center; }
+.page-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--brand-light); margin-bottom: 16px; }
+.page-hero h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 16px; }
+.page-hero .lead { font-size: 17px; color: rgba(255,255,255,0.6); max-width: 580px; margin: 0 auto; }
+
+.plans { padding: 64px 32px 80px; max-width: 1080px; margin: 0 auto; }
+.plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+.plan-card {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; padding: 32px; position: relative; transition: all 0.3s ease;
+}
+.plan-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,20,0.4); }
+.plan-card.featured {
+  background: rgba(51,100,217,0.08); border-color: rgba(51,100,217,0.4);
+  box-shadow: 0 0 0 1px rgba(51,100,217,0.2);
+}
+.plan-badge {
+  display: inline-block; padding: 4px 12px; border-radius: 100px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  background: var(--brand); color: #fff; margin-bottom: 20px;
+}
+.plan-name { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.plan-price { font-size: 38px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 4px; color: var(--brand-light); }
+.plan-price span { font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.45); }
+.plan-desc { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 24px; line-height: 1.6; }
+.plan-divider { height: 1px; background: rgba(255,255,255,0.07); margin-bottom: 24px; }
+.plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+.plan-features li { font-size: 14px; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 10px; }
+.plan-features li::before { content: '✓'; color: var(--brand-light); font-weight: 700; flex-shrink: 0; }
+.plan-features li.dim { color: rgba(255,255,255,0.28); }
+.plan-features li.dim::before { color: rgba(255,255,255,0.15); }
+.plan-btn {
+  width: 100%; padding: 13px; border-radius: 12px; font-size: 14px; font-weight: 600;
+  font-family: inherit; cursor: pointer; border: 1px solid rgba(255,255,255,0.12);
+  background: transparent; color: #fff; transition: all 0.2s ease; letter-spacing: -0.01em;
+}
+.plan-btn:hover { background: rgba(255,255,255,0.06); }
+.plan-btn.primary { background: var(--brand); border-color: var(--brand); }
+.plan-btn.primary:hover { background: var(--brand-light); border-color: var(--brand-light); }
+
+@media (max-width: 900px) { .plans-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
+</style>
+</head>
+<body>
+
+<header class="mc-nav">
+  <div class="mc-nav-row1">
+    <a class="mc-nav-logo" href="https://mdbf-masterclass.vercel.app/main" target="_top">
+      <span class="mc-logo-the">the </span><span class="mc-logo-M">M</span>asterclass
+    </a>
+    <div class="mc-nav-search">
+      <svg class="mc-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" placeholder="강좌 검색..." aria-label="강좌 검색">
+    </div>
+    <a class="mc-nav-mdbf" href="https://mdbf.co.kr" target="_top" rel="noopener">
+      <img src="../assets/mdbf-logo.png" alt="MDBF" onerror="this.style.display='none'">
+      <span>몽당분필</span>
+    </a>
+  </div>
+  <div class="mc-nav-row2">
+    <ul class="mc-nav-menu">
+      <li class="mc-nav-dropdown-wrap">
+        <a href="https://mdbf-masterclass.vercel.app/category" target="_top" class="mc-cat-link">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="6.5" height="6.5" rx="1.5"/><rect x="9.5" y="0" width="6.5" height="6.5" rx="1.5"/><rect x="0" y="9.5" width="6.5" height="6.5" rx="1.5"/><rect x="9.5" y="9.5" width="6.5" height="6.5" rx="1.5"/></svg>
+          카테고리
+        </a>
+        <div class="mc-nav-dropdown">
+          <a class="mc-dd-item" href="https://mdbf-masterclass.vercel.app/category/ai" target="_top"><span class="mc-dd-icon">🤖</span> AI / AX</a>
+          <a class="mc-dd-item" href="https://mdbf-masterclass.vercel.app/category/automation" target="_top"><span class="mc-dd-icon">⚙️</span> 업무 자동화</a>
+          <a class="mc-dd-item" href="https://mdbf-masterclass.vercel.app/category/media" target="_top"><span class="mc-dd-icon">🎬</span> 이미지 / 영상</a>
+          <a class="mc-dd-item" href="https://mdbf-masterclass.vercel.app/category/edutech" target="_top"><span class="mc-dd-icon">📱</span> 에듀테크</a>
+          <div class="mc-dd-divider"></div>
+          <a class="mc-dd-item soon" href="#"><span class="mc-dd-icon">📚</span> 수업 자료 <span class="mc-dd-badge">Soon</span></a>
+          <a class="mc-dd-item soon" href="#"><span class="mc-dd-icon">🎨</span> 디자인 / 드로잉 <span class="mc-dd-badge">Soon</span></a>
+        </div>
+      </li>
+      <li><a href="https://mdbf-masterclass.vercel.app/about" target="_top">소개</a></li>
+      <li><a href="https://mdbf-masterclass.vercel.app/membership" target="_top" class="mc-active">멤버십</a></li>
+      <li><a href="https://mdbf-masterclass.vercel.app/resources" target="_top">자료실</a></li>
+      <li><a href="https://mdbf-masterclass.vercel.app/notice" target="_top">공지사항</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="page-hero">
+  <p class="page-eyebrow">멤버십</p>
+  <h1>나에게 맞는 플랜 선택</h1>
+  <p class="lead">모든 교사에게 열린 플랫폼. 강좌 신청은 개별 또는 단체로 가능합니다.</p>
+</div>
+
+<div class="plans">
+  <div class="plans-grid">
+    <div class="plan-card">
+      <div class="plan-name">기본</div>
+      <div class="plan-price">무료</div>
+      <div class="plan-desc">처음 시작하는 교사를 위한 무료 체험. 일부 강좌와 자료에 접근할 수 있습니다.</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>무료 공개 강좌 열람</li>
+        <li>커뮤니티 참여</li>
+        <li>공지사항 수신</li>
+        <li class="dim">프리미엄 강좌 접근</li>
+        <li class="dim">연수 이수 인증서</li>
+        <li class="dim">단체 관리 기능</li>
+      </ul>
+      <button class="plan-btn">무료로 시작하기</button>
+    </div>
+    <div class="plan-card featured">
+      <div class="plan-badge">추천</div>
+      <div class="plan-name">개인 정회원</div>
+      <div class="plan-price">연회비<span> / 문의</span></div>
+      <div class="plan-desc">현직 교사를 위한 정회원 플랜. 모든 강좌와 자료에 무제한 접근합니다.</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>전체 강좌 무제한 접근</li>
+        <li>연수 이수 인증서 발급</li>
+        <li>커뮤니티 정회원 권한</li>
+        <li>신규 강좌 우선 알림</li>
+        <li>자료실 전체 다운로드</li>
+        <li class="dim">단체 관리 기능</li>
+      </ul>
+      <button class="plan-btn primary" onclick="window.open('mailto:mdbftv@naver.com','_blank')">신청하기</button>
+    </div>
+    <div class="plan-card">
+      <div class="plan-name">단체 / 학교</div>
+      <div class="plan-price">협의<span> / 문의</span></div>
+      <div class="plan-desc">학교 및 교육기관 단위 구독. 교사 그룹 관리와 단체 연수 기능을 제공합니다.</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>개인 정회원 혜택 포함</li>
+        <li>단체 관리자 대시보드</li>
+        <li>소속 교사 일괄 등록</li>
+        <li>단체 연수 개설 가능</li>
+        <li>전담 지원 담당자 배정</li>
+        <li>맞춤 연수 기획 협의</li>
+      </ul>
+      <button class="plan-btn" onclick="window.open('mailto:mdbftv@naver.com','_blank')">문의하기</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

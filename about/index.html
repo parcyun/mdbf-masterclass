@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>소개 — the Masterclass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --brand: #3364D9; --brand-light: #5B8CFF; }
+html { overflow-x: hidden; }
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #07090F;
+  color: #E8EAF0;
+  letter-spacing: -0.01em;
+  line-height: 1.6;
+}
+
+/* ===== NAVBAR ===== */
+.mc-nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(7, 9, 20, 0.97);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(51, 100, 217, 0.15);
+}
+.mc-nav-row1 {
+  max-width: 1180px; margin: 0 auto;
+  padding: 0 32px; height: 64px;
+  display: flex; align-items: center; gap: 20px;
+}
+.mc-nav-logo {
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px;
+  color: #fff; text-decoration: none; letter-spacing: -0.03em;
+  flex-shrink: 0; display: flex; align-items: baseline;
+}
+.mc-logo-the { font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.38); margin-right: 4px; }
+.mc-logo-M { color: #3364D9; }
+.mc-nav-search { flex: 1; max-width: 420px; position: relative; }
+.mc-nav-search input {
+  width: 100%; height: 38px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px; padding: 0 16px 0 38px;
+  font-size: 13px; color: rgba(255,255,255,0.8);
+  font-family: 'Pretendard', sans-serif; outline: none;
+  transition: all 0.2s ease;
+}
+.mc-nav-search input::placeholder { color: rgba(255,255,255,0.28); }
+.mc-nav-search input:focus { border-color: rgba(51,100,217,0.5); box-shadow: 0 0 0 3px rgba(51,100,217,0.12); }
+.mc-search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); pointer-events: none; color: rgba(255,255,255,0.3); }
+.mc-nav-mdbf {
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none; color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 500;
+  padding: 7px 13px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.2s ease; flex-shrink: 0; margin-left: auto;
+}
+.mc-nav-mdbf img { width: 24px; height: 24px; border-radius: 6px; }
+.mc-nav-mdbf:hover { color: rgba(255,255,255,0.9); border-color: rgba(51,100,217,0.4); background: rgba(51,100,217,0.08); }
+.mc-nav-row2 { border-top: 1px solid rgba(255,255,255,0.05); }
+.mc-nav-menu {
+  max-width: 1180px; margin: 0 auto; padding: 0 32px; height: 44px;
+  display: flex; align-items: center; gap: 2px; list-style: none; justify-content: center;
+}
+.mc-nav-menu a {
+  color: rgba(255,255,255,0.55); text-decoration: none; font-size: 13.5px; font-weight: 500;
+  padding: 6px 16px; border-radius: 8px; transition: color 0.18s ease, background 0.18s ease;
+  letter-spacing: -0.01em; white-space: nowrap;
+}
+.mc-nav-menu a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.mc-nav-menu a.mc-active { color: #5B8CFF; background: rgba(51,100,217,0.1); }
+.mc-cat-link { display: flex; align-items: center; gap: 6px; }
+.mc-nav-dropdown-wrap { position: relative; }
+.mc-nav-dropdown {
+  position: absolute; top: calc(100% + 6px); left: 50%; width: 256px;
+  background: rgba(10,13,28,0.99); border: 1px solid rgba(51,100,217,0.22);
+  border-radius: 14px; padding: 8px; opacity: 0; visibility: hidden;
+  transform: translateX(-50%) translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s 0.18s; z-index: 300;
+  box-shadow: 0 20px 60px rgba(0,0,20,0.85), 0 4px 16px rgba(51,100,217,0.18);
+}
+.mc-nav-dropdown-wrap:hover .mc-nav-dropdown {
+  opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.mc-dd-item {
+  display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 9px;
+  color: rgba(255,255,255,0.72); text-decoration: none; font-size: 13px; font-weight: 500;
+  letter-spacing: -0.01em; transition: all 0.15s ease;
+}
+.mc-dd-item:hover { color: #fff; background: rgba(51,100,217,0.13); }
+.mc-dd-item.soon { color: rgba(255,255,255,0.22); cursor: default; pointer-events: none; }
+.mc-dd-icon { width: 28px; height: 28px; border-radius: 7px; background: rgba(51,100,217,0.11); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.mc-dd-badge { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 100px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.28); margin-left: auto; }
+.mc-dd-divider { height: 1px; background: rgba(255,255,255,0.05); margin: 4px 8px; }
+
+/* ===== PAGE ===== */
+.page-hero {
+  padding: 80px 32px 60px;
+  max-width: 1180px; margin: 0 auto;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.page-eyebrow {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--brand-light); margin-bottom: 16px;
+}
+.page-hero h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+.page-hero .lead { font-size: 17px; color: rgba(255,255,255,0.6); max-width: 580px; line-height: 1.7; }
+
+.section { padding: 64px 32px; max-width: 1180px; margin: 0 auto; }
+.section-label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); margin-bottom: 32px;
+}
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.info-card {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px; padding: 28px; transition: all 0.25s ease;
+}
+.info-card:hover { border-color: rgba(51,100,217,0.3); background: rgba(51,100,217,0.04); }
+.info-card-icon { font-size: 28px; margin-bottom: 16px; }
+.info-card h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 10px; }
+.info-card p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+.stat-row {
+  display: flex; gap: 0;
+  border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; overflow: hidden;
+  margin-top: 48px;
+}
+.stat-item {
+  flex: 1; padding: 32px 24px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.07);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num { font-size: 36px; font-weight: 700; color: var(--brand-light); letter-spacing: -0.02em; }
+.stat-label { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 6px; }
+
+@media (max-width: 768px) {
+  .page-hero h1 { font-size: 32px; }
+  .stat-row { flex-direction: column; }
+  .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .stat-item:last-child { border-bottom: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="mc-nav">
+  <div class="mc-nav-row1">
+    <a class="mc-nav-logo" href="https://mdbf-masterclass.vercel.app/main" target="_top">
+      <span class="mc-logo-the">the </span><span class="mc-logo-M">M</span>asterclass
+    </a>
+    <div class="mc-nav-search">
+      <svg class="mc-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="search" placeholder="강좌 검색..." aria-label="강좌 검색">
+    </div>
+    <a class="mc-nav-mdbf" href="https://mdbf.co.kr" target="_top" rel="noopener">
+      <img src="../assets/mdbf-logo.png" alt="MDBF" onerror="this.style.display='none'">
+      <span>몽당분필</span>
+    </a>
+  </div>
+  <div class="mc-nav-row2">
+    <ul class="mc-nav-menu">
+      <li class="mc-nav-dropdown-wrap">
+        <a href="https://mdbf-masterclass.vercel.app/category" target="_top" class="mc-cat-link">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="6.5" height="6.5" rx="1.5"/><rect x="9.5" y="0" width="6.5" height="6.5" rx="1.5"/><rect x="0" y="9.5" width="6.5" height="6.5" rx="1.5"/><rect x="9.5" y="9.5" width="6.5" height="6.5" rx="1.5"/></svg>
+          카테고리
+        </a>
+        <div class="mc-nav-dropdown">
+          <a class="mc-dd-item" href="https://mdbf-masterclass.vercel.app/category/ai" target="_top"><span class="mc-dd-icon">🤖</span> AI / AX</a>
+          <a class="mc-dd-item" href="https://mdbf-masterclass.vercel.app/category/automation" target="_top"><span class="mc-dd-icon">⚙️</span> 업무 자동화</a>
+          <a class="mc-dd-item" href="https://mdbf-masterclass.vercel.app/category/media" target="_top"><span class="mc-dd-icon">🎬</span> 이미지 / 영상</a>
+          <a class="mc-dd-item" href="https://mdbf-masterclass.vercel.app/category/edutech" target="_top"><span class="mc-dd-icon">📱</span> 에듀테크</a>
+          <div class="mc-dd-divider"></div>
+          <a class="mc-dd-item soon" href="#"><span class="mc-dd-icon">📚</span> 수업 자료 <span class="mc-dd-badge">Soon</span></a>
+          <a class="mc-dd-item soon" href="#"><span class="mc-dd-icon">🎨</span> 디자인 / 드로잉 <span class="mc-dd-badge">Soon</span></a>
+        </div>
+      </li>
+      <li><a href="https://mdbf-masterclass.vercel.app/about" target="_top" class="mc-active">소개</a></li>
+      <li><a href="https://mdbf-masterclass.vercel.app/membership" target="_top">멤버십</a></li>
+      <li><a href="https://mdbf-masterclass.vercel.app/resources" target="_top">자료실</a></li>
+      <li><a href="https://mdbf-masterclass.vercel.app/notice" target="_top">공지사항</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="page-hero">
+  <p class="page-eyebrow">소개</p>
+  <h1>the Masterclass란?</h1>
+  <p class="lead">현장에서 검증된 연수를, 모든 교사에게. (사)디지털미디어교육콘텐츠 교사연구협회 243명의 정회원 교사가 직접 만든 플랫폼입니다.</p>
+</div>
+
+<div class="section">
+  <p class="section-label">핵심 가치</p>
+  <div class="card-grid">
+    <div class="info-card">
+      <div class="info-card-icon">🎯</div>
+      <h3>현장 중심</h3>
+      <p>교실로 돌아갔을 때 바로 쓸 수 있는 연수만을 큐레이션합니다. 이론이 아닌 실전입니다.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">👩‍🏫</div>
+      <h3>교사가 만든</h3>
+      <p>243명의 현직 교사 연구자가 직접 설계하고 검증한 콘텐츠입니다. 교사만이 알 수 있는 필요를 채웁니다.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">🔓</div>
+      <h3>모두를 위한</h3>
+      <p>경력, 과목, 학교급에 상관없이 누구나 참여할 수 있는 열린 플랫폼을 지향합니다.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">⚡</div>
+      <h3>빠른 성장</h3>
+      <p>AI, 에듀테크, 미디어 리터러시 — 빠르게 변하는 교육 환경에 먼저 대응하는 연수를 제공합니다.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">🤝</div>
+      <h3>함께 성장</h3>
+      <p>연수는 시작입니다. 커뮤니티를 통해 동료 교사들과 계속해서 연결되고 성장합니다.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">🏆</div>
+      <h3>검증된 품질</h3>
+      <p>모든 연수 콘텐츠는 현장 적용 후 피드백을 기반으로 지속적으로 개선됩니다.</p>
+    </div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-item">
+      <div class="stat-num">243명</div>
+      <div class="stat-label">정회원 교사 연구자</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">6개</div>
+      <div class="stat-label">강좌 분야</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2019</div>
+      <div class="stat-label">설립연도</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">전국</div>
+      <div class="stat-label">운영 지역</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
