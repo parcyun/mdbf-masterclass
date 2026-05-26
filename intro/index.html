@@ -422,34 +422,20 @@
     gap: 5px;
   }
 
-  .footer-studio .studio-label {
+  .studio-credit {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
-    font-size: 10px;
-    color: rgba(255,255,255,0.3);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 11px;
+    color: rgba(255,255,255,0.28);
+    letter-spacing: 0.04em;
   }
-
-  .studio-logo-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-  }
-  .studio-logo-link:hover { opacity: 0.75; }
 
   .ps-signature {
     font-family: 'Covered By Your Grace', cursive;
-    font-size: 20px;
-    color: #FFB11A;
+    font-size: 16px;
+    color: inherit;
     line-height: 1;
-  }
-
-  .ps-ig-icon {
-    color: rgba(255,255,255,0.25);
-    flex-shrink: 0;
+    vertical-align: middle;
   }
 
   .footer-divider {
@@ -803,9 +789,11 @@
     <div class="footer-top">
       <div class="footer-brand">
                 <svg class="footer-logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="MDBF 디미교연 로고">
-          <rect width="48" height="48" rx="12" fill="#2A56D8"/>
-          <rect x="7" y="9" width="25" height="32" rx="7" fill="#1A3B9F"/>
-          <rect x="18" y="14" width="24" height="26" rx="7" fill="#6090FF" fill-opacity="0.9"/>
+          <rect width="48" height="48" rx="11" fill="#3060D4"/>
+          <!-- Back shape: tall, dark navy, left-aligned -->
+          <rect x="7" y="8" width="23" height="34" rx="8" fill="#192E8C"/>
+          <!-- Front shape: lighter, right-bottom, overlapping -->
+          <rect x="18" y="17" width="23" height="25" rx="8" fill="#5580E8"/>
         </svg>
         <div class="footer-logo-text">
           <span class="logo-name">디지털미디어교육콘텐츠 교사연구협회</span>
@@ -813,13 +801,7 @@
         </div>
       </div>
       <div class="footer-studio">
-        <span class="studio-label">Designed by</span>
-        <a class="studio-logo-link" href="https://www.instagram.com/parcyun" target="_blank" rel="noopener" aria-label="parcyun studio">
-          <span class="ps-signature">parcyun studio</span>
-          <svg class="ps-ig-icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4 1 .5.4.8.8 1 1.4.2.4.3 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-1 1.4-.4.5-.8.8-1.4 1-.4.2-1 .3-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-1-.5-.4-.8-.8-1-1.4-.2-.4-.3-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 1-1.4.4-.5.8-.8 1.4-1 .4-.2 1-.3 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 5.5a4.3 4.3 0 100 8.6 4.3 4.3 0 000-8.6zm5.4-.3a1 1 0 11-2 0 1 1 0 012 0zM12 9.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5z"/>
-          </svg>
-        </a>
+        <span class="studio-credit">Designed by <span class="ps-signature">parcyun studio</span></span>
       </div>
     </div>
 
