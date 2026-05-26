@@ -375,6 +375,36 @@
 
     <div class="grid">
 
+      <!-- Navbar Card -->
+      <article class="card" style="border-color: rgba(91,140,255,0.25);">
+        <div class="card-preview" style="aspect-ratio: 16 / 2; background: #07090F;">
+          <iframe src="./navbar/" loading="lazy" title="Navbar preview" style="width:100%; height:100%;"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="badge">Navbar</span>
+            <span>/navbar/</span>
+          </div>
+          <div class="card-title">상단 메뉴바</div>
+          <div class="card-desc">the Masterclass 로고(좌) · 주요 메뉴(중앙) · 몽당분필 로고(우). 아임웹에서 상단에 임베드 후 position:sticky 설정 권장.</div>
+          <div class="card-actions">
+            <a class="btn" href="https://mdbf-masterclass.vercel.app/navbar" target="_blank" rel="noopener">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+              열기
+            </a>
+            <button class="btn primary" data-embed="navbar">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              임베드 코드
+            </button>
+          </div>
+          <div class="embed-block" id="embed-navbar">
+            <div class="embed-label">아임웹 임베드 코드 — 상단 섹션에 배치 후 sticky 설정</div>
+            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/navbar" style="width:100%; height:64px; border:0; display:block; position:sticky; top:0; z-index:100;" title="the Masterclass Navbar"&gt;&lt;/iframe&gt;</code>
+          </div>
+        </div>
+      </article>
+
       <!-- Hero Card -->
       <article class="card">
         <div class="card-preview">
@@ -520,7 +550,7 @@
           </div>
           <div class="embed-block" id="embed-footer">
             <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/footer" style="width:100%; height:300px; border:0; display:block;" loading="lazy" title="the Masterclass Footer"&gt;&lt;/iframe&gt;</code>
+            <code class="embed-code">&lt;iframe id="mc-footer" src="https://mdbf-masterclass.vercel.app/footer" style="width:100%; height:440px; border:0; display:block;" loading="lazy" title="the Masterclass Footer"&gt;&lt;/iframe&gt;&lt;script&gt;window.addEventListener('message',function(e){if(e.data&amp;&amp;e.data.type==='mcResize'&amp;&amp;e.data.id==='footer'){document.getElementById('mc-footer').style.height=e.data.height+'px';}});&lt;/script&gt;</code>
           </div>
         </div>
       </article>

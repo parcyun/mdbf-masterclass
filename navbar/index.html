@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navbar — the Masterclass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Pretendard:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 64px;
+  overflow: hidden;
+}
+
+body {
+  background: rgba(7, 9, 20, 0.97);
+  border-bottom: 1px solid rgba(51, 100, 217, 0.15);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.nav-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* ===== Logo (left) ===== */
+.nav-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -0.025em;
+  flex-shrink: 0;
+  display: flex;
+  align-items: baseline;
+  line-height: 1;
+}
+
+.logo-the {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.45);
+  margin-right: 3px;
+  letter-spacing: 0.01em;
+}
+
+.logo-M {
+  color: #3364D9;
+}
+
+/* ===== Center menu ===== */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-menu a {
+  color: rgba(255, 255, 255, 0.58);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 8px;
+  transition: color 0.18s ease, background 0.18s ease;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.nav-menu a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-menu a.highlight {
+  color: #5B8CFF;
+  background: rgba(51, 100, 217, 0.1);
+}
+
+.nav-menu a.highlight:hover {
+  color: #fff;
+  background: rgba(51, 100, 217, 0.2);
+}
+
+/* ===== Right: 몽당분필 logo ===== */
+.nav-mdbf {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 13px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  letter-spacing: -0.01em;
+}
+
+.nav-mdbf img {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.nav-mdbf:hover {
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(51, 100, 217, 0.4);
+  background: rgba(51, 100, 217, 0.08);
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 900px) {
+  .nav-inner { padding: 0 20px; gap: 16px; }
+  .nav-menu a { font-size: 13px; padding: 6px 10px; }
+}
+
+@media (max-width: 680px) {
+  .nav-menu li:nth-child(n+4) { display: none; }
+}
+
+@media (max-width: 480px) {
+  .logo-the { display: none; }
+  .nav-mdbf span { display: none; }
+  .nav-menu li:nth-child(n+3) { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+
+    <!-- Logo (좌) -->
+    <a class="nav-logo" href="https://mdbf.co.kr" target="_top">
+      <span class="logo-the">the </span><span class="logo-M">M</span>asterclass
+    </a>
+
+    <!-- 중앙 메뉴 -->
+    <ul class="nav-menu">
+      <li><a href="https://mdbf.co.kr" target="_top">소개</a></li>
+      <li><a href="https://mdbf.co.kr" target="_top" class="highlight">강좌 신청</a></li>
+      <li><a href="https://mdbf.co.kr" target="_top">멤버십</a></li>
+      <li><a href="https://mdbf.co.kr" target="_top">자료실</a></li>
+      <li><a href="https://mdbf.co.kr" target="_top">공지사항</a></li>
+    </ul>
+
+    <!-- 몽당분필 로고 (우) -->
+    <a class="nav-mdbf" href="https://mdbf.co.kr" target="_top" rel="noopener" title="몽당분필 MDBF">
+      <img src="../assets/mdbf-logo.png" alt="몽당분필 MDBF 로고" onerror="this.style.display='none'">
+      <span>몽당분필</span>
+    </a>
+
+  </div>
+</nav>
+
+</body>
+</html>

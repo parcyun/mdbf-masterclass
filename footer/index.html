@@ -309,5 +309,17 @@ body {
   </div>
 </footer>
 
+
+<script>
+// Auto-resize: 실제 높이를 부모 페이지에 전달
+function reportHeight() {
+  var h = document.documentElement.scrollHeight;
+  window.parent.postMessage({ type: 'mcResize', id: 'footer', height: h }, '*');
+}
+window.addEventListener('load', reportHeight);
+if (typeof ResizeObserver !== 'undefined') {
+  new ResizeObserver(reportHeight).observe(document.documentElement);
+}
+</script>
 </body>
 </html>
