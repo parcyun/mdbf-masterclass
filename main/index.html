@@ -893,13 +893,12 @@ body {
 
 .sec-banner {
   background: rgba(250, 251, 255, 0.45);
-  padding: 0 32px 56px;
+  padding: 0;
   color: #fff;
 }
 
 .sec-banner .banner-wrap {
-  max-width: 1180px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .sec-banner .carousel {
@@ -907,7 +906,7 @@ body {
   aspect-ratio: 4 / 1;
   position: relative;
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: 0;
 }
 
 .sec-banner .track {
@@ -1053,8 +1052,8 @@ body {
 
 /* Banner Responsive */
 @media (max-width: 768px) {
-  .sec-banner { padding: 0 20px 40px; }
-  .sec-banner .carousel { border-radius: 16px; }
+  .sec-banner { padding: 0; }
+  .sec-banner .carousel { border-radius: 0; }
   .sec-banner .slide { padding: 28px 32px; }
   .sec-banner .slide-content { max-width: 70%; }
   .sec-banner .slide-label { font-size: 10px; margin-bottom: 8px; }
@@ -1069,7 +1068,7 @@ body {
 }
 
 @media (max-width: 480px) {
-  .sec-banner { padding: 0 16px 32px; }
+  .sec-banner { padding: 0; }
   .sec-banner .slide { padding: 20px 22px; }
   .sec-banner .slide-content { max-width: 75%; }
   .sec-banner .slide-title { font-size: 16px; line-height: 1.25; }

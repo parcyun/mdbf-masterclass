@@ -397,8 +397,9 @@ addEventListener('message', function(e){
             </button>
           </div>
           <div class="embed-block" id="embed-main">
-            <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/main" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass"&gt;&lt;/iframe&gt;</code>
+            <div class="embed-label">아임웹 임베드 코드 (리스너 + iframe)</div>
+            <code class="embed-code">&lt;script&gt;addEventListener('message',function(e){if(!e.data||e.data.type!=='mcResize')return;var fs=document.getElementsByTagName('iframe');for(var i=0;i&lt;fs.length;i++)if(fs[i].contentWindow===e.source){fs[i].style.height=e.data.height+'px';break;}});&lt;/script&gt;
+&lt;iframe src="https://mdbf-masterclass.vercel.app/main" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
@@ -427,8 +428,9 @@ addEventListener('message', function(e){
             </button>
           </div>
           <div class="embed-block" id="embed-intro">
-            <div class="embed-label">아임웹 임베드 코드</div>
-            <code class="embed-code">&lt;iframe src="https://mdbf-masterclass.vercel.app/intro" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass Intro"&gt;&lt;/iframe&gt;</code>
+            <div class="embed-label">아임웹 임베드 코드 (리스너 + iframe)</div>
+            <code class="embed-code">&lt;script&gt;addEventListener('message',function(e){if(!e.data||e.data.type!=='mcResize')return;var fs=document.getElementsByTagName('iframe');for(var i=0;i&lt;fs.length;i++)if(fs[i].contentWindow===e.source){fs[i].style.height=e.data.height+'px';break;}});&lt;/script&gt;
+&lt;iframe src="https://mdbf-masterclass.vercel.app/intro" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass Intro"&gt;&lt;/iframe&gt;</code>
           </div>
         </div>
       </article>
