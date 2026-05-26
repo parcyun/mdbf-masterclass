@@ -76,6 +76,8 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
 .plan-features li::before { content: '✓'; color: var(--brand-light); font-weight: 700; flex-shrink: 0; }
 .plan-features li.dim { color: rgba(255,255,255,0.28); }
 .plan-features li.dim::before { color: rgba(255,255,255,0.15); }
+.plan-features li.locked { color: rgba(255,255,255,0.22); }
+.plan-features li.locked::before { content: '✕'; color: rgba(255,255,255,0.18); }
 .plan-btn {
   width: 100%; padding: 13px; border-radius: 12px; font-size: 14px; font-weight: 600;
   font-family: inherit; cursor: pointer; border: 1px solid rgba(255,255,255,0.12);
@@ -131,7 +133,7 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
 
 <div class="page-hero">
   <p class="page-eyebrow">멤버십</p>
-  <h1>몽당분필과 함께하는 방법</h1>
+  <h1>몽당분필과 함께하는 마법</h1>
   <p class="lead">누구나 참여할 수 있는 열린 플랫폼과, 함께 만들어가는 선발 구성원 공간.</p>
 </div>
 
@@ -149,8 +151,14 @@ body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
         <li>공지·행사 안내 수신</li>
         <li>커뮤니티 게시판 참여</li>
         <li>행사 신청 가능</li>
+        <li class="locked">후원자 크레딧 표기 (자료집·홈페이지)</li>
+        <li class="locked">디지털 후원 배지 / 인증 카드</li>
+        <li class="locked">후원 회원 전용 뉴스레터</li>
+        <li class="locked">주관 연수·포럼·콘퍼런스 참가비 전액 지원</li>
+        <li class="locked">협력 기관 행사 우선 초청</li>
+        <li class="locked">자료집·굿즈 우선 발송</li>
       </ul>
-      <button class="plan-btn" onclick="window.open('mailto:mdbftv@naver.com','_blank')">가입하기</button>
+      <button class="plan-btn" onclick="window.top.location.href='https://mdbf.co.kr'">가입하기</button>
     </div>
 
     <!-- 후원 회원 -->
