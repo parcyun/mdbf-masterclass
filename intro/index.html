@@ -1138,11 +1138,7 @@
   const joinBtn = document.getElementById('joinBtn');
   joinBtn.addEventListener('click', () => {
     const href = joinBtn.dataset.href;
-    if (href && href !== '#') {
-      window.location.href = href;
-    } else {
-      console.log('Application link not set yet');
-    }
+    if (href && href !== '#') window.open(href, '_top');
   });
 </script>
 
