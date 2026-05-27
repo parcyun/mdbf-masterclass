@@ -362,6 +362,91 @@ body {
   .footer-inner { padding: 0 20px; }
   .footer-logo-text .logo-name { font-size: 13px; }
 }
+/* ===== Intro-merged sections ===== */
+:root { --bg: #07090F; --bg-2: #050814; --surface: rgba(255,255,255,0.03); --surface-2: rgba(255,255,255,0.06); --border: rgba(255,255,255,0.08); --border-strong: rgba(91,140,255,0.25); --text: #E8EAF0; --text-mute: rgba(232,234,240,0.6); --text-faint: rgba(232,234,240,0.35); }
+.intro-section { padding: 140px 40px; position: relative; }
+.intro-container { max-width: 1180px; margin: 0 auto; }
+.intro-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.25em;
+  color: #5B8CFF; text-transform: uppercase;
+  margin-bottom: 24px;
+  display: inline-flex; align-items: center; gap: 14px;
+}
+.intro-label::before { content: ''; width: 32px; height: 1px; background: #5B8CFF; opacity: 0.6; }
+.intro-h2 { font-size: 52px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 24px; color: #E8EAF0; }
+.intro-lead { font-size: 20px; font-weight: 300; color: rgba(232,234,240,0.6); margin-bottom: 36px; line-height: 1.5; max-width: 720px; }
+.intro-prose { font-size: 16px; color: rgba(232,234,240,0.6); line-height: 1.85; max-width: 680px; }
+/* WHY */
+.section-why { background: radial-gradient(ellipse at 80% 20%, rgba(51,100,217,0.12) 0%, transparent 50%), #07090F; }
+.why-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; }
+.why-grid .left .intro-h2 { font-size: 64px; }
+.why-grid .right { padding-top: 16px; }
+/* WHAT */
+.section-what { background: #07090F; padding-top: 100px; padding-bottom: 140px; padding-left: 40px; padding-right: 40px; }
+.what-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; gap: 40px; flex-wrap: wrap; }
+.keyword-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.keyword-card { aspect-ratio: 1; padding: 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.4s cubic-bezier(0.23,1,0.32,1); position: relative; overflow: hidden; cursor: default; }
+.keyword-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 100%, rgba(51,100,217,0.15) 0%, transparent 60%); opacity: 0; transition: opacity 0.4s ease; }
+.keyword-card:hover { border-color: rgba(91,140,255,0.25); transform: translateY(-4px); background: rgba(255,255,255,0.06); }
+.keyword-card:hover::before { opacity: 1; }
+.keyword-card.more { border-style: dashed; border-color: rgba(255,255,255,0.06); background: transparent; }
+.keyword-card.more:hover { transform: none; background: transparent; }
+.keyword-num { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 400; color: rgba(232,234,240,0.35); letter-spacing: 0.1em; transition: color 0.3s ease; position: relative; z-index: 1; }
+.keyword-card:hover .keyword-num { color: #5B8CFF; }
+.keyword-card.more .keyword-num { color: rgba(255,255,255,0.15); }
+.keyword-card h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 8px; color: #E8EAF0; position: relative; z-index: 1; }
+.keyword-card.more h3 { color: rgba(255,255,255,0.2); font-size: 18px; }
+.keyword-card p { font-size: 13px; color: rgba(232,234,240,0.6); line-height: 1.55; position: relative; z-index: 1; }
+.keyword-card.more p { color: rgba(255,255,255,0.15); }
+/* WHO */
+.section-who { background: radial-gradient(ellipse at 20% 50%, rgba(51,100,217,0.08) 0%, transparent 60%), #07090F; padding: 140px 40px; }
+.who-content { max-width: 900px; }
+.who-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 64px; padding-top: 56px; border-top: 1px solid rgba(255,255,255,0.08); }
+.who-stat .stat-num { font-size: 44px; font-weight: 700; letter-spacing: -0.025em; color: #E8EAF0; margin-bottom: 6px; line-height: 1; }
+.who-stat .stat-label { font-size: 13px; color: rgba(232,234,240,0.35); letter-spacing: -0.01em; }
+/* JOIN */
+.section-join { background: radial-gradient(ellipse at center, rgba(51,100,217,0.18) 0%, transparent 55%), #07090F; text-align: center; padding: 160px 40px 180px; position: relative; overflow: hidden; }
+.section-join::before { content: ''; position: absolute; width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(91,140,255,0.15) 0%, transparent 60%); border-radius: 50%; filter: blur(60px); z-index: 0; }
+.section-join .intro-container { position: relative; z-index: 1; }
+.section-join .intro-label { justify-content: center; }
+.section-join .intro-label::after { content: ''; width: 32px; height: 1px; background: #5B8CFF; opacity: 0.6; }
+.section-join .intro-h2 { font-size: 64px; margin-bottom: 20px; }
+.section-join .intro-lead { margin: 0 auto 48px; text-align: center; font-size: 22px; color: rgba(255,255,255,0.75); }
+.cta-large { background: #3364D9; color: #fff; border: none; padding: 20px 44px; border-radius: 100px; font-size: 17px; font-weight: 600; font-family: inherit; cursor: pointer; letter-spacing: -0.01em; transition: all 0.3s cubic-bezier(0.23,1,0.32,1); box-shadow: 0 12px 40px rgba(51,100,217,0.55), inset 0 1px 0 rgba(255,255,255,0.2); position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; }
+.cta-large::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: left 0.7s; }
+.cta-large:hover { transform: translateY(-3px); box-shadow: 0 16px 56px rgba(51,100,217,0.75), inset 0 1px 0 rgba(255,255,255,0.3); background: #5B8CFF; }
+.cta-large:hover::before { left: 100%; }
+.cta-large .arrow { transition: transform 0.3s ease; }
+.cta-large:hover .arrow { transform: translateX(4px); }
+/* Responsive */
+@media (max-width: 768px) {
+  .intro-section, .section-who { padding: 80px 24px; }
+  .section-what { padding: 80px 24px; }
+  .intro-h2 { font-size: 32px; }
+  .why-grid .left .intro-h2 { font-size: 36px; }
+  .intro-lead { font-size: 16px; }
+  .intro-prose { font-size: 14px; }
+  .why-grid { grid-template-columns: 1fr; gap: 24px; }
+  .why-grid .right { padding-top: 0; }
+  .keyword-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .keyword-card { padding: 18px; border-radius: 16px; }
+  .keyword-card h3 { font-size: 18px; }
+  .who-stats { grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; padding-top: 32px; }
+  .who-stat .stat-num { font-size: 30px; }
+  .section-join { padding: 100px 24px 120px; }
+  .section-join .intro-h2 { font-size: 36px; }
+  .cta-large { padding: 16px 32px; font-size: 15px; }
+}
+@media (max-width: 480px) {
+  .intro-section, .section-what, .section-who { padding: 60px 20px; }
+  .intro-h2 { font-size: 26px; }
+  .why-grid .left .intro-h2 { font-size: 30px; }
+  .section-join .intro-h2 { font-size: 28px; }
+  .keyword-grid { grid-template-columns: 1fr; }
+  .keyword-card { aspect-ratio: auto; min-height: 140px; }
+  .who-stats { grid-template-columns: 1fr; gap: 16px; }
+}
 </style>
 </head>
 <body>
@@ -469,6 +554,129 @@ body {
   </div>
 </div>
 
+<!-- ===== WHY (merged from intro) ===== -->
+<section class="section-why intro-section">
+  <div class="intro-container">
+    <div class="why-grid">
+      <div class="left">
+        <div class="intro-label">Why</div>
+        <h2 class="intro-h2">the Masterclass</h2>
+      </div>
+      <div class="right">
+        <p class="intro-lead">현장에서 검증된 연수만이 교실을 바꿉니다.</p>
+        <p class="intro-prose">
+          교사 연수의 대다수는 강의실에서 끝납니다. the Masterclass는 다릅니다.
+          (사)디지털미디어교육콘텐츠 교사연구협회 243명의 정회원 교사가 직접 만든,
+          현장으로 돌아갔을 때 바로 쓸 수 있는 연수만 큐레이션합니다.
+          <br><br>
+          '몽당분필' — 끝까지 쓰이는 도구처럼, 마지막 한 줄의 가르침까지 의미 있게.
+          이것이 the Masterclass가 만드는 연수의 기준입니다.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHAT (merged from intro) ===== -->
+<section class="section-what">
+  <div class="intro-container">
+    <div class="what-head">
+      <div>
+        <div class="intro-label">What</div>
+        <h2 class="intro-h2">살아있는 연수</h2>
+      </div>
+      <p class="intro-lead" style="margin: 0; max-width: 420px;">
+        디지털 시대 교사에게 필요한 핵심 역량을, 깊이 있는 트랙으로 제공합니다.
+      </p>
+    </div>
+    <div class="keyword-grid">
+      <article class="keyword-card">
+        <div class="keyword-num">01</div>
+        <div><h3>AI / AX</h3><p>인공지능을 교실의 언어로 바꾸는 법.</p></div>
+      </article>
+      <article class="keyword-card">
+        <div class="keyword-num">02</div>
+        <div><h3>Edu-tech</h3><p>도구가 아닌, 교육 설계로서의 기술.</p></div>
+      </article>
+      <article class="keyword-card">
+        <div class="keyword-num">03</div>
+        <div><h3>Design</h3><p>보이는 것을 넘어 의미를 짓는 디자인.</p></div>
+      </article>
+      <article class="keyword-card">
+        <div class="keyword-num">04</div>
+        <div><h3>Drawing</h3><p>손으로 쌓는 사유와 표현의 기술.</p></div>
+      </article>
+      <article class="keyword-card">
+        <div class="keyword-num">05</div>
+        <div><h3>Contents</h3><p>콘텐츠로 가르치는 시대의 교사 역량.</p></div>
+      </article>
+      <article class="keyword-card">
+        <div class="keyword-num">06</div>
+        <div><h3>Image / Video</h3><p>영상과 이미지의 문해력을 교실로.</p></div>
+      </article>
+      <article class="keyword-card more">
+        <div class="keyword-num">+</div>
+        <div><h3>계속 추가 중</h3><p>새로운 트랙이 준비되고 있습니다.</p></div>
+      </article>
+      <article class="keyword-card more">
+        <div class="keyword-num">+</div>
+        <div><h3>계속 추가 중</h3><p>새로운 트랙이 준비되고 있습니다.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHO (merged from intro) ===== -->
+<section class="section-who">
+  <div class="intro-container">
+    <div class="who-content">
+      <div class="intro-label">Who</div>
+      <h2 class="intro-h2">교사가 가르치는,<br>교사 연수</h2>
+      <p class="intro-lead">(사)디지털미디어교육콘텐츠 교사연구협회</p>
+      <p class="intro-prose">
+        2016년 작은 교사 모임으로 시작했습니다. 10년이 지난 지금,
+        243명의 정회원 교사가 함께 연구하고, 20,000+ 개의 교육 콘텐츠를 무상 배포했으며,
+        100,000+ 명의 교사들과 연결되어 있습니다.
+        <br><br>
+        강사가 따로 있지 않습니다. 가르치는 교사가 곧 배우는 교사이고, 배우는 교사가 곧 만드는 교사입니다.
+        이것이 the Masterclass의 출발선이며, 우리가 신뢰하는 단 하나의 방식입니다.
+      </p>
+      <div class="who-stats">
+        <div class="who-stat"><div class="stat-num">243명</div><div class="stat-label">정회원 교사</div></div>
+        <div class="who-stat"><div class="stat-num">20,000+</div><div class="stat-label">무상 배포 콘텐츠</div></div>
+        <div class="who-stat"><div class="stat-num">100,000+</div><div class="stat-label">연결된 교사</div></div>
+        <div class="who-stat"><div class="stat-num">SINCE 2016</div><div class="stat-label">디미교연</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== JOIN (merged from intro) ===== -->
+<section class="section-join">
+  <div class="intro-container">
+    <div class="intro-label">Join</div>
+    <h2 class="intro-h2">지금, 시작하세요</h2>
+    <p class="intro-lead">한 학기, 당신의 교실이 달라집니다.</p>
+    <button class="cta-large" type="button" data-href="https://mdbf.co.kr/33" id="joinBtn">
+      Masterclass 참여하기
+      <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<script>
+  const joinBtn = document.getElementById('joinBtn');
+  if (joinBtn) {
+    joinBtn.addEventListener('click', () => {
+      const href = joinBtn.dataset.href;
+      if (href && href !== '#') window.open(href, '_top');
+    });
+  }
+</script>
+
 <!-- ===== SITE FOOTER ===== -->
 <footer class="site-footer">
   <div class="footer-inner">
@@ -539,5 +747,53 @@ body {
 </footer>
 
 <script src="../assets/iframe-resizer.js"></script>
+
+<button id="scrollTopBtn" aria-label="최상단으로 이동" title="최상단으로 이동">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+
+<style>
+#scrollTopBtn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #3364D9;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, background 0.2s ease;
+  z-index: 9999;
+  box-shadow: 0 4px 20px rgba(51,100,217,0.45);
+}
+#scrollTopBtn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+#scrollTopBtn:hover { background: #2952B8; }
+</style>
+<script>
+(function(){
+  var btn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', function(){
+    btn.classList.toggle('visible', window.scrollY > 300);
+  }, {passive: true});
+  btn.addEventListener('click', function(){
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+})();
+</script>
+
 </body>
 </html>
