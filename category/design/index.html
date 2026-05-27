@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>디자인 / 드로잉 — the Masterclass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Montserrat:wght@300;400;500;600;700&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --brand: #3364D9; --brand-light: #5B8CFF; }
+html { overflow-x: hidden; }
+body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; background: #07090F; color: #E8EAF0; letter-spacing: -0.01em; line-height: 1.6; }
+.mc-nav { position: sticky; top: 0; z-index: 200; background: rgba(7,9,20,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(51,100,217,0.15); }
+.mc-nav-row1 { max-width: 1180px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; gap: 20px; }
+.mc-nav-logo { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; color: #fff; text-decoration: none; letter-spacing: -0.03em; flex-shrink: 0; display: flex; align-items: baseline; }
+.mc-logo-the { font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.38); margin-right: 4px; }
+.mc-logo-M { color: #3364D9; }
+.mc-nav-search { flex: 1; max-width: 420px; position: relative; }
+.mc-nav-search input { width: 100%; height: 38px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; padding: 0 16px 0 38px; font-size: 13px; color: rgba(255,255,255,0.8); font-family: 'Pretendard', sans-serif; outline: none; }
+.mc-nav-search input::placeholder { color: rgba(255,255,255,0.28); font-family: 'Pretendard', sans-serif; }
+.mc-search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); pointer-events: none; color: rgba(255,255,255,0.3); }
+.mc-nav-mdbf { display: flex; align-items: center; gap: 8px; text-decoration: none; color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 500; padding: 7px 13px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; margin-left: auto; }
+.mc-nav-mdbf img { width: 24px; height: 24px; border-radius: 6px; }
+.mc-nav-row2 { border-top: 1px solid rgba(255,255,255,0.05); }
+.mc-nav-menu { max-width: 1180px; margin: 0 auto; padding: 0 32px; height: 44px; display: flex; align-items: center; gap: 2px; list-style: none; justify-content: center; }
+.mc-nav-menu a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 13.5px; font-weight: 500; padding: 6px 16px; border-radius: 8px; transition: color 0.18s ease, background 0.18s ease; white-space: nowrap; }
+.mc-nav-menu a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.mc-nav-menu a.mc-active { color: #5B8CFF; background: rgba(51,100,217,0.1); }
+.mc-cat-link { display: flex; align-items: center; gap: 6px; }
+.mc-nav-dropdown-wrap { position: relative; }
+.mc-nav-dropdown { position: absolute; top: calc(100% + 6px); left: 50%; width: 256px; background: rgba(10,13,28,0.99); border: 1px solid rgba(51,100,217,0.22); border-radius: 14px; padding: 8px; opacity: 0; visibility: hidden; transform: translateX(-50%) translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s 0.18s; z-index: 300; box-shadow: 0 20px 60px rgba(0,0,20,0.85); }
+.mc-nav-dropdown-wrap:hover .mc-nav-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); transition: opacity 0.18s ease, transform 0.18s ease; }
+.mc-dd-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 9px; color: rgba(255,255,255,0.72); text-decoration: none; font-size: 13px; font-weight: 500; transition: all 0.15s ease; }
+.mc-dd-item:hover { color: #fff; background: rgba(51,100,217,0.13); }
+.mc-dd-item.mc-active { color: #5B8CFF; background: rgba(51,100,217,0.1); }
+.mc-dd-icon { width: 28px; height: 28px; border-radius: 7px; background: rgba(51,100,217,0.11); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.mc-dd-divider { height: 1px; background: rgba(255,255,255,0.05); margin: 4px 8px; }
+.page-hero { padding: 56px 32px 40px; max-width: 1180px; margin: 0 auto; }
+.breadcrumb { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+.breadcrumb a { color: inherit; text-decoration: none; }
+.breadcrumb a:hover { color: rgba(255,255,255,0.6); }
+.page-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--brand-light); margin-bottom: 12px; }
+.page-hero h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 8px; }
+.page-hero .lead { font-size: 15px; color: rgba(255,255,255,0.5); }
+.course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; max-width: 1180px; margin: 0 auto; padding: 32px 32px 80px; }
+.course-card { border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.02); transition: all 0.25s ease; cursor: pointer; }
+.course-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,20,0.5); border-color: rgba(51,100,217,0.3); background: rgba(51,100,217,0.04); }
+.course-thumb { height: 180px; background: rgba(51,100,217,0.08); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 52px; }
+.course-body { padding: 20px; }
+.course-level { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-light); opacity: 0.8; margin-bottom: 8px; }
+.course-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
+.course-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 14px; }
+.course-meta { display: flex; gap: 12px; font-size: 12px; color: rgba(255,255,255,0.3); }
+.course-tag { display: inline-block; padding: 2px 9px; background: rgba(51,100,217,0.12); color: var(--brand-light); border-radius: 100px; font-size: 11px; font-weight: 500; }
+
+/* ==============================
+   SITE FOOTER
+   ============================== */
+.site-footer {
+  background: #0B0D16;
+  border-top: 1px solid rgba(51, 100, 217, 0.15);
+  padding: 80px 0 60px;
+  color: rgba(255,255,255,0.55);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.01em;
+}
+.footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.footer-top { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 32px; }
+.footer-brand { display: flex; align-items: center; gap: 16px; }
+.footer-logo-mark { flex-shrink: 0; width: 44px; height: 44px; }
+.footer-logo-text { display: flex; flex-direction: column; gap: 3px; }
+.footer-logo-text .logo-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.3; }
+.footer-logo-text .logo-sub { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.03em; }
+.footer-studio { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+.footer-studio .studio-link { font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 12px; color: #5B8CFF; text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s ease; }
+.footer-studio .studio-link:hover { color: #fff; }
+.studio-credit { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 11px; color: rgba(255,255,255,0.28); letter-spacing: 0.04em; }
+.ps-signature { font-family: 'Covered By Your Grace', cursive; font-size: 16px; color: inherit; line-height: 1; vertical-align: middle; }
+.footer-divider { height: 1px; background: rgba(255,255,255,0.06); margin-bottom: 28px; }
+.footer-mid { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 28px; }
+.footer-nav-block, .footer-sns-block { display: flex; flex-direction: column; gap: 10px; }
+.footer-sns-block { align-items: flex-end; }
+.footer-nav-label { font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+.footer-links { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.2s ease; }
+.footer-links a:hover { color: rgba(255,255,255,0.9); }
+.footer-sns-links { display: flex; gap: 10px; }
+.sns-btn { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); text-decoration: none; transition: all 0.2s ease; }
+.sns-btn:hover { background: rgba(51,100,217,0.25); border-color: rgba(51,100,217,0.5); color: #fff; }
+.footer-bottom { display: flex; flex-direction: column; gap: 10px; }
+.footer-info { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0; }
+.footer-info-item { color: rgba(255,255,255,0.3); font-size: 12px; }
+.footer-info-item::after { content: '·'; margin: 0 10px; color: rgba(255,255,255,0.12); }
+.footer-info-item:last-child::after { display: none; }
+.footer-info-item a { color: inherit; text-decoration: none; transition: color 0.2s; }
+.footer-info-item a:hover { color: rgba(255,255,255,0.65); }
+.footer-copy { font-size: 11px; color: rgba(255,255,255,0.18); letter-spacing: 0.01em; }
+@media (max-width: 768px) {
+  .footer-inner { padding: 0 28px; }
+  .footer-top { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .footer-studio { align-items: flex-start; }
+  .footer-mid { flex-direction: column; gap: 20px; }
+  .footer-sns-block { align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  .site-footer { padding: 56px 0 44px; }
+  .footer-inner { padding: 0 20px; }
+  .footer-logo-text .logo-name { font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<header class="mc-nav">
+  <div class="mc-nav-row1">
+    <a class="mc-nav-logo" href="https://mdbf.co.kr/masterclass100" target="_top">
+      <span class="mc-logo-the">the </span><span class="mc-logo-M">M</span>asterclass
+    </a>
+    <div class="mc-nav-search">
+      <svg class="mc-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" placeholder="강좌 검색..." aria-label="강좌 검색">
+    </div>
+    <a class="mc-nav-mdbf" href="https://mdbf.co.kr" target="_top" rel="noopener">
+      <img src="../../assets/mdbf-logo.png" alt="MDBF" onerror="this.style.display='none'">
+      <span>몽당분필</span>
+    </a>
+  </div>
+  <div class="mc-nav-row2">
+    <ul class="mc-nav-menu">
+      <li class="mc-nav-dropdown-wrap">
+        <a href="https://mdbf.co.kr/masterclass200" target="_top" class="mc-cat-link mc-active">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="6.5" height="6.5" rx="1.5"/><rect x="9.5" y="0" width="6.5" height="6.5" rx="1.5"/><rect x="0" y="9.5" width="6.5" height="6.5" rx="1.5"/><rect x="9.5" y="9.5" width="6.5" height="6.5" rx="1.5"/></svg>
+          카테고리
+        </a>
+        <div class="mc-nav-dropdown">
+          <a class="mc-dd-item" href="https://mdbf.co.kr/masterclass201" target="_top"><span class="mc-dd-icon">🤖</span> AI / AX</a>
+          <a class="mc-dd-item" href="https://mdbf.co.kr/masterclass202" target="_top"><span class="mc-dd-icon">⚙️</span> 업무 자동화</a>
+          <a class="mc-dd-item" href="https://mdbf.co.kr/masterclass203" target="_top"><span class="mc-dd-icon">🎬</span> 이미지 / 영상</a>
+          <a class="mc-dd-item" href="https://mdbf.co.kr/masterclass204" target="_top"><span class="mc-dd-icon">📱</span> 에듀테크</a>
+          <a class="mc-dd-item" href="https://mdbf.co.kr/masterclass205" target="_top"><span class="mc-dd-icon">📚</span> 수업 자료</a>
+          <a class="mc-dd-item mc-active" href="https://mdbf.co.kr/masterclass206" target="_top"><span class="mc-dd-icon">🎨</span> 디자인 / 드로잉</a>
+        </div>
+      </li>
+      <li><a href="https://mdbf.co.kr/masterclass300" target="_top">소개</a></li>
+      <li><a href="https://mdbf.co.kr/masterclass400" target="_top">멤버십</a></li>
+      <li><a href="https://mdbf.co.kr/masterclass500" target="_top">커뮤니티</a></li>
+      <li><a href="https://mdbf.co.kr/masterclass600" target="_top">QnA</a></li>
+      <li><a href="https://mdbf.co.kr/masterclass1000" target="_top">공지사항</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="https://mdbf.co.kr/masterclass200" target="_top">카테고리</a>
+    <span>›</span>
+    <span>디자인 / 드로잉</span>
+  </div>
+  <p class="page-eyebrow">디자인 / 드로잉</p>
+  <h1>🎨 디자인 / 드로잉 트랙</h1>
+  <p class="lead">디지털 드로잉, 그래픽 디자인, 교육 콘텐츠 시각화까지 — 교사가 직접 만드는 비주얼 수업 자료.</p>
+</div>
+
+<div class="course-grid">
+
+  <div class="course-card">
+    <div class="course-thumb">✏️</div>
+    <div class="course-body">
+      <div class="course-level">입문 · Beginner</div>
+      <div class="course-title">아이패드 드로잉 입문 for 교사</div>
+      <div class="course-desc">Procreate 기초부터 수업에 쓸 수 있는 손그림 학습지, 판서 일러스트 제작까지. 드로잉 경험 없어도 시작 가능.</div>
+      <div class="course-meta">
+        <span>📹 8강</span>
+        <span>⏱ 3시간</span>
+        <span class="course-tag">무료</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="course-card">
+    <div class="course-thumb">🎨</div>
+    <div class="course-body">
+      <div class="course-level">입문 · Beginner</div>
+      <div class="course-title">Canva 그래픽 디자인 기초</div>
+      <div class="course-desc">캔바로 수업 PPT, 카드뉴스, 가정통신문, 행사 포스터까지. 비디자이너 교사를 위한 실전 디자인 입문.</div>
+      <div class="course-meta">
+        <span>📹 7강</span>
+        <span>⏱ 2.5시간</span>
+        <span class="course-tag">무료</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="course-card">
+    <div class="course-thumb">🖌️</div>
+    <div class="course-body">
+      <div class="course-level">중급 · Intermediate</div>
+      <div class="course-title">Procreate로 수업 캐릭터 & 이모티콘 제작</div>
+      <div class="course-desc">학급 마스코트, 수업 캐릭터, 교사 이모티콘을 직접 제작. 학생 참여를 높이는 비주얼 수업 환경 구성.</div>
+      <div class="course-meta">
+        <span>📹 9강</span>
+        <span>⏱ 4시간</span>
+        <span class="course-tag">정회원</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="course-card">
+    <div class="course-thumb">📐</div>
+    <div class="course-body">
+      <div class="course-level">중급 · Intermediate</div>
+      <div class="course-title">Adobe Express로 교육 콘텐츠 제작</div>
+      <div class="course-desc">Adobe Express 교육 라이선스 활용법. 수업 자료, SNS 콘텐츠, 학교 홍보물을 빠르고 세련되게 제작.</div>
+      <div class="course-meta">
+        <span>📹 8강</span>
+        <span>⏱ 3시간</span>
+        <span class="course-tag">정회원</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="course-card">
+    <div class="course-thumb">🖼️</div>
+    <div class="course-body">
+      <div class="course-level">중급 · Intermediate</div>
+      <div class="course-title">인포그래픽으로 수업 개념 시각화</div>
+      <div class="course-desc">복잡한 개념을 한 장의 인포그래픽으로 정리하는 법. 학생 발표용·교사 판서용 인포그래픽 제작 실전.</div>
+      <div class="course-meta">
+        <span>📹 7강</span>
+        <span>⏱ 2.5시간</span>
+        <span class="course-tag">무료</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="course-card">
+    <div class="course-thumb">🎭</div>
+    <div class="course-body">
+      <div class="course-level">심화 · Advanced</div>
+      <div class="course-title">AI 이미지 생성 + 디자인 통합 워크플로우</div>
+      <div class="course-desc">Midjourney·DALL-E로 생성한 이미지를 Canva·Procreate에서 수업 자료로 완성하는 AI 활용 디자인 파이프라인.</div>
+      <div class="course-meta">
+        <span>📹 10강</span>
+        <span>⏱ 4.5시간</span>
+        <span class="course-tag">정회원</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== SITE FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img class="footer-logo-mark" src="../../assets/mdbf-logo.png" alt="MDBF 디미교연 로고" style="border-radius:11px;">
+        <div class="footer-logo-text">
+          <span class="logo-name">디지털미디어교육콘텐츠 교사연구협회</span>
+          <span class="logo-sub">몽당분필 · MDBF</span>
+        </div>
+      </div>
+      <div class="footer-studio">
+        <a href="https://www.instagram.com/parcyun" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;"><span class="studio-credit">Designed by <span class="ps-signature">parcyun studio</span></span></a>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-mid">
+      <div class="footer-nav-block">
+        <span class="footer-nav-label">바로가기</span>
+        <nav class="footer-links">
+          <a href="https://mdbf.co.kr/29" target="_blank" rel="noopener">후원하기</a>
+          <a href="mailto:mdbftv@naver.com">문의하기</a>
+        </nav>
+      </div>
+      <div class="footer-sns-block">
+        <span class="footer-nav-label">소셜미디어</span>
+        <div class="footer-sns-links">
+          <a class="sns-btn" href="https://www.instagram.com/mdbf__/" target="_blank" rel="noopener" aria-label="Instagram @mdbf__">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+            </svg>
+          </a>
+          <a class="sns-btn" href="https://www.youtube.com/@mdbftv" target="_blank" rel="noopener" aria-label="YouTube @mdbftv">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 0-3.4-3.4C14.7 3 12 3 12 3s-2.7 0-4.19.29a4.83 4.83 0 0 0-3.4 3.4C4 8.18 4 12 4 12s0 3.82.41 5.31a4.83 4.83 0 0 0 3.4 3.4C9.3 21 12 21 12 21s2.7 0 4.19-.29a4.83 4.83 0 0 0 3.4-3.4C20 15.82 20 12 20 12s0-3.82-.41-5.31ZM9.75 15.02V8.98L15.5 12l-5.75 3.02Z"/>
+            </svg>
+          </a>
+          <a class="sns-btn" href="mailto:mdbftv@naver.com" aria-label="이메일 문의">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="3"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+      <div class="footer-info">
+        <span class="footer-info-item">@mdbf</span>
+        <span class="footer-info-item">디지털미디어교육콘텐츠 교사연구협회</span>
+        <span class="footer-info-item">사업자등록번호 687-82-00384</span>
+        <span class="footer-info-item"><a href="mailto:mdbftv@naver.com">mdbftv@naver.com</a></span>
+        <span class="footer-info-item"><a href="#">개인정보 처리 방침</a></span>
+        <span class="footer-info-item"><a href="#">이용 약관</a></span>
+      </div>
+      <div class="footer-copy">© 2025 디지털미디어교육콘텐츠 교사연구협회. All rights reserved.</div>
+    </div>
+
+  </div>
+</footer>
+
+<script src="../../assets/iframe-resizer.js"></script>
+
+<button id="scrollTopBtn" aria-label="최상단으로 이동" title="최상단으로 이동">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+<style>
+#scrollTopBtn { position: fixed; bottom: 28px; right: 28px; width: 46px; height: 46px; border-radius: 50%; background: #3364D9; color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, background 0.2s ease; z-index: 9999; box-shadow: 0 4px 20px rgba(51,100,217,0.45); }
+#scrollTopBtn.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+#scrollTopBtn:hover { background: #2952B8; }
+</style>
+<script>
+(function(){
+  var btn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', function(){ btn.classList.toggle('visible', window.scrollY > 300); }, {passive: true});
+  btn.addEventListener('click', function(){ window.scrollTo({top: 0, behavior: 'smooth'}); });
+})();
+</script>
+
+</body>
+</html>
