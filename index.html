@@ -404,36 +404,6 @@ addEventListener('message', function(e){
         </div>
       </article>
 
-      <!-- Intro Card (Primary) -->
-      <article class="card" style="border-color: rgba(91,140,255,0.25); background: rgba(51,100,217,0.03);">
-        <div class="card-preview">
-          <iframe src="./intro/" loading="lazy" title="Intro preview"></iframe>
-          <div class="overlay"></div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta">
-            <span class="badge" style="background:rgba(51,100,217,0.2); color:#fff;">Primary</span>
-            <span>/intro/</span>
-          </div>
-          <div class="card-title">연수 플랫폼 소개 페이지</div>
-          <div class="card-desc">상단 hero 임베드 + WHY / WHAT / WHO / JOIN 4섹션 + 신청 CTA. 풀 길이 랜딩, 모바일 대응.</div>
-          <div class="card-actions">
-            <a class="btn" href="https://mdbf-masterclass.vercel.app/intro" target="_blank" rel="noopener">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-              열기
-            </a>
-            <button class="btn primary" data-embed="intro">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-              임베드 코드
-            </button>
-          </div>
-          <div class="embed-block" id="embed-intro">
-            <div class="embed-label">아임웹 임베드 코드 (리스너 + iframe)</div>
-            <code class="embed-code">&lt;script&gt;addEventListener('message',function(e){if(!e.data||e.data.type!=='mcResize')return;var fs=document.getElementsByTagName('iframe');for(var i=0;i&lt;fs.length;i++)if(fs[i].contentWindow===e.source){fs[i].style.height=e.data.height+'px';break;}});&lt;/script&gt;
-&lt;iframe src="https://mdbf-masterclass.vercel.app/intro" style="width:100%; border:0; display:block;" loading="lazy" scrolling="no" title="the Masterclass Intro"&gt;&lt;/iframe&gt;</code>
-          </div>
-        </div>
-      </article>
 
     </div>
 
