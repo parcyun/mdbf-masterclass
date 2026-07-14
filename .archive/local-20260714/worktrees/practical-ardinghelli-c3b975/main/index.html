@@ -1,0 +1,3224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>the Masterclass — MDBF</title>
+<meta name="description" content="현장에서 검증된 연수를, 모든 교사에게. MDBF the Masterclass.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Montserrat:wght@300;400;500&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ==============================
+   RESET & GLOBAL
+   ============================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --brand:      #3364D9;
+  --brand-light: #5B8CFF;
+  --brand-deep: #1B3A99;
+  --brand-glow: rgba(51, 100, 217, 0.5);
+  --brand-soft: rgba(51, 100, 217, 0.18);
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.01em;
+  line-height: 1.6;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+
+/* ==============================
+   HERO SECTION
+   ============================== */
+
+.sec-hero {
+  position: relative;
+  width: 100%;
+  height: 860px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #050814 0%, #000 70%);
+  color: #fff;
+  cursor: default;
+}
+
+/* Background Sphere */
+.sec-hero .sphere-stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 620px;
+  height: 620px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.sec-hero .sphere {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at var(--lx, 32%) var(--ly, 30%),
+      rgba(180, 220, 255, 0.95) 0%,
+      rgba(90, 150, 255, 0.85) 8%,
+      var(--brand) 22%,
+      #1a3a8a 45%,
+      #0a1840 65%,
+      #02061a 85%,
+      transparent 100%
+    );
+  box-shadow:
+    inset -30px -30px 100px rgba(0, 0, 20, 0.7),
+    inset 20px 20px 80px rgba(120, 180, 255, 0.15),
+    0 0 100px var(--brand-glow),
+    0 0 180px rgba(51, 100, 217, 0.25);
+  transition: background 0.08s linear;
+}
+
+.sec-hero .sphere-spec {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse 35% 18% at var(--lx, 32%) var(--ly, 30%),
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.15) 30%,
+    transparent 60%
+  );
+  mix-blend-mode: screen;
+  transition: background 0.08s linear;
+}
+
+.sec-hero .flare {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  left: var(--fx, 30%);
+  top: var(--fy, 25%);
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 20px 8px rgba(255, 255, 255, 0.9),
+    0 0 50px 20px rgba(150, 200, 255, 0.6),
+    0 0 100px 40px rgba(51, 100, 217, 0.4);
+  transition: left 0.08s linear, top 0.08s linear;
+}
+
+.sec-hero .flare::before,
+.sec-hero .flare::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.6), transparent);
+  transform: translate(-50%, -50%);
+}
+.sec-hero .flare::before { width: 120px; height: 1px; }
+.sec-hero .flare::after  { width: 1px; height: 120px; }
+
+.sec-hero .atmosphere {
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 47%, rgba(91, 140, 255, 0.08) 50%, transparent 56%);
+  animation: hero-breathe 6s ease-in-out infinite;
+}
+
+@keyframes hero-breathe {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.03); }
+}
+
+/* Chip Wrapper (JS transform) */
+.sec-hero .chip-wrap {
+  position: absolute;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+/* Floating Chip (CSS float) */
+.sec-hero .chip {
+  position: relative;
+  padding: 9px 20px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  animation: hero-float 6s ease-in-out infinite;
+  transform: translateY(0);
+}
+
+.sec-hero .chip.filled {
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(51, 100, 217, 0.4);
+}
+
+.sec-hero .chip.outlined {
+  color: #fff;
+  border: 1.5px solid var(--brand);
+  background: rgba(51, 100, 217, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.sec-hero .chip .cursor-icon {
+  position: absolute;
+  right: -14px;
+  bottom: -14px;
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* Content */
+.sec-hero .content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.sec-hero .eyebrow {
+  font-size: 26px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+}
+
+.sec-hero h1 {
+  font-size: 54px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 22px;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.7);
+}
+
+.sec-hero .subtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+
+.sec-hero .cta {
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  letter-spacing: -0.01em;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow:
+    0 8px 24px rgba(51, 100, 217, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.sec-hero .cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s;
+}
+
+.sec-hero .cta:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 32px rgba(51, 100, 217, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: var(--brand-light);
+}
+
+.sec-hero .cta:hover::before { left: 100%; }
+.sec-hero .cta:active { transform: translateY(0); }
+
+/* Stats */
+.sec-hero .stats {
+  position: absolute;
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  padding: 22px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 5;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.sec-hero .stats::before {
+  content: '';
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(91, 140, 255, 0.35) 0%, rgba(51, 100, 217, 0.1) 40%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  left: var(--mx, -200px);
+  top: var(--my, -200px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  filter: blur(20px);
+}
+
+.sec-hero .stats:hover {
+  border-color: rgba(91, 140, 255, 0.45);
+  background: rgba(91, 140, 255, 0.06);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow:
+    0 16px 56px rgba(51, 100, 217, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transform: translateX(-50%) translateY(-3px);
+}
+
+.sec-hero .stats:hover::before { opacity: 1; }
+
+.sec-hero .stat {
+  padding: 0 36px;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: default;
+}
+
+.sec-hero .stat:last-child { border-right: none; }
+
+.sec-hero .stat:hover .stat-value {
+  color: var(--brand-light);
+  text-shadow: 0 0 24px rgba(91, 140, 255, 0.7);
+  transform: translateY(-1px);
+}
+
+.sec-hero .stat:hover .stat-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.sec-hero .stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+  transition: all 0.3s ease;
+}
+
+.sec-hero .stat-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.3s ease;
+}
+
+/* Hero Responsive */
+@media (max-width: 768px) {
+  .sec-hero { height: 680px; }
+  .sec-hero .sphere-stage { width: 380px; height: 380px; }
+  .sec-hero .eyebrow { font-size: 18px; }
+  .sec-hero h1       { font-size: 32px; margin-bottom: 16px; line-height: 1.2; }
+  .sec-hero .subtitle { font-size: 13px; margin-bottom: 22px; padding: 0 20px; }
+  .sec-hero .cta     { padding: 12px 24px; font-size: 14px; }
+  .sec-hero .chip    { padding: 7px 14px; font-size: 11px; }
+  .sec-hero .chip .cursor-icon { width: 16px; height: 16px; right: -10px; bottom: -10px; }
+  .sec-hero .stats {
+    bottom: 28px; padding: 14px 8px;
+    border-radius: 24px;
+    width: calc(100% - 32px); max-width: 360px;
+    flex-wrap: wrap;
+  }
+  .sec-hero .stat {
+    flex: 0 0 50%;
+    padding: 8px 10px;
+    border-right: none;
+  }
+  .sec-hero .stat:nth-child(odd)  { border-right: 1px solid rgba(255, 255, 255, 0.06); }
+  .sec-hero .stat:nth-child(-n+2) { border-bottom: 1px solid rgba(255, 255, 255, 0.06); padding-bottom: 12px; }
+  .sec-hero .stat:nth-child(n+3)  { padding-top: 12px; }
+  .sec-hero .stat-value { font-size: 16px; }
+  .sec-hero .stat-label { font-size: 10px; }
+  .sec-hero .stats:hover { transform: translateX(-50%) translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .sec-hero { height: 580px; }
+  .sec-hero .sphere-stage { width: 300px; height: 300px; }
+  .sec-hero .eyebrow { font-size: 16px; }
+  .sec-hero h1       { font-size: 26px; }
+  .sec-hero .subtitle { font-size: 12px; padding: 0 24px; }
+  /* Hide 2 chips on very small screens */
+  .sec-hero .chip-wrap:nth-child(4),
+  .sec-hero .chip-wrap:nth-child(7) {
+    display: none;
+  }
+}
+
+
+/* ==============================
+   CLASSES SECTION
+   ============================== */
+
+.sec-classes {
+  --card-bg:          rgba(255, 255, 255, 0.7);
+  --card-bg-soon:     rgba(248, 249, 252, 0.5);
+  --card-border:      rgba(255, 255, 255, 0.85);
+  --card-border-soon: rgba(15, 23, 42, 0.08);
+  --shadow:           0 12px 36px rgba(20, 32, 80, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
+  --shadow-hover:     0 20px 56px rgba(51, 100, 217, 0.18), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --text:             #1a1f2e;
+  --text-mute:        #5a6273;
+  --text-faint:       #9ba3b4;
+  --text-soon:        #c0c5d2;
+
+  background: rgba(250, 251, 255, 0.45);
+  color: var(--text);
+  padding: 72px 32px 80px;
+}
+
+.sec-classes .container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* Head */
+.sec-classes .head {
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.sec-classes .section-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  color: var(--brand);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sec-classes .section-label::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--brand);
+  opacity: 0.5;
+}
+
+.sec-classes h2 {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.sec-classes .head-sub {
+  font-size: 15px;
+  color: var(--text-mute);
+  max-width: 380px;
+  line-height: 1.55;
+}
+
+/* Grid */
+.sec-classes .grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Card */
+.sec-classes .card {
+  background: var(--card-bg);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cursor-tracked Spotlight */
+.sec-classes .card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 260px at var(--mx, 50%) var(--my, 50%),
+    var(--brand-soft) 0%,
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: inherit;
+}
+
+.sec-classes .card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(91, 140, 255, 0.4);
+}
+.sec-classes .card:hover::before { opacity: 1; }
+
+/* Graphic 3:4 */
+.sec-classes .card-graphic {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(91, 140, 255, 0.08) 0%, rgba(51, 100, 217, 0.04) 100%);
+}
+
+.sec-classes .card-graphic svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Info */
+.sec-classes .card-info {
+  padding: 20px 22px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.sec-classes .card-num {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-faint);
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+
+.sec-classes .card-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+.sec-classes .card-desc {
+  font-size: 13px;
+  color: var(--text-mute);
+  line-height: 1.55;
+}
+
+/* Coming Soon */
+.sec-classes .card.soon {
+  background: var(--card-bg-soon);
+  border: 1px dashed var(--card-border-soon);
+}
+.sec-classes .card.soon::before { display: none; }
+.sec-classes .card.soon:hover {
+  transform: none;
+  box-shadow: var(--shadow);
+  border-color: var(--card-border-soon);
+}
+.sec-classes .card.soon .card-graphic {
+  background: linear-gradient(135deg, rgba(155, 163, 180, 0.06) 0%, rgba(155, 163, 180, 0.02) 100%);
+}
+.sec-classes .card.soon .card-num,
+.sec-classes .card.soon .card-title,
+.sec-classes .card.soon .card-desc {
+  color: var(--text-soon);
+}
+
+/* Classes Responsive */
+@media (max-width: 1024px) {
+  .sec-classes .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .sec-classes { padding: 56px 20px 64px; }
+  .sec-classes .head { margin-bottom: 32px; }
+  .sec-classes h2 { font-size: 28px; }
+  .sec-classes .head-sub { font-size: 14px; max-width: 100%; }
+  .sec-classes .grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .sec-classes .card { border-radius: 18px; }
+  .sec-classes .card-info { padding: 16px 16px 18px; }
+  .sec-classes .card-title { font-size: 15px; }
+  .sec-classes .card-desc { font-size: 12px; }
+}
+
+@media (max-width: 480px) {
+  .sec-classes { padding: 40px 16px 56px; }
+  .sec-classes h2 { font-size: 24px; }
+  .sec-classes .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .sec-classes .card-info { padding: 14px 14px 16px; }
+}
+
+
+/* ==============================
+   BEST SECTION (Coloso-inspired)
+   ============================== */
+
+.sec-best {
+  background: #0B0E1A;
+  color: #fff;
+  padding: 88px 32px 96px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sec-best::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(51, 100, 217, 0.18) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.sec-best::after {
+  content: '';
+  position: absolute;
+  bottom: -120px;
+  left: -120px;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(91, 140, 255, 0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.sec-best .container {
+  max-width: 1180px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.sec-best .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 44px;
+}
+
+.sec-best .section-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  color: var(--brand-light);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sec-best .section-label::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--brand-light);
+  opacity: 0.6;
+}
+
+.sec-best h2 {
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #fff;
+}
+
+.sec-best h2 strong {
+  color: var(--brand-light);
+  font-weight: 700;
+}
+
+.sec-best .head-more {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.04em;
+}
+
+.sec-best .head-more:hover { color: var(--brand-light); }
+
+.sec-best .grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+/* Card */
+.sec-best .card {
+  background: transparent;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.sec-best .card:hover { transform: translateY(-6px); }
+
+/* Thumb 16:10 */
+.sec-best .thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #131826;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sec-best .card:hover .thumb {
+  border-color: rgba(91, 140, 255, 0.4);
+  box-shadow: 0 18px 48px rgba(51, 100, 217, 0.35);
+}
+
+.sec-best .thumb-graphic {
+  position: absolute;
+  inset: 0;
+}
+
+.sec-best .thumb-graphic svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.sec-best .card:hover .thumb-graphic svg { transform: scale(1.06); }
+
+/* Rank number */
+.sec-best .rank {
+  position: absolute;
+  bottom: 8px;
+  left: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 78px;
+  font-weight: 700;
+  line-height: 0.85;
+  color: rgba(255, 255, 255, 0.12);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Status badge */
+.sec-best .status {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 5px 9px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.sec-best .status.best {
+  background: var(--brand);
+  color: #fff;
+}
+
+.sec-best .status.hot {
+  background: #ff4d6d;
+  color: #fff;
+}
+
+.sec-best .status.new {
+  background: rgba(255, 255, 255, 0.95);
+  color: #0B0E1A;
+}
+
+.sec-best .status.soon {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Date badge for upcoming */
+.sec-best .date-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 4px 8px;
+  border-radius: 4px;
+  z-index: 2;
+  letter-spacing: 0.04em;
+}
+
+/* Info below thumb */
+.sec-best .info {
+  padding: 16px 4px 0;
+}
+
+.sec-best .instructor {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.sec-best .title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 10px;
+  /* 2-line clamp */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sec-best .card:hover .title { color: var(--brand-light); }
+
+.sec-best .meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.sec-best .meta-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Best Responsive */
+@media (max-width: 1024px) {
+  .sec-best .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .sec-best { padding: 64px 20px 72px; }
+  .sec-best h2 { font-size: 26px; }
+  .sec-best .grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .sec-best .rank { font-size: 58px; bottom: 6px; left: 10px; }
+  .sec-best .title { font-size: 14px; }
+  .sec-best .info { padding: 12px 2px 0; }
+}
+
+@media (max-width: 480px) {
+  .sec-best { padding: 48px 16px 60px; }
+  .sec-best h2 { font-size: 22px; }
+  .sec-best .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .sec-best .rank { font-size: 46px; }
+  .sec-best .status { font-size: 9px; padding: 4px 7px; }
+}
+
+
+/* ==============================
+   BANNER SECTION
+   ============================== */
+
+.sec-banner {
+  background: rgba(250, 251, 255, 0.45);
+  padding: 0;
+  color: #fff;
+}
+
+.sec-banner .banner-wrap {
+  width: 100%;
+}
+
+.sec-banner .carousel {
+  width: 100%;
+  aspect-ratio: 4 / 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.sec-banner .track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.7, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.sec-banner .slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  padding: 48px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.sec-banner .slide.s1 { background: linear-gradient(120deg, #1B3A99 0%, #3364D9 100%); }
+.sec-banner .slide.s2 { background: linear-gradient(120deg, #2A4FBC 0%, #5B8CFF 100%); }
+.sec-banner .slide.s3 { background: linear-gradient(120deg, #0F1F4D 0%, #2952B8 100%); }
+
+.sec-banner .slide-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.sec-banner .slide-bg svg {
+  position: absolute;
+  right: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 180%;
+  width: auto;
+}
+
+.sec-banner .slide-content {
+  position: relative;
+  z-index: 1;
+  max-width: 60%;
+}
+
+.sec-banner .slide-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sec-banner .slide-label::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.sec-banner .slide-title {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.sec-banner .slide-sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+}
+
+/* Navigation */
+.sec-banner .nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  font-family: inherit;
+}
+
+.sec-banner .nav-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.sec-banner .nav-prev { left: 20px; }
+.sec-banner .nav-next { right: 20px; }
+
+/* Indicators */
+.sec-banner .indicators {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.sec-banner .dot {
+  width: 24px;
+  height: 4px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.sec-banner .dot.active {
+  background: rgba(255, 255, 255, 0.95);
+  width: 36px;
+}
+
+.sec-banner .dot:hover { background: rgba(255, 255, 255, 0.6); }
+
+/* Banner Responsive */
+@media (max-width: 768px) {
+  .sec-banner { padding: 0; }
+  .sec-banner .carousel { border-radius: 0; }
+  .sec-banner .slide { padding: 28px 32px; }
+  .sec-banner .slide-content { max-width: 70%; }
+  .sec-banner .slide-label { font-size: 10px; margin-bottom: 8px; }
+  .sec-banner .slide-title { font-size: 22px; }
+  .sec-banner .slide-sub { font-size: 12px; }
+  .sec-banner .nav-btn { width: 36px; height: 36px; }
+  .sec-banner .nav-prev { left: 12px; }
+  .sec-banner .nav-next { right: 12px; }
+  .sec-banner .indicators { bottom: 14px; }
+  .sec-banner .dot { width: 18px; height: 3px; }
+  .sec-banner .dot.active { width: 28px; }
+}
+
+@media (max-width: 480px) {
+  .sec-banner { padding: 0; }
+  .sec-banner .slide { padding: 20px 22px; }
+  .sec-banner .slide-content { max-width: 75%; }
+  .sec-banner .slide-title { font-size: 16px; line-height: 1.25; }
+  .sec-banner .slide-sub { font-size: 11px; }
+  .sec-banner .slide-label { font-size: 9px; margin-bottom: 4px; }
+  .sec-banner .nav-btn { width: 30px; height: 30px; }
+  .sec-banner .nav-btn svg { width: 14px; height: 14px; }
+}
+
+
+
+/* ==============================
+   NEW / LIVE / FIELD SECTIONS
+   ============================== */
+.sec-new, .sec-live {
+  background: #0B0E1A;
+  color: #fff;
+  padding: 88px 32px 96px;
+  position: relative;
+  overflow: hidden;
+}
+.sec-new::before, .sec-live::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(51,100,217,0.16) 0%, transparent 65%);
+  pointer-events: none;
+}
+.sec-new .container, .sec-live .container {
+  max-width: 1180px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.sec-new .head, .sec-live .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 44px;
+}
+.sec-new .section-label, .sec-live .section-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.25em;
+  color: var(--brand-light);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: inline-flex; align-items: center; gap: 14px;
+}
+.sec-new .section-label::before, .sec-live .section-label::before {
+  content: ''; width: 32px; height: 1px;
+  background: var(--brand-light); opacity: 0.6;
+}
+.sec-new h2, .sec-live h2 {
+  font-size: 38px; font-weight: 700;
+  letter-spacing: -0.03em; line-height: 1.15; color: #fff;
+}
+.sec-new h2 strong, .sec-live h2 strong { color: var(--brand-light); font-weight: 700; }
+.sec-new .head-more, .sec-live .head-more {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px; color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: inline-flex; align-items: center; gap: 6px;
+  letter-spacing: 0.04em;
+}
+.sec-new .head-more:hover, .sec-live .head-more:hover { color: var(--brand-light); }
+.sec-new .grid, .sec-live .grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+.sec-new .card, .sec-live .card {
+  background: transparent; border-radius: 16px;
+  overflow: hidden; display: flex; flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+}
+.sec-new .card:hover, .sec-live .card:hover { transform: translateY(-6px); }
+.sec-new .thumb, .sec-live .thumb {
+  width: 100%; aspect-ratio: 16/10;
+  position: relative; overflow: hidden;
+  border-radius: 14px; background: #131826;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.sec-new .card:hover .thumb, .sec-live .card:hover .thumb {
+  border-color: rgba(91,140,255,0.4);
+  box-shadow: 0 18px 48px rgba(51,100,217,0.35);
+}
+.sec-new .thumb-graphic, .sec-live .thumb-graphic {
+  position: absolute; inset: 0;
+}
+.sec-new .thumb-graphic svg, .sec-live .thumb-graphic svg {
+  width: 100%; height: 100%; display: block;
+  transition: transform 0.6s cubic-bezier(0.23,1,0.32,1);
+}
+.sec-new .card:hover .thumb-graphic svg,
+.sec-live .card:hover .thumb-graphic svg { transform: scale(1.06); }
+.sec-new .status, .sec-live .status {
+  position: absolute; top: 12px; left: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; padding: 5px 9px;
+  border-radius: 4px; z-index: 2;
+}
+.sec-new .status.new-badge {
+  background: rgba(255,255,255,0.95); color: #0B0E1A;
+}
+.sec-live .status.live-badge {
+  background: #e03131; color: #fff;
+}
+.sec-live .status.rec-badge {
+  background: rgba(224,49,49,0.15); color: #ff6b6b;
+  border: 1px solid rgba(224,49,49,0.3);
+}
+.sec-new .info, .sec-live .info {
+  padding: 16px 4px 0;
+}
+.sec-new .instructor, .sec-live .instructor {
+  font-size: 12px; color: rgba(255,255,255,0.5);
+  margin-bottom: 6px; letter-spacing: -0.01em;
+}
+.sec-new .title, .sec-live .title {
+  font-size: 16px; font-weight: 600;
+  line-height: 1.35; letter-spacing: -0.02em;
+  color: #fff; margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.sec-new .card:hover .title, .sec-live .card:hover .title { color: var(--brand-light); }
+.sec-new .meta, .sec-live .meta {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; color: rgba(255,255,255,0.35);
+  font-family: 'Montserrat', sans-serif; letter-spacing: 0.04em;
+}
+.sec-new .meta-dot, .sec-live .meta-dot {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+}
+
+/* Field section */
+.sec-field {
+  background: #f5f7ff;
+  color: #1a1e2e;
+  padding: 88px 32px 96px;
+}
+.sec-field .container { max-width: 1180px; margin: 0 auto; }
+.sec-field .field-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; flex-wrap: wrap; gap: 16px;
+  margin-bottom: 32px;
+}
+.sec-field .field-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--brand); margin-bottom: 10px;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.sec-field .field-label::before {
+  content: ''; width: 28px; height: 1px; background: var(--brand);
+}
+.sec-field h3 {
+  font-size: 28px; font-weight: 700;
+  letter-spacing: -0.03em; line-height: 1.2;
+  color: #1a1e2e;
+}
+.sec-field h3 strong { color: var(--brand); }
+.sec-field .head-more {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px; color: #8a90aa;
+  text-decoration: none; display: inline-flex; gap: 6px;
+  transition: color 0.2s;
+}
+.sec-field .head-more:hover { color: var(--brand); }
+.sec-field .grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px;
+}
+.sec-field .card {
+  background: #fff; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 2px 16px rgba(30,40,100,0.07);
+  display: flex; flex-direction: column;
+  cursor: pointer; border: 1px solid #e8ecf8;
+  transition: transform 0.35s cubic-bezier(0.23,1,0.32,1), box-shadow 0.35s ease;
+}
+.sec-field .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(51,100,217,0.15);
+}
+.sec-field .thumb {
+  width: 100%; aspect-ratio: 16/10;
+  position: relative; overflow: hidden; background: #edf0ff;
+}
+.sec-field .thumb-graphic { position: absolute; inset: 0; }
+.sec-field .thumb-graphic svg { width: 100%; height: 100%; display: block; transition: transform 0.5s ease; }
+.sec-field .card:hover .thumb-graphic svg { transform: scale(1.05); }
+.sec-field .rank-badge {
+  position: absolute; top: 10px; left: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 700;
+  background: var(--brand); color: #fff;
+  padding: 4px 8px; border-radius: 4px; z-index: 2;
+}
+.sec-field .info { padding: 16px 16px 20px; }
+.sec-field .instructor {
+  font-size: 12px; color: #8a90aa;
+  margin-bottom: 6px; letter-spacing: -0.01em;
+}
+.sec-field .title {
+  font-size: 15px; font-weight: 600;
+  line-height: 1.4; letter-spacing: -0.02em;
+  color: #1a1e2e; margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.sec-field .card:hover .title { color: var(--brand); }
+.sec-field .meta {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; color: #a0a8c0;
+  font-family: 'Montserrat', sans-serif;
+}
+.sec-field .meta-dot { width: 3px; height: 3px; border-radius: 50%; background: #c8cde0; }
+
+/* New/Live/Field Responsive */
+@media (max-width: 1024px) {
+  .sec-new .grid, .sec-live .grid, .sec-field .grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .sec-new, .sec-live, .sec-field { padding: 64px 20px 72px; }
+  .sec-new h2, .sec-live h2 { font-size: 26px; }
+  .sec-field h3 { font-size: 22px; }
+  .sec-new .grid, .sec-live .grid, .sec-field .grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .sec-new .title, .sec-live .title { font-size: 14px; }
+}
+@media (max-width: 480px) {
+  .sec-new, .sec-live, .sec-field { padding: 48px 16px 60px; }
+  .sec-new h2, .sec-live h2 { font-size: 22px; }
+  .sec-field h3 { font-size: 18px; }
+  .sec-new .grid, .sec-live .grid, .sec-field .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}
+
+
+/* ==============================
+   SITE FOOTER
+   ============================== */
+.site-footer {
+  background: #0B0D16;
+  border-top: 1px solid rgba(51, 100, 217, 0.15);
+  padding: 80px 0 60px;
+  color: rgba(255,255,255,0.55);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-logo-mark {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+}
+
+.footer-logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.footer-logo-text .logo-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.3;
+}
+
+.footer-logo-text .logo-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.03em;
+}
+
+.footer-studio {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.footer-studio .studio-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.06em;
+}
+
+.footer-studio .studio-link {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #5B8CFF;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s ease;
+}
+.footer-studio .studio-link:hover { color: #fff; }
+
+.studio-credit {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.04em;
+}
+
+.ps-signature {
+  font-family: 'Covered By Your Grace', cursive;
+  font-size: 16px;
+  color: inherit;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.footer-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+  margin-bottom: 28px;
+}
+
+.footer-mid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+
+.footer-nav-block,
+.footer-sns-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-sns-block { align-items: flex-end; }
+
+.footer-nav-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+}
+
+.footer-links a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.2s ease;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.9); }
+
+.footer-sns-links {
+  display: flex;
+  gap: 10px;
+}
+
+.sns-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.sns-btn:hover {
+  background: rgba(51,100,217,0.25);
+  border-color: rgba(51,100,217,0.5);
+  color: #fff;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 0;
+}
+
+.footer-info-item {
+  color: rgba(255,255,255,0.3);
+  font-size: 12px;
+}
+.footer-info-item::after {
+  content: '·';
+  margin: 0 10px;
+  color: rgba(255,255,255,0.12);
+}
+.footer-info-item:last-child::after { display: none; }
+
+.footer-info-item a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-info-item a:hover { color: rgba(255,255,255,0.65); }
+
+.footer-copy {
+  font-size: 11px;
+  color: rgba(255,255,255,0.18);
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 768px) {
+  .footer-inner { padding: 0 28px; }
+  .footer-top { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .footer-studio { align-items: flex-start; }
+  .footer-mid { flex-direction: column; gap: 20px; }
+  .footer-sns-block { align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .site-footer { padding: 56px 0 44px; }
+  .footer-inner { padding: 0 20px; }
+  .footer-logo-text .logo-name { font-size: 13px; }
+}
+
+
+/* ==============================
+   SITE NAVBAR
+   ============================== */
+.mc-nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(7, 9, 20, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(51, 100, 217, 0.15);
+}
+
+.mc-nav-row1 {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.mc-nav-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -0.03em;
+  flex-shrink: 0;
+  display: flex;
+  align-items: baseline;
+  line-height: 1;
+}
+
+.mc-logo-the {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.38);
+  margin-right: 4px;
+  letter-spacing: 0.01em;
+}
+
+.mc-logo-M { color: #3364D9; }
+
+.mc-nav-search {
+  flex: 1;
+  max-width: 420px;
+  position: relative;
+}
+
+.mc-nav-search input {
+  width: 100%;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  padding: 0 16px 0 38px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.01em;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.mc-nav-search input::placeholder { color: rgba(255, 255, 255, 0.28); font-family: 'Pretendard', sans-serif; }
+
+.mc-nav-search input:focus {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(51, 100, 217, 0.5);
+  box-shadow: 0 0 0 3px rgba(51, 100, 217, 0.12);
+}
+
+.mc-search-icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.mc-nav-mdbf {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 13px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  letter-spacing: -0.01em;
+  margin-left: auto;
+}
+
+.mc-cat-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mc-nav-mdbf img {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.mc-nav-mdbf:hover {
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(51, 100, 217, 0.4);
+  background: rgba(51, 100, 217, 0.08);
+}
+
+.mc-nav-row2 { border-top: 1px solid rgba(255, 255, 255, 0.05); }
+
+.mc-nav-menu {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  justify-content: center;
+}
+
+.mc-nav-menu a {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 8px;
+  transition: color 0.18s ease, background 0.18s ease;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.mc-nav-menu a:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+.mc-nav-menu a.mc-active { color: #5B8CFF; background: rgba(51, 100, 217, 0.1); }
+
+/* ===== Dropdown ===== */
+.mc-nav-dropdown-wrap { position: relative; }
+
+.mc-nav-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  width: 256px;
+  background: rgba(10, 13, 28, 0.99);
+  border: 1px solid rgba(51, 100, 217, 0.22);
+  border-radius: 14px;
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s 0.18s;
+  z-index: 300;
+  box-shadow: 0 20px 60px rgba(0,0,20,0.85), 0 4px 16px rgba(51,100,217,0.18);
+}
+
+.mc-nav-dropdown-wrap:hover .mc-nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.mc-dd-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 9px;
+  color: rgba(255,255,255,0.72);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 0.15s ease;
+}
+.mc-dd-item:hover { color: #fff; background: rgba(51,100,217,0.13); }
+.mc-dd-item.soon { color: rgba(255,255,255,0.22); cursor: default; pointer-events: none; }
+
+.mc-dd-icon {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  background: rgba(51,100,217,0.11);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+
+.mc-dd-badge {
+  font-size: 10px; font-weight: 600;
+  padding: 2px 7px; border-radius: 100px;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.28);
+  margin-left: auto;
+}
+
+.mc-dd-divider { height: 1px; background: rgba(255,255,255,0.05); margin: 4px 8px; }
+
+@media (max-width: 900px) {
+  .mc-nav-row1 { padding: 0 20px; gap: 14px; }
+  .mc-nav-menu  { padding: 0 20px; }
+  .mc-nav-search { max-width: 260px; }
+}
+
+@media (max-width: 640px) {
+  .mc-nav-logo   { font-size: 18px; }
+  .mc-logo-the   { font-size: 12px; }
+  .mc-nav-mdbf span { display: none; }
+  .mc-nav-search { max-width: 180px; }
+  .mc-nav-menu   { justify-content: flex-start; overflow-x: auto; }
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- ==============================
+     SITE NAVBAR
+     ============================== -->
+<header class="mc-nav">
+  <div class="mc-nav-row1">
+    <a class="mc-nav-logo" href="https://mdbf.co.kr/masterclass100" target="_top">
+      <span class="mc-logo-the">the </span><span class="mc-logo-M">M</span>asterclass
+    </a>
+    <div class="mc-nav-search">
+      <svg class="mc-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="search" placeholder="강좌 검색..." aria-label="강좌 검색">
+    </div>
+    <a class="mc-nav-mdbf" href="https://mdbf.co.kr" target="_top" rel="noopener">
+      <img src="../assets/mdbf-logo.png" alt="몽당분필 MDBF 로고" onerror="this.style.display='none'">
+      <span>몽당분필</span>
+    </a>
+  </div>
+  <div class="mc-nav-row2">
+    <ul class="mc-nav-menu">
+      <li class="mc-nav-dropdown-wrap">
+        <a href="https://mdbf.co.kr/masterclass200" target="_top" class="mc-cat-link">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <rect x="0" y="0" width="6.5" height="6.5" rx="1.5"/>
+            <rect x="9.5" y="0" width="6.5" height="6.5" rx="1.5"/>
+            <rect x="0" y="9.5" width="6.5" height="6.5" rx="1.5"/>
+            <rect x="9.5" y="9.5" width="6.5" height="6.5" rx="1.5"/>
+          </svg>
+          카테고리
+        </a>
+        <div class="mc-nav-dropdown">
+          <a class="mc-dd-item" href="https://mdbf.co.kr/masterclass201" target="_top">
+            <span class="mc-dd-icon">🤖</span> AI / AX
+          </a>
+          <a class="mc-dd-item" href="https://mdbf.co.kr/masterclass202" target="_top">
+            <span class="mc-dd-icon">⚙️</span> 업무 자동화
+          </a>
+          <a class="mc-dd-item" href="https://mdbf.co.kr/masterclass203" target="_top">
+            <span class="mc-dd-icon">🎬</span> 이미지 / 영상
+          </a>
+          <a class="mc-dd-item" href="https://mdbf.co.kr/masterclass204" target="_top">
+            <span class="mc-dd-icon">📱</span> 에듀테크
+          </a>
+          <div class="mc-dd-divider"></div>
+          <a class="mc-dd-item" href="https://mdbf.co.kr/masterclass205" target="_top">
+            <span class="mc-dd-icon">📚</span> 수업 자료
+          </a>
+          <a class="mc-dd-item" href="https://mdbf.co.kr/masterclass206" target="_top">
+            <span class="mc-dd-icon">🎨</span> 디자인 / 드로잉
+          </a>
+        </div>
+      </li>
+      <li><a href="https://mdbf.co.kr/masterclass300" target="_top">소개</a></li>
+      <li><a href="https://mdbf.co.kr/masterclass400" target="_top">멤버십</a></li>
+      <li><a href="https://mdbf.co.kr/masterclass500" target="_top">커뮤니티</a></li>
+      <li><a href="https://mdbf.co.kr/masterclass600" target="_top">QnA</a></li>
+      <li><a href="https://mdbf.co.kr/masterclass1000" target="_top">공지사항</a></li>
+    </ul>
+  </div>
+</header>
+
+
+<!-- ==============================
+     HERO SECTION
+     ============================== -->
+<section class="sec-hero" id="sec-hero">
+
+  <div class="sphere-stage">
+    <div class="atmosphere"></div>
+    <div class="sphere" id="sphere"></div>
+    <div class="sphere-spec" id="sphereSpec"></div>
+    <div class="flare" id="flare"></div>
+  </div>
+
+  <div class="content">
+    <p class="eyebrow">교사의 첫 걸음</p>
+    <h1>지금, the Masterclass에서</h1>
+    <p class="subtitle">현장에서 검증된 연수를, 모든 교사에게.</p>
+    <button class="cta" type="button" data-href="https://mdbf.co.kr/masterclass100" id="ctaBtn">Masterclass 참여하기</button>
+  </div>
+
+  <div class="stats" id="stats">
+    <div class="stat">
+      <div class="stat-value">243명</div>
+      <div class="stat-label">정회원 수</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">20,000+</div>
+      <div class="stat-label">무상 배포 교육콘텐츠</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">100,000+</div>
+      <div class="stat-label">총 팔로워 수</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">SINCE 2016</div>
+      <div class="stat-label">디미교연</div>
+    </div>
+  </div>
+
+</section>
+
+
+
+<!-- ==============================
+     BEST SECTION (Coloso-inspired)
+     ============================== -->
+<section class="sec-best">
+<div class="container">
+
+  <header class="head">
+    <div>
+      <div class="section-label">Best Classes</div>
+      <h2>지금, 가장 사랑받는 <strong>클래스</strong></h2>
+    </div>
+    <a class="head-more" href="https://mdbf.co.kr/masterclass200" target="_top">
+      전체보기 →
+    </a>
+  </header>
+
+  <div class="grid">
+
+    <!-- 01 -->
+    <article class="card" data-href="https://mdbf.co.kr/masterclass201">
+      <div class="thumb">
+        <div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1B3A99"/>
+                <stop offset="100%" stop-color="#0F1F4D"/>
+              </linearGradient>
+              <radialGradient id="glow1" cx="70%" cy="35%" r="50%">
+                <stop offset="0%" stop-color="#5B8CFF" stop-opacity="0.6"/>
+                <stop offset="100%" stop-color="#5B8CFF" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="250" fill="url(#bg1)"/>
+            <rect width="400" height="250" fill="url(#glow1)"/>
+            <g stroke="#5B8CFF" stroke-width="1" fill="none" opacity="0.5">
+              <line x1="100" y1="80" x2="200" y2="140"/>
+              <line x1="280" y1="60" x2="200" y2="140"/>
+              <line x1="80" y1="180" x2="200" y2="140"/>
+              <line x1="300" y1="190" x2="200" y2="140"/>
+              <line x1="160" y1="50" x2="200" y2="140"/>
+              <line x1="240" y1="210" x2="200" y2="140"/>
+              <line x1="100" y1="80" x2="280" y2="60"/>
+              <line x1="80" y1="180" x2="300" y2="190"/>
+            </g>
+            <g fill="#fff">
+              <circle cx="100" cy="80" r="3.5"/>
+              <circle cx="280" cy="60" r="4"/>
+              <circle cx="80" cy="180" r="3"/>
+              <circle cx="300" cy="190" r="3.5"/>
+              <circle cx="160" cy="50" r="3"/>
+              <circle cx="240" cy="210" r="3"/>
+            </g>
+            <circle cx="200" cy="140" r="11" fill="#fff" stroke="#5B8CFF" stroke-width="2"/>
+          </svg>
+        </div>
+        <span class="status best">BEST</span>
+        <span class="rank">01</span>
+      </div>
+      <div class="info">
+        <div class="instructor">박찬용 · MDBF 대표</div>
+        <h3 class="title">교실에서 바로 쓰는 ChatGPT & Claude 실전</h3>
+        <div class="meta">
+          <span>AI / AX</span>
+          <span class="meta-dot"></span>
+          <span>6강 · 4주</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 02 -->
+    <article class="card" data-href="https://mdbf.co.kr/masterclass202">
+      <div class="thumb">
+        <div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2A4FBC"/>
+                <stop offset="100%" stop-color="#1B3A99"/>
+              </linearGradient>
+              <radialGradient id="glow2" cx="30%" cy="40%" r="55%">
+                <stop offset="0%" stop-color="#5B8CFF" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#5B8CFF" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="250" fill="url(#bg2)"/>
+            <rect width="400" height="250" fill="url(#glow2)"/>
+            <g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+              <path d="M 130 125 A 50 50 0 1 1 230 125"/>
+              <path d="M 218 100 L 230 125 L 252 118" stroke-linejoin="round"/>
+              <path d="M 230 125 A 50 50 0 1 1 130 125" opacity="0.4"/>
+              <path d="M 142 150 L 130 125 L 108 132" stroke-linejoin="round" opacity="0.4"/>
+            </g>
+            <g fill="#fff" opacity="0.65">
+              <rect x="60" y="60" width="22" height="22" rx="4"/>
+              <rect x="320" y="60" width="22" height="22" rx="4"/>
+              <rect x="60" y="170" width="22" height="22" rx="4"/>
+              <rect x="320" y="170" width="22" height="22" rx="4"/>
+            </g>
+          </svg>
+        </div>
+        <span class="status hot">HOT</span>
+        <span class="rank">02</span>
+      </div>
+      <div class="info">
+        <div class="instructor">김도현 · 업무자동화 트랙 리드</div>
+        <h3 class="title">Notion + AI로 만드는 학급 업무 자동화</h3>
+        <div class="meta">
+          <span>업무 자동화</span>
+          <span class="meta-dot"></span>
+          <span>5강 · 3주</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 03 -->
+    <article class="card" data-href="https://mdbf.co.kr/masterclass203">
+      <div class="thumb">
+        <div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#3364D9"/>
+                <stop offset="100%" stop-color="#1B3A99"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="250" fill="url(#bg3)"/>
+            <rect x="80" y="60" width="240" height="140" rx="10" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.35"/>
+            <rect x="100" y="50" width="240" height="140" rx="10" fill="rgba(255,255,255,0.85)" stroke="#fff" stroke-width="1.5"/>
+            <polygon points="190,95 190,145 240,120" fill="#3364D9"/>
+            <g stroke="#fff" stroke-width="1" opacity="0.4">
+              <line x1="110" y1="200" x2="320" y2="200"/>
+              <line x1="110" y1="215" x2="260" y2="215"/>
+            </g>
+          </svg>
+        </div>
+        <span class="status best">BEST</span>
+        <span class="rank">03</span>
+      </div>
+      <div class="info">
+        <div class="instructor">이수진 · 영상 콘텐츠 디렉터</div>
+        <h3 class="title">교사를 위한 Premiere Pro 한 학기 영상 기획</h3>
+        <div class="meta">
+          <span>이미지 / 영상</span>
+          <span class="meta-dot"></span>
+          <span>8강 · 5주</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 04 -->
+    <article class="card" data-href="https://mdbf.co.kr/masterclass204">
+      <div class="thumb">
+        <div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0F1F4D"/>
+                <stop offset="100%" stop-color="#2952B8"/>
+              </linearGradient>
+              <radialGradient id="glow4" cx="60%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#5B8CFF" stop-opacity="0.45"/>
+                <stop offset="100%" stop-color="#5B8CFF" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="250" fill="url(#bg4)"/>
+            <rect width="400" height="250" fill="url(#glow4)"/>
+            <rect x="110" y="60" width="180" height="130" rx="12" fill="rgba(255,255,255,0.9)" stroke="#fff" stroke-width="1.5"/>
+            <g stroke="#3364D9" stroke-width="1" opacity="0.5">
+              <line x1="130" y1="90" x2="270" y2="90"/>
+              <line x1="130" y1="110" x2="240" y2="110"/>
+              <line x1="130" y1="130" x2="260" y2="130"/>
+            </g>
+            <rect x="130" y="155" width="60" height="20" rx="4" fill="#3364D9"/>
+            <circle cx="290" cy="60" r="14" fill="#5B8CFF" opacity="0.8"/>
+          </svg>
+        </div>
+        <span class="status new">NEW</span>
+        <span class="rank">04</span>
+      </div>
+      <div class="info">
+        <div class="instructor">최예진 · 에듀테크 코치</div>
+        <h3 class="title">캔바 + Padlet으로 만드는 인터랙티브 수업</h3>
+        <div class="meta">
+          <span>에듀테크</span>
+          <span class="meta-dot"></span>
+          <span>4강 · 2주</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 05 -->
+    <article class="card" data-href="https://mdbf.co.kr/masterclass201">
+      <div class="thumb">
+        <div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1B3A99"/>
+                <stop offset="100%" stop-color="#0B1240"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="250" fill="url(#bg5)"/>
+            <g stroke="#5B8CFF" stroke-width="1.2" fill="none" opacity="0.6">
+              <path d="M 50 200 Q 150 100 250 130 T 380 80"/>
+              <path d="M 50 220 Q 130 140 220 160 T 380 110" opacity="0.4"/>
+            </g>
+            <g fill="#fff" opacity="0.85">
+              <circle cx="80" cy="180" r="3"/>
+              <circle cx="160" cy="125" r="3"/>
+              <circle cx="250" cy="130" r="4"/>
+              <circle cx="330" cy="95" r="3"/>
+            </g>
+            <text x="200" y="65" text-anchor="middle" fill="#5B8CFF" font-family="Montserrat" font-size="14" font-weight="600" letter-spacing="2" opacity="0.6">AI · DATA</text>
+          </svg>
+        </div>
+        <span class="date-badge">06.15 오픈</span>
+        <span class="status soon">UPCOMING</span>
+        <span class="rank">05</span>
+      </div>
+      <div class="info">
+        <div class="instructor">정민호 · AI 교육 연구위원</div>
+        <h3 class="title">데이터로 읽는 학교 — 교사를 위한 시각화 입문</h3>
+        <div class="meta">
+          <span>AI / AX</span>
+          <span class="meta-dot"></span>
+          <span>5강 · 3주</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 06 -->
+    <article class="card" data-href="https://mdbf.co.kr/masterclass203">
+      <div class="thumb">
+        <div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="bg6" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2A4FBC"/>
+                <stop offset="100%" stop-color="#0F1F4D"/>
+              </linearGradient>
+              <radialGradient id="glow6" cx="40%" cy="40%" r="55%">
+                <stop offset="0%" stop-color="#5B8CFF" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#5B8CFF" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="250" fill="url(#bg6)"/>
+            <rect width="400" height="250" fill="url(#glow6)"/>
+            <path d="M 60 200 Q 160 80 280 60" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 60 200 Q 160 80 280 60" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity="0.15"/>
+            <g transform="translate(280 60) rotate(20)">
+              <rect x="-7" y="-32" width="14" height="44" rx="3" fill="#fff" stroke="#3364D9" stroke-width="1.5"/>
+              <polygon points="-7,12 0,24 7,12" fill="#3364D9"/>
+            </g>
+            <circle cx="60" cy="200" r="6" fill="#fff"/>
+          </svg>
+        </div>
+        <span class="status hot">HOT</span>
+        <span class="rank">06</span>
+      </div>
+      <div class="info">
+        <div class="instructor">한지원 · 시각디자인 크리에이터</div>
+        <h3 class="title">손으로 그리는 디지털 일러스트 · iPad 입문</h3>
+        <div class="meta">
+          <span>이미지 / 영상</span>
+          <span class="meta-dot"></span>
+          <span>6강 · 4주</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+</div>
+</section>
+
+
+<!-- ==============================
+     NEW SECTION (신규 업로드 강좌)
+     ============================== -->
+<section class="sec-new">
+<div class="container">
+
+  <header class="head">
+    <div>
+      <div class="section-label">New Upload</div>
+      <h2>방금 업로드된 <strong>강좌</strong></h2>
+    </div>
+    <a class="head-more" href="https://mdbf.co.kr/masterclass200" target="_top">전체보기 →</a>
+  </header>
+
+  <div class="grid">
+
+    <!-- 01 -->
+    <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+      <div class="thumb">
+        <div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="ng1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1B3A99"/><stop offset="100%" stop-color="#0F1F4D"/>
+              </linearGradient>
+              <radialGradient id="ngw1" cx="30%" cy="30%" r="55%">
+                <stop offset="0%" stop-color="#5B8CFF" stop-opacity="0.55"/><stop offset="100%" stop-color="#5B8CFF" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="250" fill="url(#ng1)"/>
+            <rect width="400" height="250" fill="url(#ngw1)"/>
+            <g stroke="#5B8CFF" stroke-width="1.2" fill="none" opacity="0.5">
+              <circle cx="200" cy="125" r="60"/>
+              <circle cx="200" cy="125" r="35"/>
+              <circle cx="200" cy="125" r="12"/>
+            </g>
+            <line x1="200" y1="40" x2="200" y2="210" stroke="#5B8CFF" stroke-width="0.8" opacity="0.3"/>
+            <line x1="115" y1="125" x2="285" y2="125" stroke="#5B8CFF" stroke-width="0.8" opacity="0.3"/>
+            <circle cx="200" cy="125" r="6" fill="#fff"/>
+          </svg>
+        </div>
+        <span class="status new-badge">NEW</span>
+      </div>
+      <div class="info">
+        <div class="instructor">박찬용 · MDBF 대표</div>
+        <h3 class="title">AI 에이전트로 수업 설계하기</h3>
+        <div class="meta"><span>AI / AX</span><span class="meta-dot"></span><span>4강 · 2주</span></div>
+      </div>
+    </article>
+
+    <!-- 02 -->
+    <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+      <div class="thumb">
+        <div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="ng2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2A4FBC"/><stop offset="100%" stop-color="#1B3A99"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="250" fill="url(#ng2)"/>
+            <g stroke="#fff" stroke-width="1.5" fill="none" opacity="0.35">
+              <rect x="80" y="70" width="100" height="110" rx="8"/>
+              <rect x="210" y="80" width="110" height="90" rx="6"/>
+              <line x1="80" y1="180" x2="210" y2="170"/>
+              <line x1="180" y1="125" x2="210" y2="125"/>
+            </g>
+            <circle cx="180" cy="125" r="5" fill="#5B8CFF"/>
+            <circle cx="210" cy="125" r="5" fill="#5B8CFF"/>
+          </svg>
+        </div>
+        <span class="status new-badge">NEW</span>
+      </div>
+      <div class="info">
+        <div class="instructor">김미래 · 업무자동화 강사</div>
+        <h3 class="title">Zapier & Make로 교무 업무 자동화</h3>
+        <div class="meta"><span>업무 자동화</span><span class="meta-dot"></span><span>5강 · 3주</span></div>
+      </div>
+    </article>
+
+    <!-- 03 -->
+    <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+      <div class="thumb">
+        <div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="ng3" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#0F1F4D"/><stop offset="100%" stop-color="#2A4FBC"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="250" fill="url(#ng3)"/>
+            <polygon points="160,70 240,125 160,180" fill="rgba(255,255,255,0.12)" stroke="#fff" stroke-width="1.5"/>
+            <polygon points="165,78 235,125 165,172" fill="rgba(91,140,255,0.25)"/>
+            <circle cx="160" cy="70" r="5" fill="#5B8CFF"/>
+            <circle cx="240" cy="125" r="5" fill="#5B8CFF"/>
+            <circle cx="160" cy="180" r="5" fill="#5B8CFF"/>
+          </svg>
+        </div>
+        <span class="status new-badge">NEW</span>
+      </div>
+      <div class="info">
+        <div class="instructor">이지현 · 콘텐츠 제작 강사</div>
+        <h3 class="title">Canva Pro + CapCut으로 교실 콘텐츠 만들기</h3>
+        <div class="meta"><span>이미지 / 영상</span><span class="meta-dot"></span><span>6강 · 4주</span></div>
+      </div>
+    </article>
+
+    <!-- 04 -->
+    <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+      <div class="thumb">
+        <div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="ng4" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#1B3A99"/><stop offset="100%" stop-color="#0D1840"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="250" fill="url(#ng4)"/>
+            <g stroke="#5B8CFF" stroke-width="1" fill="none" opacity="0.45">
+              <line x1="60" y1="80" x2="340" y2="80"/>
+              <line x1="60" y1="125" x2="340" y2="125"/>
+              <line x1="60" y1="170" x2="340" y2="170"/>
+            </g>
+            <g fill="#5B8CFF">
+              <rect x="80" y="100" width="30" height="25" rx="3"/>
+              <rect x="140" y="85" width="30" height="40" rx="3"/>
+              <rect x="200" y="110" width="30" height="15" rx="3"/>
+              <rect x="260" y="90" width="30" height="35" rx="3"/>
+            </g>
+          </svg>
+        </div>
+        <span class="status new-badge">NEW</span>
+      </div>
+      <div class="info">
+        <div class="instructor">최현진 · 에듀테크 강사</div>
+        <h3 class="title">Padlet & Mentimeter 활용 수업 참여 높이기</h3>
+        <div class="meta"><span>에듀테크</span><span class="meta-dot"></span><span>4강 · 2주</span></div>
+      </div>
+    </article>
+
+  </div>
+
+</div>
+</section>
+
+
+<!-- ==============================
+     BANNER SECTION
+     ============================== -->
+<section class="sec-banner">
+<div class="banner-wrap">
+
+  <div class="carousel" id="carousel">
+
+    <div class="track" id="track">
+
+      <div class="slide s1" data-href="#">
+        <div class="slide-bg">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="160" cy="100" r="70" fill="none" stroke="#fff" stroke-width="0.6" opacity="0.5"/>
+            <circle cx="160" cy="100" r="50" fill="none" stroke="#fff" stroke-width="0.6" opacity="0.4"/>
+            <circle cx="160" cy="100" r="30" fill="none" stroke="#fff" stroke-width="0.6" opacity="0.3"/>
+            <circle cx="160" cy="100" r="6" fill="#fff" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="slide-content">
+          <div class="slide-label">New · 신규 개강</div>
+          <h2 class="slide-title">AI / AX 클래스 신규 개강</h2>
+          <p class="slide-sub">교실의 다음 한 학기를 바꿀, 검증된 실전 트랙.</p>
+        </div>
+      </div>
+
+      <div class="slide s2" data-href="#">
+        <div class="slide-bg">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#fff" stroke-width="0.6" opacity="0.4" fill="none">
+              <path d="M 60 40 L 180 40 L 180 160 L 60 160 Z"/>
+              <path d="M 80 60 L 200 60 L 200 180 L 80 180 Z" opacity="0.7"/>
+              <path d="M 100 80 L 220 80 L 220 200 L 100 200 Z" opacity="0.4"/>
+            </g>
+            <circle cx="140" cy="100" r="4" fill="#fff" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="slide-content">
+          <div class="slide-label">Since 2016 · 10주년</div>
+          <h2 class="slide-title">디미교연 10주년</h2>
+          <p class="slide-sub">10년의 시간이 만든, 교사 연수의 새로운 표준.</p>
+        </div>
+      </div>
+
+      <div class="slide s3" data-href="#">
+        <div class="slide-bg">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#fff" opacity="0.5">
+              <circle cx="120" cy="60" r="2"/><circle cx="150" cy="80" r="2"/><circle cx="180" cy="60" r="2"/>
+              <circle cx="120" cy="100" r="2"/><circle cx="150" cy="120" r="2"/><circle cx="180" cy="100" r="2"/>
+              <circle cx="120" cy="140" r="2"/><circle cx="150" cy="160" r="2"/><circle cx="180" cy="140" r="2"/>
+            </g>
+            <circle cx="150" cy="100" r="80" fill="none" stroke="#fff" stroke-width="0.5" opacity="0.25"/>
+          </svg>
+        </div>
+        <div class="slide-content">
+          <div class="slide-label">Free · 무상 자료</div>
+          <h2 class="slide-title">교사 콘텐츠 20,000+</h2>
+          <p class="slide-sub">전국 교사가 함께 만든 자료, 누구나 자유롭게.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="nav-btn nav-prev" id="bnr-prev" aria-label="이전 슬라이드">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+    <button class="nav-btn nav-next" id="bnr-next" aria-label="다음 슬라이드">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+
+    <div class="indicators" id="bnr-indicators">
+      <button class="dot active" data-i="0" aria-label="슬라이드 1"></button>
+      <button class="dot" data-i="1" aria-label="슬라이드 2"></button>
+      <button class="dot" data-i="2" aria-label="슬라이드 3"></button>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
+<!-- ==============================
+     LIVE SECTION (라이브 녹화본)
+     ============================== -->
+<section class="sec-live">
+<div class="container">
+
+  <header class="head">
+    <div>
+      <div class="section-label">Live Rec</div>
+      <h2>라이브 <strong>녹화본</strong></h2>
+    </div>
+    <a class="head-more" href="https://mdbf.co.kr/masterclass200" target="_top">전체보기 →</a>
+  </header>
+
+  <div class="grid">
+
+    <!-- 01 -->
+    <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+      <div class="thumb">
+        <div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2a0a0a"/><stop offset="100%" stop-color="#1B0E1A"/>
+              </linearGradient>
+              <radialGradient id="lgw1" cx="60%" cy="40%" r="50%">
+                <stop offset="0%" stop-color="#ff6b6b" stop-opacity="0.3"/><stop offset="100%" stop-color="#ff6b6b" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="250" fill="url(#lg1)"/>
+            <rect width="400" height="250" fill="url(#lgw1)"/>
+            <circle cx="200" cy="110" r="30" fill="none" stroke="rgba(255,100,100,0.5)" stroke-width="1.5"/>
+            <polygon points="188,96 188,124 218,110" fill="rgba(255,100,100,0.8)"/>
+            <rect x="140" y="155" width="120" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+            <rect x="140" y="155" width="55" height="4" rx="2" fill="rgba(255,100,100,0.6)"/>
+          </svg>
+        </div>
+        <span class="status live-badge">LIVE</span>
+      </div>
+      <div class="info">
+        <div class="instructor">박찬용 · 2025.05.10 라이브</div>
+        <h3 class="title">Claude API로 나만의 교육 챗봇 만들기 실전 라이브</h3>
+        <div class="meta"><span>AI / AX</span><span class="meta-dot"></span><span>1회 · 90분</span></div>
+      </div>
+    </article>
+
+    <!-- 02 -->
+    <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+      <div class="thumb">
+        <div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="lg2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0a1a2a"/><stop offset="100%" stop-color="#0D1840"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="250" fill="url(#lg2)"/>
+            <g stroke="rgba(91,140,255,0.4)" stroke-width="1" fill="none">
+              <path d="M 120 80 L 200 125 L 280 80"/>
+              <path d="M 120 170 L 200 125 L 280 170"/>
+              <line x1="200" y1="125" x2="200" y2="60"/>
+            </g>
+            <circle cx="200" cy="125" r="8" fill="#5B8CFF" opacity="0.7"/>
+            <circle cx="120" cy="80" r="5" fill="#fff" opacity="0.4"/>
+            <circle cx="280" cy="80" r="5" fill="#fff" opacity="0.4"/>
+            <circle cx="120" cy="170" r="5" fill="#fff" opacity="0.4"/>
+            <circle cx="280" cy="170" r="5" fill="#fff" opacity="0.4"/>
+          </svg>
+        </div>
+        <span class="status rec-badge">REC</span>
+      </div>
+      <div class="info">
+        <div class="instructor">김도현 · 2025.05.03 라이브</div>
+        <h3 class="title">구글 시트 + Apps Script 자동화 Q&A 라이브</h3>
+        <div class="meta"><span>업무 자동화</span><span class="meta-dot"></span><span>1회 · 75분</span></div>
+      </div>
+    </article>
+
+    <!-- 03 -->
+    <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+      <div class="thumb">
+        <div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="lg3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1a0a2a"/><stop offset="100%" stop-color="#0D0B1A"/>
+              </linearGradient>
+              <radialGradient id="lgw3" cx="50%" cy="50%" r="45%">
+                <stop offset="0%" stop-color="#9B59B6" stop-opacity="0.3"/><stop offset="100%" stop-color="transparent"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="250" fill="url(#lg3)"/>
+            <rect width="400" height="250" fill="url(#lgw3)"/>
+            <rect x="130" y="75" width="140" height="100" rx="6" fill="none" stroke="rgba(155,89,182,0.5)" stroke-width="1.5"/>
+            <polygon points="185,95 185,155 235,125" fill="rgba(155,89,182,0.6)"/>
+          </svg>
+        </div>
+        <span class="status rec-badge">REC</span>
+      </div>
+      <div class="info">
+        <div class="instructor">이지현 · 2025.04.26 라이브</div>
+        <h3 class="title">Stable Diffusion으로 수업 자료 이미지 생성 라이브</h3>
+        <div class="meta"><span>이미지 / 영상</span><span class="meta-dot"></span><span>1회 · 60분</span></div>
+      </div>
+    </article>
+
+    <!-- 04 -->
+    <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+      <div class="thumb">
+        <div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="lg4" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0a1a0a"/><stop offset="100%" stop-color="#0D1820"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="250" fill="url(#lg4)"/>
+            <g fill="none" stroke="rgba(80,200,120,0.45)" stroke-width="1.5">
+              <rect x="100" y="85" width="80" height="80" rx="8"/>
+              <rect x="220" y="85" width="80" height="80" rx="8"/>
+              <line x1="180" y1="125" x2="220" y2="125"/>
+            </g>
+            <circle cx="180" cy="125" r="5" fill="rgba(80,200,120,0.7)"/>
+            <circle cx="220" cy="125" r="5" fill="rgba(80,200,120,0.7)"/>
+          </svg>
+        </div>
+        <span class="status rec-badge">REC</span>
+      </div>
+      <div class="info">
+        <div class="instructor">최현진 · 2025.04.19 라이브</div>
+        <h3 class="title">Kahoot + Classting 실전 활용 수업 라이브</h3>
+        <div class="meta"><span>에듀테크</span><span class="meta-dot"></span><span>1회 · 80분</span></div>
+      </div>
+    </article>
+
+  </div>
+
+</div>
+</section>
+
+
+<!-- ==============================
+     FIELD SECTION (분야별 인기순)
+     ============================== -->
+<!-- ==============================
+     FIELD · AI / AX
+     ============================== -->
+<section class="sec-field" id="sec-field-ai" style="background:#f5f7ff;">
+<div class="container">
+
+  <div class="field-header">
+    <div>
+      <div class="field-label"><span style="display:inline-block;width:28px;height:1px;background:var(--brand);opacity:0.6;margin-right:14px;vertical-align:middle;"></span>AI / AX</div>
+      <h3>AI / AX <strong>인기 강좌</strong></h3>
+    </div>
+    <a class="head-more" href="https://mdbf.co.kr/masterclass201" target="_top">전체보기 →</a>
+  </div>
+
+  <div class="grid">
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#EDF2FF"/>
+            <g stroke="#3364D9" stroke-width="1.2" fill="none" opacity="0.5">
+              <line x1="120" y1="90" x2="200" y2="140"/><line x1="280" y1="80" x2="200" y2="140"/>
+              <line x1="100" y1="175" x2="200" y2="140"/><line x1="300" y1="185" x2="200" y2="140"/>
+            </g>
+            <g fill="#3364D9"><circle cx="120" cy="90" r="5"/><circle cx="280" cy="80" r="6"/>
+              <circle cx="100" cy="175" r="4"/><circle cx="300" cy="185" r="5"/></g>
+            <circle cx="200" cy="140" r="12" fill="#fff" stroke="#3364D9" stroke-width="2"/>
+          </svg>
+        </div>
+        <span class="rank-badge">#1</span></div>
+        <div class="info"><div class="instructor">박찬용 · MDBF 대표</div>
+          <h3 class="title">교실에서 바로 쓰는 ChatGPT & Claude 실전</h3>
+          <div class="meta"><span>AI / AX</span><span class="meta-dot"></span><span>6강 · 4주</span></div></div>
+      </article>
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#F0F4FF"/>
+            <circle cx="200" cy="125" r="55" fill="none" stroke="#3364D9" stroke-width="1.5" opacity="0.4"/>
+            <circle cx="200" cy="125" r="30" fill="none" stroke="#3364D9" stroke-width="1" opacity="0.3"/>
+            <circle cx="200" cy="125" r="8" fill="#3364D9" opacity="0.6"/>
+          </svg>
+        </div>
+        <span class="rank-badge">#2</span></div>
+        <div class="info"><div class="instructor">정수아 · AI 교육 전문가</div>
+          <h3 class="title">Gemini로 수업 계획서 자동 생성하기</h3>
+          <div class="meta"><span>AI / AX</span><span class="meta-dot"></span><span>5강 · 3주</span></div></div>
+      </article>
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#EEF1FF"/>
+            <g stroke="#3364D9" stroke-width="1" fill="none" opacity="0.4">
+              <rect x="120" y="80" width="160" height="90" rx="10"/>
+              <line x1="140" y1="105" x2="260" y2="105"/>
+              <line x1="140" y1="120" x2="220" y2="120"/>
+              <line x1="140" y1="135" x2="240" y2="135"/>
+            </g>
+            <circle cx="272" cy="152" r="20" fill="#3364D9" opacity="0.15"/>
+            <text x="265" y="158" font-size="14" fill="#3364D9" opacity="0.6">AI</text>
+          </svg>
+        </div>
+        <span class="rank-badge">#3</span></div>
+        <div class="info"><div class="instructor">이준혁 · AI 리터러시 강사</div>
+          <h3 class="title">교사를 위한 AI 리터러시 기초 완성</h3>
+          <div class="meta"><span>AI / AX</span><span class="meta-dot"></span><span>8강 · 5주</span></div></div>
+      </article>
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#EDF2FF"/>
+            <g fill="#3364D9" opacity="0.25">
+              <rect x="80" y="85" width="240" height="20" rx="4"/>
+              <rect x="80" y="115" width="180" height="14" rx="3"/>
+              <rect x="80" y="140" width="210" height="14" rx="3"/>
+              <rect x="80" y="165" width="150" height="14" rx="3"/>
+            </g>
+            <circle cx="310" cy="95" r="22" fill="#3364D9" opacity="0.1" stroke="#3364D9" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <span class="rank-badge">#4</span></div>
+        <div class="info"><div class="instructor">박찬용 · MDBF 대표</div>
+          <h3 class="title">AI 프롬프트 엔지니어링 for 교사</h3>
+          <div class="meta"><span>AI / AX</span><span class="meta-dot"></span><span>4강 · 2주</span></div></div>
+      </article>
+  </div>
+
+</div>
+</section>
+
+<!-- ==============================
+     FIELD · 업무 자동화
+     ============================== -->
+<section class="sec-field" id="sec-field-auto" style="background:#fff;">
+<div class="container">
+
+  <div class="field-header">
+    <div>
+      <div class="field-label"><span style="display:inline-block;width:28px;height:1px;background:var(--brand);opacity:0.6;margin-right:14px;vertical-align:middle;"></span>업무 자동화</div>
+      <h3>업무 자동화 <strong>인기 강좌</strong></h3>
+    </div>
+    <a class="head-more" href="https://mdbf.co.kr/masterclass202" target="_top">전체보기 →</a>
+  </div>
+
+  <div class="grid">
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#EDF2FF"/>
+            <g fill="none" stroke="#3364D9" stroke-width="2" stroke-linecap="round" opacity="0.5">
+              <path d="M 150 125 A 55 55 0 1 1 250 125"/>
+              <path d="M 240 100 L 250 125 L 272 118" stroke-linejoin="round"/>
+            </g>
+            <rect x="80" y="80" width="22" height="22" rx="4" fill="#3364D9" opacity="0.2"/>
+            <rect x="300" y="80" width="22" height="22" rx="4" fill="#3364D9" opacity="0.2"/>
+          </svg>
+        </div>
+        <span class="rank-badge">#1</span></div>
+        <div class="info"><div class="instructor">김도현 · 업무자동화 트랙 리드</div>
+          <h3 class="title">Notion + AI로 만드는 학급 업무 자동화</h3>
+          <div class="meta"><span>업무 자동화</span><span class="meta-dot"></span><span>5강 · 3주</span></div></div>
+      </article>
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#F0F4FF"/>
+            <g stroke="#3364D9" stroke-width="1.2" fill="none" opacity="0.45">
+              <rect x="100" y="80" width="60" height="50" rx="6"/>
+              <rect x="240" y="80" width="60" height="50" rx="6"/>
+              <line x1="160" y1="105" x2="240" y2="105" stroke-dasharray="6 4"/>
+            </g>
+            <circle cx="200" cy="105" r="8" fill="#3364D9" opacity="0.3"/>
+          </svg>
+        </div>
+        <span class="rank-badge">#2</span></div>
+        <div class="info"><div class="instructor">이민수 · 구글 워크스페이스 전문가</div>
+          <h3 class="title">Google 스프레드시트 자동화 with Apps Script</h3>
+          <div class="meta"><span>업무 자동화</span><span class="meta-dot"></span><span>6강 · 4주</span></div></div>
+      </article>
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#EEF1FF"/>
+            <g fill="none" stroke="#3364D9" stroke-width="1" opacity="0.4">
+              <circle cx="140" cy="125" r="30"/>
+              <circle cx="260" cy="125" r="30"/>
+              <path d="M 170 125 Q 200 100 230 125 Q 200 150 170 125"/>
+            </g>
+          </svg>
+        </div>
+        <span class="rank-badge">#3</span></div>
+        <div class="info"><div class="instructor">김미래 · 업무자동화 강사</div>
+          <h3 class="title">Zapier & Make 연동 자동화 실전</h3>
+          <div class="meta"><span>업무 자동화</span><span class="meta-dot"></span><span>4강 · 2주</span></div></div>
+      </article>
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#EDF2FF"/>
+            <g fill="#3364D9" opacity="0.2">
+              <rect x="100" y="90" width="40" height="70" rx="4"/>
+              <rect x="155" y="75" width="40" height="85" rx="4"/>
+              <rect x="210" y="100" width="40" height="60" rx="4"/>
+              <rect x="265" y="80" width="40" height="80" rx="4"/>
+            </g>
+          </svg>
+        </div>
+        <span class="rank-badge">#4</span></div>
+        <div class="info"><div class="instructor">박지훈 · 교육행정 자동화 강사</div>
+          <h3 class="title">학교 행정 문서 자동화 시스템 구축</h3>
+          <div class="meta"><span>업무 자동화</span><span class="meta-dot"></span><span>5강 · 3주</span></div></div>
+      </article>
+  </div>
+
+</div>
+</section>
+
+<!-- ==============================
+     FIELD · 이미지 / 영상
+     ============================== -->
+<section class="sec-field" id="sec-field-media" style="background:#f5f7ff;">
+<div class="container">
+
+  <div class="field-header">
+    <div>
+      <div class="field-label"><span style="display:inline-block;width:28px;height:1px;background:var(--brand);opacity:0.6;margin-right:14px;vertical-align:middle;"></span>이미지 / 영상</div>
+      <h3>이미지 / 영상 <strong>인기 강좌</strong></h3>
+    </div>
+    <a class="head-more" href="https://mdbf.co.kr/masterclass203" target="_top">전체보기 →</a>
+  </div>
+
+  <div class="grid">
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#EDF2FF"/>
+            <rect x="90" y="70" width="140" height="110" rx="10" fill="none" stroke="#3364D9" stroke-width="1.5" opacity="0.4"/>
+            <polygon points="185,95 185,145 225,120" fill="#3364D9" opacity="0.5"/>
+          </svg>
+        </div>
+        <span class="rank-badge">#1</span></div>
+        <div class="info"><div class="instructor">이지현 · 콘텐츠 제작 강사</div>
+          <h3 class="title">Canva Pro로 교육 콘텐츠 디자인하기</h3>
+          <div class="meta"><span>이미지 / 영상</span><span class="meta-dot"></span><span>5강 · 3주</span></div></div>
+      </article>
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#F0F4FF"/>
+            <circle cx="200" cy="115" r="45" fill="none" stroke="#3364D9" stroke-width="1.5" opacity="0.35"/>
+            <g fill="#3364D9" opacity="0.3">
+              <circle cx="200" cy="70" r="5"/>
+              <circle cx="245" cy="115" r="5"/>
+              <circle cx="200" cy="160" r="5"/>
+              <circle cx="155" cy="115" r="5"/>
+            </g>
+            <circle cx="200" cy="115" r="10" fill="#3364D9" opacity="0.5"/>
+          </svg>
+        </div>
+        <span class="rank-badge">#2</span></div>
+        <div class="info"><div class="instructor">장성민 · 영상 편집 강사</div>
+          <h3 class="title">CapCut으로 수업 영상 편집하기</h3>
+          <div class="meta"><span>이미지 / 영상</span><span class="meta-dot"></span><span>6강 · 4주</span></div></div>
+      </article>
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#EEF1FF"/>
+            <g stroke="#3364D9" stroke-width="1.2" fill="none" opacity="0.4">
+              <path d="M 100 170 Q 150 80 200 110 Q 250 140 300 70"/>
+            </g>
+            <circle cx="300" cy="70" r="6" fill="#3364D9" opacity="0.5"/>
+            <circle cx="100" cy="170" r="5" fill="#3364D9" opacity="0.4"/>
+          </svg>
+        </div>
+        <span class="rank-badge">#3</span></div>
+        <div class="info"><div class="instructor">이지현 · 콘텐츠 제작 강사</div>
+          <h3 class="title">AI 이미지 생성으로 수업 자료 만들기</h3>
+          <div class="meta"><span>이미지 / 영상</span><span class="meta-dot"></span><span>4강 · 2주</span></div></div>
+      </article>
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#EDF2FF"/>
+            <rect x="110" y="80" width="180" height="90" rx="8" fill="none" stroke="#3364D9" stroke-width="1.5" opacity="0.35"/>
+            <line x1="130" y1="100" x2="270" y2="100" stroke="#3364D9" stroke-width="1" opacity="0.3"/>
+            <polygon points="185,115 185,155 225,135" fill="#3364D9" opacity="0.4"/>
+          </svg>
+        </div>
+        <span class="rank-badge">#4</span></div>
+        <div class="info"><div class="instructor">박나리 · 유튜브 교육 채널 운영자</div>
+          <h3 class="title">교사 유튜브 채널 운영 A to Z</h3>
+          <div class="meta"><span>이미지 / 영상</span><span class="meta-dot"></span><span>7강 · 4주</span></div></div>
+      </article>
+  </div>
+
+</div>
+</section>
+
+<!-- ==============================
+     FIELD · 에듀테크
+     ============================== -->
+<section class="sec-field" id="sec-field-edu" style="background:#fff;">
+<div class="container">
+
+  <div class="field-header">
+    <div>
+      <div class="field-label"><span style="display:inline-block;width:28px;height:1px;background:var(--brand);opacity:0.6;margin-right:14px;vertical-align:middle;"></span>에듀테크</div>
+      <h3>에듀테크 <strong>인기 강좌</strong></h3>
+    </div>
+    <a class="head-more" href="https://mdbf.co.kr/masterclass204" target="_top">전체보기 →</a>
+  </div>
+
+  <div class="grid">
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#EDF2FF"/>
+            <g stroke="#3364D9" stroke-width="0.8" opacity="0.35">
+              <line x1="100" y1="95" x2="300" y2="95"/>
+              <line x1="100" y1="125" x2="300" y2="125"/>
+              <line x1="100" y1="155" x2="300" y2="155"/>
+              <line x1="130" y1="75" x2="130" y2="175"/>
+              <line x1="200" y1="75" x2="200" y2="175"/>
+              <line x1="270" y1="75" x2="270" y2="175"/>
+            </g>
+            <rect x="115" y="110" width="70" height="45" rx="5" fill="rgba(51,100,217,0.15)" stroke="#3364D9" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <span class="rank-badge">#1</span></div>
+        <div class="info"><div class="instructor">최현진 · 에듀테크 강사</div>
+          <h3 class="title">Padlet 활용 수업 참여율 높이기</h3>
+          <div class="meta"><span>에듀테크</span><span class="meta-dot"></span><span>4강 · 2주</span></div></div>
+      </article>
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#F0F4FF"/>
+            <circle cx="200" cy="125" r="60" fill="none" stroke="#3364D9" stroke-width="1.5" opacity="0.3" stroke-dasharray="8 6"/>
+            <g fill="#3364D9" opacity="0.4">
+              <circle cx="200" cy="65" r="7"/>
+              <circle cx="252" cy="95" r="7"/>
+              <circle cx="252" cy="155" r="7"/>
+              <circle cx="200" cy="185" r="7"/>
+              <circle cx="148" cy="155" r="7"/>
+              <circle cx="148" cy="95" r="7"/>
+            </g>
+          </svg>
+        </div>
+        <span class="rank-badge">#2</span></div>
+        <div class="info"><div class="instructor">한소희 · 에듀테크 컨설턴트</div>
+          <h3 class="title">Mentimeter로 실시간 수업 피드백 받기</h3>
+          <div class="meta"><span>에듀테크</span><span class="meta-dot"></span><span>3강 · 2주</span></div></div>
+      </article>
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#EEF1FF"/>
+            <rect x="100" y="80" width="200" height="90" rx="10" fill="none" stroke="#3364D9" stroke-width="1.5" opacity="0.35"/>
+            <g fill="#3364D9" opacity="0.3">
+              <rect x="120" y="100" width="70" height="14" rx="3"/>
+              <rect x="120" y="122" width="50" height="10" rx="2"/>
+              <rect x="120" y="140" width="60" height="10" rx="2"/>
+            </g>
+          </svg>
+        </div>
+        <span class="rank-badge">#3</span></div>
+        <div class="info"><div class="instructor">오현주 · 스마트교실 운영 강사</div>
+          <h3 class="title">구글 클래스룸 완전 정복</h3>
+          <div class="meta"><span>에듀테크</span><span class="meta-dot"></span><span>5강 · 3주</span></div></div>
+      </article>
+      <article class="card" data-href="https://mdbf.co.kr/masterclass200">
+        <div class="thumb"><div class="thumb-graphic">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#EDF2FF"/>
+            <g fill="none" stroke="#3364D9" stroke-width="1.2" opacity="0.4">
+              <rect x="115" y="85" width="80" height="60" rx="6"/>
+              <rect x="210" y="105" width="80" height="60" rx="6"/>
+              <line x1="195" y1="115" x2="210" y2="130"/>
+            </g>
+            <circle cx="195" cy="115" r="5" fill="#3364D9" opacity="0.5"/>
+          </svg>
+        </div>
+        <span class="rank-badge">#4</span></div>
+        <div class="info"><div class="instructor">최현진 · 에듀테크 강사</div>
+          <h3 class="title">Classting으로 학급 SNS 운영하기</h3>
+          <div class="meta"><span>에듀테크</span><span class="meta-dot"></span><span>4강 · 2주</span></div></div>
+      </article>
+  </div>
+
+</div>
+</section>
+
+
+
+<script>
+// ==============================
+// HERO JS
+// ==============================
+(() => {
+  const chipsData = [
+    { text: 'AI / AX',       x: 22, y: 20, style: 'filled'   },
+    { text: 'Edu-tech',      x: 13, y: 33, style: 'outlined' },
+    { text: 'MDBF',          x: 9,  y: 48, style: 'filled'   },
+    { text: 'Design',        x: 19, y: 64, style: 'outlined' },
+    { text: 'Drawing',       x: 78, y: 20, style: 'outlined' },
+    { text: 'Contents',      x: 87, y: 33, style: 'filled'   },
+    { text: 'Production',    x: 88, y: 48, style: 'outlined' },
+    { text: 'Image / Video', x: 78, y: 64, style: 'outlined' },
+  ];
+
+  const cursorSVG = `
+    <svg class="cursor-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 3 L19 12 L12.5 13.5 L9 21 Z" stroke="black" stroke-width="1.2" stroke-linejoin="round"/>
+    </svg>`;
+
+  // ← 핵심 변경: getElementById('hero') → getElementById('sec-hero')
+  const heroEl = document.getElementById('sec-hero');
+  const chips = [];
+
+  chipsData.forEach((data, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'chip-wrap';
+    wrap.style.left = data.x + '%';
+    wrap.style.top  = data.y + '%';
+
+    const chip = document.createElement('div');
+    chip.className = `chip ${data.style}`;
+    chip.innerHTML = data.text + cursorSVG;
+    chip.style.animationDelay = (i * 0.4) + 's';
+
+    wrap.appendChild(chip);
+    heroEl.appendChild(wrap);
+
+    chips.push({ el: wrap, baseX: 0, baseY: 0, ox: 0, oy: 0, tx: 0, ty: 0 });
+  });
+
+  function recomputeBase() {
+    chips.forEach(c => {
+      const prev = c.el.style.transform;
+      c.el.style.transform = 'translate(-50%, -50%) translate3d(0,0,0)';
+      const r = c.el.getBoundingClientRect();
+      c.baseX = r.left + r.width / 2;
+      c.baseY = r.top  + r.height / 2;
+      c.el.style.transform = prev;
+    });
+  }
+
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(recomputeBase);
+  window.addEventListener('load', recomputeBase);
+  window.addEventListener('resize', recomputeBase);
+  setTimeout(recomputeBase, 100);
+
+  let mouseX = -9999, mouseY = -9999;
+  window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+  document.addEventListener('mouseleave', () => { mouseX = -9999; mouseY = -9999; });
+
+  const REPULSE_RADIUS = 170, REPULSE_STRENGTH = 75, EASE = 0.15;
+
+  function animateChips() {
+    chips.forEach(c => {
+      const cx = c.baseX + c.ox, cy = c.baseY + c.oy;
+      const dx = cx - mouseX, dy = cy - mouseY;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist < REPULSE_RADIUS && dist > 0.1) {
+        const force = Math.pow(1 - dist / REPULSE_RADIUS, 2) * REPULSE_STRENGTH;
+        c.tx = (dx / dist) * force;
+        c.ty = (dy / dist) * force;
+      } else {
+        c.tx = 0; c.ty = 0;
+      }
+
+      c.ox += (c.tx - c.ox) * EASE;
+      c.oy += (c.ty - c.oy) * EASE;
+      c.el.style.transform = `translate(-50%, -50%) translate3d(${c.ox.toFixed(2)}px, ${c.oy.toFixed(2)}px, 0)`;
+    });
+    requestAnimationFrame(animateChips);
+  }
+  animateChips();
+
+  // Sphere light animation
+  const sphere     = document.getElementById('sphere');
+  const sphereSpec = document.getElementById('sphereSpec');
+  const flare      = document.getElementById('flare');
+  let t = Math.PI * 0.25;
+
+  function animateLight() {
+    t += 0.0035;
+    const lx = 35 + Math.sin(t) * 22 + Math.cos(t * 0.6) * 8;
+    const ly = 30 + Math.cos(t * 1.3) * 18 + Math.sin(t * 0.4) * 8;
+    sphere.style.setProperty('--lx', lx + '%');
+    sphere.style.setProperty('--ly', ly + '%');
+    sphereSpec.style.setProperty('--lx', lx + '%');
+    sphereSpec.style.setProperty('--ly', ly + '%');
+    flare.style.setProperty('--fx', (lx * 0.9 + 5) + '%');
+    flare.style.setProperty('--fy', (ly * 0.9 + 5) + '%');
+    requestAnimationFrame(animateLight);
+  }
+  animateLight();
+
+  // Stats spotlight
+  const stats = document.getElementById('stats');
+  stats.addEventListener('mousemove', e => {
+    const rect = stats.getBoundingClientRect();
+    stats.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+    stats.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+  });
+
+  // CTA button
+  const cta = document.getElementById('ctaBtn');
+  cta.addEventListener('click', () => {
+    const href = cta.dataset.href;
+    if (href && href !== '#') window.open(href, '_top');
+  });
+})();
+
+
+// ==============================
+// CLASSES JS
+// ==============================
+(() => {
+  document.querySelectorAll('.sec-classes .card:not(.soon)').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - rect.top)  / rect.height * 100) + '%');
+    });
+  });
+})();
+
+
+// ==============================
+// BEST CARDS JS
+// ==============================
+(() => {
+  document.querySelectorAll('.sec-best .card[data-href]').forEach(card => {
+    card.addEventListener('click', () => {
+      const href = card.dataset.href;
+      if (href && href !== '#') window.open(href, '_top');
+    });
+  });
+})();
+
+
+// ==============================
+// NEW / LIVE CARDS JS
+// ==============================
+(() => {
+  document.querySelectorAll('.sec-new .card[data-href], .sec-live .card[data-href]').forEach(card => {
+    card.addEventListener('click', () => {
+      const href = card.dataset.href;
+      if (href && href !== '#') window.open(href, '_top');
+    });
+  });
+})();
+
+
+// ==============================
+// FIELD CARDS JS
+// ==============================
+(() => {
+  document.querySelectorAll('.sec-field .card[data-href]').forEach(card => {
+    card.addEventListener('click', () => {
+      const href = card.dataset.href;
+      if (href && href !== '#') window.open(href, '_top');
+    });
+  });
+})();
+
+
+// ==============================
+// BANNER JS
+// ==============================
+(() => {
+  const track    = document.getElementById('track');
+  const carousel = document.getElementById('carousel');
+  const slides   = track.children;
+  const total    = slides.length;
+  const dots     = document.querySelectorAll('#bnr-indicators .dot');
+
+  let idx = 0;
+  const AUTO_MS = 5000;
+  let timer;
+
+  function goTo(i) {
+    idx = (i + total) % total;
+    track.style.transform = `translateX(-${idx * 100}%)`;
+    dots.forEach((d, di) => d.classList.toggle('active', di === idx));
+  }
+
+  function next() { goTo(idx + 1); }
+  function prev() { goTo(idx - 1); }
+  function start() { stop(); timer = setInterval(next, AUTO_MS); }
+  function stop()  { if (timer) clearInterval(timer); }
+
+  document.getElementById('bnr-next').addEventListener('click', () => { next(); start(); });
+  document.getElementById('bnr-prev').addEventListener('click', () => { prev(); start(); });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => { goTo(parseInt(dot.dataset.i, 10)); start(); });
+  });
+
+  Array.from(slides).forEach(s => {
+    s.addEventListener('click', () => {
+      const href = s.dataset.href;
+      if (href && href !== '#') window.open(href, '_top');
+    });
+  });
+
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stop(); else start();
+  });
+
+  start();
+})();
+</script>
+
+<!-- ===== SITE FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-top">
+      <div class="footer-brand">
+                <img class="footer-logo-mark" src="../assets/mdbf-logo.png" alt="MDBF 디미교연 로고" style="border-radius:11px;">
+        <div class="footer-logo-text">
+          <span class="logo-name">디지털미디어교육콘텐츠 교사연구협회</span>
+          <span class="logo-sub">몽당분필 · MDBF</span>
+        </div>
+      </div>
+      <div class="footer-studio">
+        <a href="https://www.instagram.com/parcyun" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;"><span class="studio-credit">Designed by <span class="ps-signature">parcyun studio</span></span></a>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-mid">
+      <div class="footer-nav-block">
+        <span class="footer-nav-label">바로가기</span>
+        <nav class="footer-links">
+          <a href="https://mdbf.co.kr/29" target="_blank" rel="noopener">후원하기</a>
+          <a href="mailto:mdbftv@naver.com">문의하기</a>
+        </nav>
+      </div>
+      <div class="footer-sns-block">
+        <span class="footer-nav-label">소셜미디어</span>
+        <div class="footer-sns-links">
+          <a class="sns-btn" href="https://www.instagram.com/mdbf__/" target="_blank" rel="noopener" aria-label="Instagram @mdbf__">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+            </svg>
+          </a>
+          <a class="sns-btn" href="https://www.youtube.com/@mdbftv" target="_blank" rel="noopener" aria-label="YouTube @mdbftv">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 0-3.4-3.4C14.7 3 12 3 12 3s-2.7 0-4.19.29a4.83 4.83 0 0 0-3.4 3.4C4 8.18 4 12 4 12s0 3.82.41 5.31a4.83 4.83 0 0 0 3.4 3.4C9.3 21 12 21 12 21s2.7 0 4.19-.29a4.83 4.83 0 0 0 3.4-3.4C20 15.82 20 12 20 12s0-3.82-.41-5.31ZM9.75 15.02V8.98L15.5 12l-5.75 3.02Z"/>
+            </svg>
+          </a>
+          <a class="sns-btn" href="mailto:mdbftv@naver.com" aria-label="이메일 문의">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="3"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+      <div class="footer-info">
+        <span class="footer-info-item">@mdbf</span>
+        <span class="footer-info-item">디지털미디어교육콘텐츠 교사연구협회</span>
+        <span class="footer-info-item">사업자등록번호 687-82-00384</span>
+        <span class="footer-info-item"><a href="mailto:mdbftv@naver.com">mdbftv@naver.com</a></span>
+        <span class="footer-info-item"><a href="#">개인정보 처리 방침</a></span>
+        <span class="footer-info-item"><a href="#">이용 약관</a></span>
+      </div>
+      <div class="footer-copy">© 2025 디지털미디어교육콘텐츠 교사연구협회. All rights reserved.</div>
+    </div>
+
+  </div>
+</footer>
+
+<script src="../assets/iframe-resizer.js"></script>
+
+<button id="scrollTopBtn" aria-label="최상단으로 이동" title="최상단으로 이동">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+
+<style>
+#scrollTopBtn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #3364D9;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, background 0.2s ease;
+  z-index: 9999;
+  box-shadow: 0 4px 20px rgba(51,100,217,0.45);
+}
+#scrollTopBtn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+#scrollTopBtn:hover { background: #2952B8; }
+</style>
+<script>
+(function(){
+  var btn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', function(){
+    btn.classList.toggle('visible', window.scrollY > 300);
+  }, {passive: true});
+  btn.addEventListener('click', function(){
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+})();
+</script>
+
+</body>
+</html>
